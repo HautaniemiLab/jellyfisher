@@ -1,0 +1,6 @@
+dependencies:
+  - name: jellyfish
+    version: 0.0
+    src: htmlwidgets/lib/jellyfish
+    script: jellyfish.umd.js
+    stylesheet: lib.css
