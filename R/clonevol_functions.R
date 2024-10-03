@@ -6,8 +6,8 @@
 #' @import stringr
 #' @import clonevol
 #'
-#' @export extract.tables.from.clonevol
-extract.tables.from.clonevol <- function(y, model = 1, explicit_parents = list()) {
+#' @export
+extract_tables_from_clonevol <- function(y, model = 1, explicit_parents = list()) {
   library(dplyr)
   library(stringr)
   library(clonevol)
@@ -84,8 +84,8 @@ extract.tables.from.clonevol <- function(y, model = 1, explicit_parents = list()
 #' <Add Description>
 #'
 #' @export
-jellyfisher.clonevol <- function(y, model = 1, explicit_parents = list()) {
-  x <- extract.tables.from.clonevol(y, model, explicit_parents)
+jellyfisher_clonevol <- function(y, model = 1, explicit_parents = list()) {
+  x <- extract_tables_from_clonevol(y, model, explicit_parents)
 
   jellyfisher(
     samples = x$samples,

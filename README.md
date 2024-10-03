@@ -1,15 +1,16 @@
 # Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R
 
-**Jellyfisher** is an R package that wraps the
+**Jellyfisher** is an R package that generates Jellyfish plots for visualizing
+tumor evolution and subclonal compositions. The package is based on the
 [Jellyfish](https://github.com/HautaniemiLab/jellyfish) visualization tool,
-bringing its functionality to R users. Jellyfisher uses **htmlwidgets** to
-generate interactive Jellyfish plots within R, allowing for the visualization of
-tumor phylogeny and subclonal compositions. These plots integrate both
-phylogenetic and sample tree structures in a single visualization.
+bringing its functionality to R users. The package is designed to work with with
+plain data frames or ClonEvol results, providing an easy way to visualize tumor
+evolution directly in R.
 
-With **Jellyfisher**, you can easily create publication-ready visualizations
-based on your data, simplifying the exploration of tumor evolution directly in
-R.
+![Jellyfisher Example](https://raw.githubusercontent.com/HautaniemiLab/jellyfish/refs/heads/main/docs/example.svg)
+
+The package is still under development and the API may change in the future.
+Stay tuned!
 
 ## Installation
 
@@ -52,7 +53,7 @@ library(jellyfisher)
 y <- infer.clonal.models(...)
 
 # Plot the results
-jellyfisher.clonevol(y)
+jellyfisher_clonevol(y)
 ```
 
 ### Extracting Data Frames from ClonEvol Results
@@ -61,7 +62,7 @@ The package also includes a function to extract the data frames from ClonEvol fo
 further processing or plotting:
 
 ```R
-extract.tables.from.clonevol(y, model = 1, explicit_parents = list())
+extract_tables_from_clonevol(y, model = 1, explicit_parents = list())
 ```
 
 ## About
