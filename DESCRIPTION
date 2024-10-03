@@ -19,3 +19,4 @@ Suggests:
     clonevol,
     dplyr,
     stringr
+Depends: R (>= 4.1.0)

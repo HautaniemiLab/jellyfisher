@@ -13,13 +13,56 @@ R.
 
 ## Installation
 
-TODO
+```R
+# Install Devtools
+install.packages("devtools")
+
+# Install Jellyfisher
+devtools::install_github("HautaniemiLab/jellyfisher")
+```
 
 ## Usage
 
 Input data format is the same as for Jellyfish itself. Consult the [Jellyfish
 documentation](https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data)
 for more information.
+
+### Plotting Data Frames
+
+#### Example
+
+```R
+library(jellyfisher)
+
+# Plot the bundled example data
+jellyfisher(samples = samples.example,
+            phylogeny = phylogeny.example,
+            compositions = compositions.example)
+```
+
+### Plotting ClonEvol Results
+
+#### Example
+
+```R
+library(clonevol)
+library(jellyfisher)
+
+# Run ClonEvol
+y <- infer.clonal.models(...)
+
+# Plot the results
+jellyfisher.clonevol(y)
+```
+
+### Extracting Data Frames from ClonEvol Results
+
+The package also includes a function to extract the data frames from ClonEvol for
+further processing or plotting:
+
+```R
+extract.tables.from.clonevol(y, model = 1, explicit_parents = list())
+```
 
 ## About
 
