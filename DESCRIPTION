@@ -15,3 +15,7 @@ RoxygenNote: 7.3.1
 LazyData: true
 URL: https://github.com/HautaniemiLab/jellyfisher
 BugReports: https://github.com/HautaniemiLab/jellyfisher/issues
+Suggests: 
+    clonevol,
+    dplyr,
+    stringr
