@@ -2,14 +2,15 @@
 % Please edit documentation in R/clonevol_functions.R
 \name{extract_tables_from_clonevol}
 \alias{extract_tables_from_clonevol}
-\title{\if{html}{\out{
-<Add Title>
-}}}
+\title{Extract samples, phylogeny, and subclonal compositions from ClonEvol results}
 \usage{
 extract_tables_from_clonevol(y, model = 1, explicit_parents = list())
 }
+\arguments{
+\item{y}{A ClonEvol object}
+
+\item{model}{The model to extract from}
+}
 \description{
-\if{html}{\out{
-<Add Description>
-}}
+Extracts data frames that can be used to create a Jellyfish plot.
 }

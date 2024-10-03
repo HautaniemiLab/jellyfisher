@@ -2,9 +2,7 @@
 % Please edit documentation in R/jellyfisher.R
 \name{jellyfisher}
 \alias{jellyfisher}
-\title{\if{html}{\out{
-<Add Title>
-}}}
+\title{Creates a Jellyfish plot}
 \usage{
 jellyfisher(
   samples,
@@ -16,8 +14,15 @@ jellyfisher(
   elementId = NULL
 )
 }
+\arguments{
+\item{samples}{A data frame with samples}
+
+\item{phylogeny}{A data frame with phylogeny}
+
+\item{compositions}{A data frame with subclonal compositions}
+}
 \description{
-\if{html}{\out{
-<Add Description>
-}}
+Creates a Jellyfish plot from a samples, a phylogeny, and subclonal compositions.
+The format of the data frames are described in Jellyfish documentation:
+https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 }

@@ -1,12 +1,16 @@
-#' <Add Title>
+#' Extract samples, phylogeny, and subclonal compositions from ClonEvol results
 #'
-#' <Add Description>
+#' Extracts data frames that can be used to create a Jellyfish plot.
+#'
+#' @param y A ClonEvol object
+#' @param model The model to extract from
 #'
 #' @import dplyr
 #' @import stringr
 #' @import clonevol
 #'
 #' @export
+#'
 extract_tables_from_clonevol <- function(y, model = 1, explicit_parents = list()) {
   library(dplyr)
   library(stringr)
@@ -79,11 +83,16 @@ extract_tables_from_clonevol <- function(y, model = 1, explicit_parents = list()
   ))
 }
 
-#' <Add Title>
+#' Create a Jellyfish plot from a ClonEvol object
 #'
-#' <Add Description>
+#' Takes a ClonEvol result object, extracts the necessary data, and creates
+#' a Jellyfish plot.
+#'
+#' @param y A ClonEvol object
+#' @param model The model to extract from
 #'
 #' @export
+#'
 jellyfisher_clonevol <- function(y, model = 1, explicit_parents = list()) {
   x <- extract_tables_from_clonevol(y, model, explicit_parents)
 

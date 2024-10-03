@@ -2,14 +2,16 @@
 % Please edit documentation in R/clonevol_functions.R
 \name{jellyfisher_clonevol}
 \alias{jellyfisher_clonevol}
-\title{\if{html}{\out{
-<Add Title>
-}}}
+\title{Create a Jellyfish plot from a ClonEvol object}
 \usage{
 jellyfisher_clonevol(y, model = 1, explicit_parents = list())
 }
+\arguments{
+\item{y}{A ClonEvol object}
+
+\item{model}{The model to extract from}
+}
 \description{
-\if{html}{\out{
-<Add Description>
-}}
+Takes a ClonEvol result object, extracts the necessary data, and creates
+a Jellyfish plot.
 }

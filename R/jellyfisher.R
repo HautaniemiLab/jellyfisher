@@ -1,14 +1,19 @@
-#' <Add Title>
+#' Creates a Jellyfish plot
 #'
-#' <Add Description>
+#' Creates a Jellyfish plot from a samples, a phylogeny, and subclonal compositions.
+#' The format of the data frames are described in Jellyfish documentation:
+#' https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
+#'
+#' @param samples A data frame with samples
+#' @param phylogeny A data frame with phylogeny
+#' @param compositions A data frame with subclonal compositions
 #'
 #' @import htmlwidgets
 #'
 #' @export
 jellyfisher <- function(samples, phylogeny, compositions, ranks = NULL, width = NULL, height = NULL, elementId = NULL) {
-
   # forward options using x
-  x = list(
+  x <- list(
     samples = samples,
     phylogeny = phylogeny,
     compositions = compositions,
@@ -17,11 +22,11 @@ jellyfisher <- function(samples, phylogeny, compositions, ranks = NULL, width = 
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'jellyfisher',
+    name = "jellyfisher",
     x,
     width = width,
     height = height,
-    package = 'jellyfisher',
+    package = "jellyfisher",
     elementId = elementId
   )
 }
@@ -43,13 +48,15 @@ jellyfisher <- function(samples, phylogeny, compositions, ranks = NULL, width = 
 #' @name jellyfisher-shiny
 #'
 #' @export
-jellyfisherOutput <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'jellyfisher', width, height, package = 'jellyfisher')
+jellyfisherOutput <- function(outputId, width = "100%", height = "400px") {
+  htmlwidgets::shinyWidgetOutput(outputId, "jellyfisher", width, height, package = "jellyfisher")
 }
 
 #' @rdname jellyfisher-shiny
 #' @export
 renderJellyfisher <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(expr, jellyfisherOutput, env, quoted = TRUE)
 }
