@@ -1,15 +1,17 @@
 Package: jellyfisher
-Title: Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R
+Title: Visualizing Tumor Evolution with Jellyfish Plots in R
 Version: 0.0.0.9000
 Authors@R: 
     person("Kari", "Lavikka", , "kari.lavikka@helsinki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4163-4945"))
 Description:
-    Jellyfisher is an R package that wraps the Jellyfish visualization tool,
-    bringing its functionality to R users. Jellyfish plots integrate both
-    phylogenetic and sample tree structures in a single visualization.
+    'Jellyfisher' creates Jellyfish plots using the JavaScript based
+    'Jellyfish' library. Jellyfish plots integrate both phylogenetic
+    and sample tree structures in a single visualization.
 License: MIT
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 LazyData: true
+URL: https://github.com/HautaniemiLab/jellyfisher
+BugReports: https://github.com/HautaniemiLab/jellyfisher/issues

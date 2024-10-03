@@ -17,7 +17,9 @@ TODO
 
 ## Usage
 
-TODO
+Input data format is the same as for Jellyfish itself. Consult the [Jellyfish
+documentation](https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data)
+for more information.
 
 ## About
 
@@ -31,4 +33,3 @@ This project has received funding from the European Union's Horizon 2020
 research and innovation programme under grant agreement No. 965193
 ([DECIDER](https://www.deciderproject.eu/)) and No. 847912
 ([RESCUER](https://www.rescuer.uio.no/)).
-
