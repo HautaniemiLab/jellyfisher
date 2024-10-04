@@ -1,4 +1,4 @@
-# Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R
+# <img src="man/figures/logo.webp" alt="Jellyfisher hexagon" align="right" height="138" style="margin-left: 0.5em" /> Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R
 
 **Jellyfisher** is an R package that generates Jellyfish plots for visualizing
 tumor evolution and subclonal compositions. The package is based on the
