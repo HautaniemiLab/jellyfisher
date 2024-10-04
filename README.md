@@ -1,11 +1,11 @@
 # <img src="man/figures/logo.webp" alt="Jellyfisher hexagon" align="right" height="138" style="margin-left: 0.5em" /> Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R
 
-**Jellyfisher** is an R package that generates Jellyfish plots for visualizing
-tumor evolution and subclonal compositions. The package is based on the
+**Jellyfisher** is an R package for visualizing tumor evolution and subclonal
+compositions using Jellyfish plots. The package is based on the
 [Jellyfish](https://github.com/HautaniemiLab/jellyfish) visualization tool,
 bringing its functionality to R users. The package is designed to work with with
-plain data frames or ClonEvol results, providing an easy way to visualize tumor
-evolution directly in R.
+ClonEvol results or plain data frames, allowing use with a wide range of tools
+and workflows.
 
 ![Jellyfisher Example](https://raw.githubusercontent.com/HautaniemiLab/jellyfish/refs/heads/main/docs/example.svg)
 
@@ -24,11 +24,13 @@ devtools::install_github("HautaniemiLab/jellyfisher")
 
 ## Usage
 
-Input data format is the same as for Jellyfish itself. Consult the [Jellyfish
-documentation](https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data)
-for more information.
+Jellyfisher is designed to work with data frames or ClonEvol results.
 
 ### Plotting Data Frames
+
+The input data should follow specific structures for _samples_, _phylogeny_, and
+subclonal _compositions_, which are described in the [Jellyfish
+documentation](https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data).
 
 #### Example
 
@@ -42,6 +44,9 @@ jellyfisher(samples = samples.example,
 ```
 
 ### Plotting ClonEvol Results
+
+Jellyfisher can also visualize ClonEvol output. After running ClonEvol, use the
+following method to generate the plot:
 
 #### Example
 
@@ -58,16 +63,21 @@ jellyfisher_clonevol(y)
 
 ### Extracting Data Frames from ClonEvol Results
 
-The package also includes a function to extract the data frames from ClonEvol for
-further processing or plotting:
+If you need to process ClonEvol output further or plot it in different ways,
+Jellyfisher includes a helper function to extract the relevant data frames:
 
 ```R
 extract_tables_from_clonevol(y, model = 1, explicit_parents = list())
 ```
 
+The function returns a list of data frames that you can pass to the
+`jellyfisher` function. N.B., ClonEvol reports clonal prevalences as confidence
+intervals. The function extracts the mean values and uses them as the prevalence
+values.
+
 ## About
 
-Copyright (c) 2024 Kari Lavikka. See [LICENSE](LICENSE) for details.
+Copyright (c) 2024 Kari Lavikka. MIT license, see [LICENSE](LICENSE) for details.
 
 Jellyfish Plotter is developed in [The Systems Biology of Drug Resistance in
 Cancer](https://www.helsinki.fi/en/researchgroups/systems-biology-of-drug-resistance-in-cancer)
