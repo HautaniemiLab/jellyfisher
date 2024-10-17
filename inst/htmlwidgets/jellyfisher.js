@@ -9,6 +9,9 @@ HTMLWidgets.widget({
         // Remove the 15px margin that RStudio adds to the widget
         el.parentElement.style.inset = "0";
 
+        // Ensure that absolute positioning works in R markdown
+        el.style.position = "relative";
+
         jellyfish.setupGui(el, {
           samples: HTMLWidgets.dataframeToD3(x.samples),
           phylogeny: HTMLWidgets.dataframeToD3(x.phylogeny),
