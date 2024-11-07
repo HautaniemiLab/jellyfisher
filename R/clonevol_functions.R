@@ -7,16 +7,18 @@
 #'
 #' @import dplyr
 #' @import stringr
-#' @import clonevol
 #'
 #' @export
 #'
 extract_tables_from_clonevol <- function(y, model = 1, explicit_parents = list()) {
   library(dplyr)
   library(stringr)
-  library(clonevol)
 
-  y <- convert.consensus.tree.clone.to.branch(y)
+  if (!requireNamespace("clonevol", quietly = TRUE)) {
+    stop("The clonevol package must be installed to use this functionality")
+  }
+
+  y <- clonevol::convert.consensus.tree.clone.to.branch(y)
 
   tree <- y$matched$merged.trees[[model]]
 
