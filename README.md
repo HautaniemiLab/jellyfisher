@@ -96,6 +96,7 @@ With the explicit parents, you can customize the relationships:
 
 ```R
 explicit_parents = list(
+  # The parent of C is B
   C = "B"
 )
 ```
