@@ -55,7 +55,7 @@ input and generates a Jellyfish plot.
 library(clonevol)
 library(jellyfisher)
 
-# Run ClonEvol
+# Run ClonEvol. Check the ClonEvol documentation for details.
 y <- infer.clonal.models(...)
 
 # Plot the results
