@@ -8,6 +8,7 @@ jellyfisher(
   samples,
   phylogeny,
   compositions,
+  options = list(),
   ranks = NULL,
   width = NULL,
   height = NULL,
@@ -20,9 +21,40 @@ jellyfisher(
 \item{phylogeny}{A data frame with phylogeny}
 
 \item{compositions}{A data frame with subclonal compositions}
+
+\item{options}{A named list of options to configure the plot. Available options:
+\describe{
+\item{bellTipShape}{The shape of the bell tip. 0 is a sharp tip, 1 is a blunt tip. Defaults to \code{0.1}.}
+\item{bellTipSpread}{How much to spread nested bell tips. 0 is no spread, 1 is full spread. Defaults to \code{0.5}.}
+\item{bellStrokeWidth}{The width of strokes in the bell. Defaults to \code{1}.}
+\item{bellPlateauPos}{Where the bell has fully appeared and the plateau starts. Defaults to \code{0.75}.}
+\item{sampleHeight}{Height of real sample nodes Defaults to \code{110}.}
+\item{sampleWidth}{Width of sample nodes Defaults to \code{90}.}
+\item{inferredSampleHeight}{Height of inferred sample nodes Defaults to \code{120}.}
+\item{gapHeight}{Height of gaps between samples. Gaps are routes for tentacle bundles. Defaults to \code{60}.}
+\item{sampleSpacing}{Vertical space between samples Defaults to \code{60}.}
+\item{columnSpacing}{Horizontal space between columns Defaults to \code{90}.}
+\item{tentacleWidth}{Width of tentacles in pixels Defaults to \code{2}.}
+\item{tentacleSpacing}{Space between tentacles in a bundle, in pixels Defaults to \code{5}.}
+\item{inOutCPDistance}{Relative distance of tentacle control points from the edge of the sample node Defaults to \code{0.3}.}
+\item{bundleCPDistance}{Relative distance of tentacle bundle's control points. The higher the value, the longer the individual tentacles stay together before diverging. Defaults to \code{0.6}.}
+\item{sampleFontSize}{Font size for sample labels Defaults to \code{12}.}
+\item{showLegend}{Whether to show the legend Defaults to \code{TRUE}.}
+\item{phylogenyColorScheme}{Whether to use a color scheme based on phylogeny Defaults to \code{TRUE}.}
+\item{phylogenyHueOffset}{Offset for the hue of the phylogeny color scheme. If the automatically generated hues are not to your liking, you can adjust the hue offset to get a different color scheme. Defaults to \code{0}.}
+\item{sampleTakenGuide}{Type of the "sample taken" guide. \code{"none"} for no guides, \code{"line"} for a faint dashed line in all samples, \code{"text"} same as line, but with a text label in one of the samples. Defaults to \code{"text"}.}
+}}
+
+\item{ranks}{An optional parameter for additional ranks}
+
+\item{width}{The width of the widget}
+
+\item{height}{The height of the widget}
+
+\item{elementId}{An optional element ID for the widget}
 }
 \description{
-Creates a Jellyfish plot from a samples, a phylogeny, and subclonal compositions.
-The format of the data frames are described in Jellyfish documentation:
+Creates a Jellyfish plot from samples, a phylogeny, and subclonal compositions.
+The format of the data frames is described in Jellyfish documentation:
 https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 }

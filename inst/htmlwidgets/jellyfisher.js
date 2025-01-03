@@ -12,12 +12,16 @@ HTMLWidgets.widget({
         // Ensure that absolute positioning works in R markdown
         el.style.position = "relative";
 
-        jellyfish.setupGui(el, {
-          samples: HTMLWidgets.dataframeToD3(x.samples),
-          phylogeny: HTMLWidgets.dataframeToD3(x.phylogeny),
-          compositions: HTMLWidgets.dataframeToD3(x.compositions),
-          ranks: [], // TODO
-        });
+        jellyfish.setupGui(
+          el,
+          {
+            samples: HTMLWidgets.dataframeToD3(x.samples),
+            phylogeny: HTMLWidgets.dataframeToD3(x.phylogeny),
+            compositions: HTMLWidgets.dataframeToD3(x.compositions),
+            ranks: [], // TODO
+          },
+          x.options
+        );
       },
 
       resize: function (width, height) {
