@@ -1,0 +1,3 @@
+[submodule "prepare/jellyfish"]
+	path = prepare/jellyfish
+	url = https://github.com/HautaniemiLab/jellyfish.git
