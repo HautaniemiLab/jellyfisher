@@ -6,9 +6,6 @@ HTMLWidgets.widget({
   factory: function (el, width, height) {
     return {
       renderValue: function (x) {
-        // Remove the 15px margin that RStudio adds to the widget
-        el.parentElement.style.inset = "0";
-
         // Ensure that absolute positioning works in R markdown
         el.style.position = "relative";
 

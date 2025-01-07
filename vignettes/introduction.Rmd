@@ -76,7 +76,9 @@ compositions.example
 ```{r}
 jellyfisher(samples = samples.example,
             phylogeny = phylogeny.example,
-            compositions = compositions.example)
+            compositions = compositions.example,
+            width = "100%",
+            height = 500)
 ```
 
 ### Plotting with custom options
@@ -89,5 +91,7 @@ jellyfisher(samples = samples.example,
               sampleHeight = 70,
               sampleTakenGuide = "none",
               showLegend = FALSE
-            ))
+            ),
+            width = "100%",
+            height = 500)
 ```

@@ -194,7 +194,13 @@ jellyfisher <- function(samples, phylogeny, compositions, options = list(), rank
     width = width,
     height = height,
     package = "jellyfisher",
-    elementId = elementId
+    elementId = elementId,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      viewer.padding = 0,
+      viewer.fill = TRUE,
+      defaultWidth = "100%",
+      defaultHeight = "500px"
+    )
   )
 }
 
