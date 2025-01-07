@@ -1,6 +1,58 @@
 import * as fs from "fs";
 
-function generateRFunction(schema) {
+function processMarkdownLinks(text) {
+  // Replace markdown links [text](url) with Roxygen2 links \href{url}{text}
+  return text.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    (match, text, url) => `\\href{${url}}{${text}}`
+  );
+}
+
+function extractTableDescriptions(readme) {
+  const sections = {};
+  const regex =
+    /### `([^`]+)`\n\n([\s\S]*?)#### Columns\n\n([\s\S]*?)(\n\n#### Example|$)/g;
+
+  let match;
+  while ((match = regex.exec(readme)) !== null) {
+    const tableName = match[1];
+    const intermediateText = processMarkdownLinks(match[2].trim()); // Process links
+    const columnsSection = match[3]
+      .trim()
+      .split("\n")
+      .filter((line) => line.startsWith("- "));
+
+    const columns = columnsSection
+      .map((line) => {
+        const columnMatch = line.match(/- `([^`]+)` \(([^)]+)\): (.+)/);
+        if (!columnMatch) return null;
+
+        const [, column, type, description] = columnMatch;
+        return `#'   \\item{${column}}{${processMarkdownLinks(
+          description.replace(/\n/g, " ").trim()
+        )} (${type})}`;
+      })
+      .filter(Boolean)
+      .join("\n");
+
+    // Include intermediate text and column descriptions
+    sections[tableName] = {
+      description: intermediateText ? `#' ${intermediateText}` : null,
+      columns,
+    };
+  }
+
+  return sections;
+}
+
+function generateRFunction(schema, tableDescriptions) {
+  const buildParamDoc = (tableName) => {
+    const table = tableDescriptions[tableName];
+    if (!table) return "";
+    const columns = table.columns || "";
+    return `#'   \\describe{\n${columns}\n#'   }`;
+  };
+
   const properties = schema.definitions.LayoutProperties.properties;
 
   // Extract defaults and validation logic
@@ -57,12 +109,16 @@ function generateRFunction(schema) {
 #' Creates a Jellyfish plot
 #'
 #' Creates a Jellyfish plot from samples, a phylogeny, and subclonal compositions.
-#' The format of the data frames is described in Jellyfish documentation:
+#'
+#' The format of the data frames is described with examples in Jellyfish documentation:
 #' https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 #'
 #' @param samples A data frame with samples
+${buildParamDoc("samples.tsv")}
 #' @param phylogeny A data frame with phylogeny
+${buildParamDoc("phylogeny.tsv")}
 #' @param compositions A data frame with subclonal compositions
+${buildParamDoc("compositions.tsv")}
 #' @param options A named list of options to configure the plot. Available options:
 #'   \\describe{
 ${roxygenOptions.join("\n")}
@@ -71,6 +127,17 @@ ${roxygenOptions.join("\n")}
 #' @param width The width of the widget
 #' @param height The height of the widget
 #' @param elementId An optional element ID for the widget
+#'
+#' @examples
+#' # Plot the bundled example data
+#' jellyfisher(samples = samples.example,
+#'             phylogeny = phylogeny.example,
+#'             compositions = compositions.example,
+#'             options = list(
+#'               sampleHeight = 70,
+#'               sampleTakenGuide = "none",
+#'               showLegend = FALSE
+#'             ))
 #'
 #' @import htmlwidgets
 #' @export
@@ -139,13 +206,16 @@ renderJellyfisher <- function(expr, env = parent.frame(), quoted = FALSE) {
 `;
 }
 
+const readme = fs.readFileSync("jellyfish/README.md", "utf8");
+const tableDescriptions = extractTableDescriptions(readme);
+
 // Read the JSON schema
 const schema = JSON.parse(
   fs.readFileSync("jellyfish/dist/schema.json", "utf8")
 );
 
 // Generate the R function
-const rFunction = generateRFunction(schema);
+const rFunction = generateRFunction(schema, tableDescriptions);
 
 // Write the R function to a file
 fs.writeFileSync("../R/jellyfisher.R", rFunction);

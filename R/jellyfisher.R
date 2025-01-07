@@ -5,12 +5,30 @@
 #' Creates a Jellyfish plot
 #'
 #' Creates a Jellyfish plot from samples, a phylogeny, and subclonal compositions.
-#' The format of the data frames is described in Jellyfish documentation:
+#'
+#' The format of the data frames is described with examples in Jellyfish documentation:
 #' https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 #'
 #' @param samples A data frame with samples
+#'   \describe{
+#'   \item{sample}{specifies the unique identifier for each sample. (string)}
+#'   \item{displayName}{allows for specifying a custom name for each sample. If the column is omitted, the `sample` column is used as the display name. (string, optional)}
+#'   \item{rank}{specifies the position of each sample in the Jellyfish plot. For example, different stages of a disease can be ranked in chronological order: diagnosis (1), interval (2), and relapse (3). The zeroth rank is reserved for the root of the sample tree. Ranks can be any integer, and unused ranks are automatically excluded from the plot. If the `rank` column is (integer)}
+#'   \item{parent}{identifies the parent sample for each entry. Samples without a specified parent are treated as children of an imaginary root sample. (string)}
+#'   }
 #' @param phylogeny A data frame with phylogeny
+#'   \describe{
+#'   \item{subclone}{specifies subclone IDs, which can be any string. (string)}
+#'   \item{parent}{designates the parent subclone. The subclone without a parent is considered the root of the phylogeny. (string)}
+#'   \item{color}{specifies the color for the subclone. If the column is omitted, colors will be generated automatically. (string, optional)}
+#'   \item{branchLength}{specifies the length of the branch leading to the subclone. The length may be based on, for example, the number of unique mutations in the subclone. The branch length is shown in the Jellyfish plot's legend as a bar chart. It is also used when generating a phylogeny-aware color scheme. (number)}
+#'   }
 #' @param compositions A data frame with subclonal compositions
+#'   \describe{
+#'   \item{sample}{specifies the sample ID. (string)}
+#'   \item{subclone}{specifies the subclone ID. (string)}
+#'   \item{clonalPrevalence}{specifies the clonal prevalence of the subclone in the sample. The clonal prevalence is the proportion of the subclone in the sample. The clonal prevalences in a sample must sum to 1. (number)}
+#'   }
 #' @param options A named list of options to configure the plot. Available options:
 #'   \describe{
 #'   \item{bellTipShape}{The shape of the bell tip. 0 is a sharp tip, 1 is a blunt tip. Defaults to \code{0.1}.}
@@ -37,6 +55,17 @@
 #' @param width The width of the widget
 #' @param height The height of the widget
 #' @param elementId An optional element ID for the widget
+#'
+#' @examples
+#' # Plot the bundled example data
+#' jellyfisher(samples = samples.example,
+#'             phylogeny = phylogeny.example,
+#'             compositions = compositions.example,
+#'             options = list(
+#'               sampleHeight = 70,
+#'               sampleTakenGuide = "none",
+#'               showLegend = FALSE
+#'             ))
 #'
 #' @import htmlwidgets
 #' @export
