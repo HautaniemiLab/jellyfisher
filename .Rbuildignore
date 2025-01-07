@@ -1,3 +1,5 @@
 ^jellyfisher\.Rproj$
 ^\.Rproj\.user$
 ^prepare$
+^doc$
+^Meta$

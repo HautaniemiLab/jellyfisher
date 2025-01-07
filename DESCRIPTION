@@ -18,5 +18,8 @@ BugReports: https://github.com/HautaniemiLab/jellyfisher/issues
 Suggests: 
     clonevol,
     dplyr,
+    knitr,
+    rmarkdown,
     stringr
 Depends: R (>= 4.1.0)
+VignetteBuilder: knitr

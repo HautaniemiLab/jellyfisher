@@ -1,0 +1,93 @@
+---
+title: "introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(jellyfisher)
+```
+
+# Introduction
+
+**Jellyfisher** is an R package for visualizing tumor evolution and subclonal
+compositions using Jellyfish plots. The package is based on the
+[Jellyfish](https://github.com/HautaniemiLab/jellyfish) visualization tool,
+bringing its functionality to R users. Jellyfisher supports both
+[ClonEvol](https://github.com/hdng/clonevol) results and plain data frames,
+making it compatible with various tools and workflows.
+
+## Input data
+
+The input data should follow specific structures for _samples_, _phylogeny_, and
+subclonal _compositions_. The Jellyfisher package comes with a sample data set.
+
+### Samples
+            
+- `sample` (string): specifies the unique identifier for each sample.
+- `displayName` (string, optional): allows for specifying a custom name for each sample. If the column is omitted, the `sample` column is used as the display name.
+- `rank` (integer): specifies the position of each sample in the Jellyfish plot. For example, different stages of a disease can be ranked in chronological order: diagnosis (1), interval (2), and relapse (3). The zeroth rank is reserved for the root of the sample tree. Ranks can be any integer, and unused ranks are automatically excluded from the plot. If the `rank` column is
+  absent, ranks are assigned based on each sample’s depth in the sample tree.
+- `parent` (string): identifies the parent sample for each entry. Samples without a specified parent are treated as children of an imaginary root sample.
+
+```{r}
+samples.example
+```
+
+### Phylogeny
+
+- `subclone` (string): specifies subclone IDs, which can be any string.
+- `parent` (string): designates the parent subclone. The subclone without a parent is considered the root of the phylogeny.
+- `color` (string, optional): specifies the color for the subclone. If the column is omitted, colors will be generated automatically.
+- `branchLength` (number): specifies the length of the branch leading to the subclone. The length may be based on, for example, the number of unique mutations in the subclone. The branch length is shown in the Jellyfish plot's legend as a bar chart. It is also used when generating a phylogeny-aware color scheme.
+
+```{r}
+phylogeny.example
+```
+
+### Subclonal compositions
+
+Subclonal compositions are specified in a
+[tidy](https://vita.had.co.nz/papers/tidy-data.pdf) format, where each row
+represents a subclone in a sample.
+
+- `sample` (string): specifies the sample ID.
+- `subclone` (string): specifies the subclone ID.
+- `clonalPrevalence` (number): specifies the clonal prevalence of the subclone in the sample. The clonal prevalence is the proportion of the subclone in the sample. The clonal prevalences in a sample must sum to 1.
+
+```{r}
+compositions.example
+```
+
+## Plotting
+
+### Basic plotting 
+
+```{r}
+jellyfisher(samples = samples.example,
+            phylogeny = phylogeny.example,
+            compositions = compositions.example)
+```
+
+### Plotting with custom options
+
+```{r}
+jellyfisher(samples = samples.example,
+            phylogeny = phylogeny.example,
+            compositions = compositions.example,
+            options = list(
+              sampleHeight = 70,
+              sampleTakenGuide = "none",
+              showLegend = FALSE
+            ))
+```
