@@ -21,20 +21,20 @@ function generateRFunction(schema) {
 
     let validation = `  if (!is.null(options$${key})) {`;
     if (value.type === "number") {
-      validation += `\n    if (!is.numeric(options$${key})) stop("${key} must be numeric");`;
+      validation += `\n    if (!is.numeric(options$${key})) stop("${key} must be numeric")`;
       if (value.minimum !== undefined) {
-        validation += `\n    if (options$${key} < ${value.minimum}) stop("${key} must be at least ${value.minimum}");`;
+        validation += `\n    if (options$${key} < ${value.minimum}) stop("${key} must be at least ${value.minimum}")`;
       }
       if (value.maximum !== undefined) {
-        validation += `\n    if (options$${key} > ${value.maximum}) stop("${key} must be no greater than ${value.maximum}");`;
+        validation += `\n    if (options$${key} > ${value.maximum}) stop("${key} must be no greater than ${value.maximum}")`;
       }
     } else if (value.type === "boolean") {
-      validation += `\n    if (!is.logical(options$${key})) stop("${key} must be a boolean (TRUE or FALSE)");`;
+      validation += `\n    if (!is.logical(options$${key})) stop("${key} must be a boolean (TRUE or FALSE)")`;
     } else if (value.type === "string" && value.enum) {
       const enumValues = value.enum.map((v) => `"${v}"`).join(", ");
       validation += `\n    if (!options$${key} %in% c(${enumValues})) stop("${key} must be one of: ${value.enum.join(
         ", "
-      )}");`;
+      )}")`;
     }
 
     validation += "\n  }";

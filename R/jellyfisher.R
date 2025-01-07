@@ -69,84 +69,84 @@ jellyfisher <- function(samples, phylogeny, compositions, options = list(), rank
 
   # Validate options
   if (!is.null(options$bellTipShape)) {
-    if (!is.numeric(options$bellTipShape)) stop("bellTipShape must be numeric");
-    if (options$bellTipShape < 0) stop("bellTipShape must be at least 0");
-    if (options$bellTipShape > 1) stop("bellTipShape must be no greater than 1");
+    if (!is.numeric(options$bellTipShape)) stop("bellTipShape must be numeric")
+    if (options$bellTipShape < 0) stop("bellTipShape must be at least 0")
+    if (options$bellTipShape > 1) stop("bellTipShape must be no greater than 1")
   }
   if (!is.null(options$bellTipSpread)) {
-    if (!is.numeric(options$bellTipSpread)) stop("bellTipSpread must be numeric");
-    if (options$bellTipSpread < 0) stop("bellTipSpread must be at least 0");
-    if (options$bellTipSpread > 1) stop("bellTipSpread must be no greater than 1");
+    if (!is.numeric(options$bellTipSpread)) stop("bellTipSpread must be numeric")
+    if (options$bellTipSpread < 0) stop("bellTipSpread must be at least 0")
+    if (options$bellTipSpread > 1) stop("bellTipSpread must be no greater than 1")
   }
   if (!is.null(options$bellStrokeWidth)) {
-    if (!is.numeric(options$bellStrokeWidth)) stop("bellStrokeWidth must be numeric");
-    if (options$bellStrokeWidth < 0) stop("bellStrokeWidth must be at least 0");
-    if (options$bellStrokeWidth > 10) stop("bellStrokeWidth must be no greater than 10");
+    if (!is.numeric(options$bellStrokeWidth)) stop("bellStrokeWidth must be numeric")
+    if (options$bellStrokeWidth < 0) stop("bellStrokeWidth must be at least 0")
+    if (options$bellStrokeWidth > 10) stop("bellStrokeWidth must be no greater than 10")
   }
   if (!is.null(options$bellPlateauPos)) {
-    if (!is.numeric(options$bellPlateauPos)) stop("bellPlateauPos must be numeric");
-    if (options$bellPlateauPos < 0) stop("bellPlateauPos must be at least 0");
-    if (options$bellPlateauPos > 1) stop("bellPlateauPos must be no greater than 1");
+    if (!is.numeric(options$bellPlateauPos)) stop("bellPlateauPos must be numeric")
+    if (options$bellPlateauPos < 0) stop("bellPlateauPos must be at least 0")
+    if (options$bellPlateauPos > 1) stop("bellPlateauPos must be no greater than 1")
   }
   if (!is.null(options$sampleHeight)) {
-    if (!is.numeric(options$sampleHeight)) stop("sampleHeight must be numeric");
-    if (options$sampleHeight < 10) stop("sampleHeight must be at least 10");
+    if (!is.numeric(options$sampleHeight)) stop("sampleHeight must be numeric")
+    if (options$sampleHeight < 10) stop("sampleHeight must be at least 10")
   }
   if (!is.null(options$sampleWidth)) {
-    if (!is.numeric(options$sampleWidth)) stop("sampleWidth must be numeric");
-    if (options$sampleWidth < 10) stop("sampleWidth must be at least 10");
+    if (!is.numeric(options$sampleWidth)) stop("sampleWidth must be numeric")
+    if (options$sampleWidth < 10) stop("sampleWidth must be at least 10")
   }
   if (!is.null(options$inferredSampleHeight)) {
-    if (!is.numeric(options$inferredSampleHeight)) stop("inferredSampleHeight must be numeric");
-    if (options$inferredSampleHeight < 10) stop("inferredSampleHeight must be at least 10");
+    if (!is.numeric(options$inferredSampleHeight)) stop("inferredSampleHeight must be numeric")
+    if (options$inferredSampleHeight < 10) stop("inferredSampleHeight must be at least 10")
   }
   if (!is.null(options$gapHeight)) {
-    if (!is.numeric(options$gapHeight)) stop("gapHeight must be numeric");
-    if (options$gapHeight < 0) stop("gapHeight must be at least 0");
+    if (!is.numeric(options$gapHeight)) stop("gapHeight must be numeric")
+    if (options$gapHeight < 0) stop("gapHeight must be at least 0")
   }
   if (!is.null(options$sampleSpacing)) {
-    if (!is.numeric(options$sampleSpacing)) stop("sampleSpacing must be numeric");
-    if (options$sampleSpacing < 0) stop("sampleSpacing must be at least 0");
+    if (!is.numeric(options$sampleSpacing)) stop("sampleSpacing must be numeric")
+    if (options$sampleSpacing < 0) stop("sampleSpacing must be at least 0")
   }
   if (!is.null(options$columnSpacing)) {
-    if (!is.numeric(options$columnSpacing)) stop("columnSpacing must be numeric");
-    if (options$columnSpacing < 10) stop("columnSpacing must be at least 10");
+    if (!is.numeric(options$columnSpacing)) stop("columnSpacing must be numeric")
+    if (options$columnSpacing < 10) stop("columnSpacing must be at least 10")
   }
   if (!is.null(options$tentacleWidth)) {
-    if (!is.numeric(options$tentacleWidth)) stop("tentacleWidth must be numeric");
-    if (options$tentacleWidth < 0) stop("tentacleWidth must be at least 0");
+    if (!is.numeric(options$tentacleWidth)) stop("tentacleWidth must be numeric")
+    if (options$tentacleWidth < 0) stop("tentacleWidth must be at least 0")
   }
   if (!is.null(options$tentacleSpacing)) {
-    if (!is.numeric(options$tentacleSpacing)) stop("tentacleSpacing must be numeric");
-    if (options$tentacleSpacing < 0) stop("tentacleSpacing must be at least 0");
+    if (!is.numeric(options$tentacleSpacing)) stop("tentacleSpacing must be numeric")
+    if (options$tentacleSpacing < 0) stop("tentacleSpacing must be at least 0")
   }
   if (!is.null(options$inOutCPDistance)) {
-    if (!is.numeric(options$inOutCPDistance)) stop("inOutCPDistance must be numeric");
-    if (options$inOutCPDistance < 0) stop("inOutCPDistance must be at least 0");
-    if (options$inOutCPDistance > 0.45) stop("inOutCPDistance must be no greater than 0.45");
+    if (!is.numeric(options$inOutCPDistance)) stop("inOutCPDistance must be numeric")
+    if (options$inOutCPDistance < 0) stop("inOutCPDistance must be at least 0")
+    if (options$inOutCPDistance > 0.45) stop("inOutCPDistance must be no greater than 0.45")
   }
   if (!is.null(options$bundleCPDistance)) {
-    if (!is.numeric(options$bundleCPDistance)) stop("bundleCPDistance must be numeric");
-    if (options$bundleCPDistance < 0) stop("bundleCPDistance must be at least 0");
-    if (options$bundleCPDistance > 1.2) stop("bundleCPDistance must be no greater than 1.2");
+    if (!is.numeric(options$bundleCPDistance)) stop("bundleCPDistance must be numeric")
+    if (options$bundleCPDistance < 0) stop("bundleCPDistance must be at least 0")
+    if (options$bundleCPDistance > 1.2) stop("bundleCPDistance must be no greater than 1.2")
   }
   if (!is.null(options$sampleFontSize)) {
-    if (!is.numeric(options$sampleFontSize)) stop("sampleFontSize must be numeric");
-    if (options$sampleFontSize < 0) stop("sampleFontSize must be at least 0");
+    if (!is.numeric(options$sampleFontSize)) stop("sampleFontSize must be numeric")
+    if (options$sampleFontSize < 0) stop("sampleFontSize must be at least 0")
   }
   if (!is.null(options$showLegend)) {
-    if (!is.logical(options$showLegend)) stop("showLegend must be a boolean (TRUE or FALSE)");
+    if (!is.logical(options$showLegend)) stop("showLegend must be a boolean (TRUE or FALSE)")
   }
   if (!is.null(options$phylogenyColorScheme)) {
-    if (!is.logical(options$phylogenyColorScheme)) stop("phylogenyColorScheme must be a boolean (TRUE or FALSE)");
+    if (!is.logical(options$phylogenyColorScheme)) stop("phylogenyColorScheme must be a boolean (TRUE or FALSE)")
   }
   if (!is.null(options$phylogenyHueOffset)) {
-    if (!is.numeric(options$phylogenyHueOffset)) stop("phylogenyHueOffset must be numeric");
-    if (options$phylogenyHueOffset < 0) stop("phylogenyHueOffset must be at least 0");
-    if (options$phylogenyHueOffset > 360) stop("phylogenyHueOffset must be no greater than 360");
+    if (!is.numeric(options$phylogenyHueOffset)) stop("phylogenyHueOffset must be numeric")
+    if (options$phylogenyHueOffset < 0) stop("phylogenyHueOffset must be at least 0")
+    if (options$phylogenyHueOffset > 360) stop("phylogenyHueOffset must be no greater than 360")
   }
   if (!is.null(options$sampleTakenGuide)) {
-    if (!options$sampleTakenGuide %in% c("none", "line", "text")) stop("sampleTakenGuide must be one of: none, line, text");
+    if (!options$sampleTakenGuide %in% c("none", "line", "text")) stop("sampleTakenGuide must be one of: none, line, text")
   }
 
   # Forward options using x
