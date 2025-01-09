@@ -19,7 +19,7 @@ Stay tuned!
 install.packages("devtools")
 
 # Install Jellyfisher
-devtools::install_github("HautaniemiLab/jellyfisher")
+devtools::install_github("HautaniemiLab/jellyfisher", build_vignettes = TRUE)
 ```
 
 ## Usage

@@ -1,8 +1,8 @@
 ---
-title: "introduction"
+title: "Introduction to Jellyfisher"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{introduction}
+  %\VignetteIndexEntry{Introduction to Jellyfisher}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(jellyfisher)
 ```
 
-# Introduction
+# Introduction to Jellyfisher
 
 **Jellyfisher** is an R package for visualizing tumor evolution and subclonal
 compositions using Jellyfish plots. The package is based on the
@@ -94,4 +94,24 @@ jellyfisher(samples = samples.example,
             ),
             width = "100%",
             height = 500)
+```
+
+### Plotting a single patient
+
+When plotting multiple patients, Jellyfisher shows buttons (Previous and Next)
+to navigate between patients. When the data contains only one patient, these
+buttons are hidden.
+
+```{r}
+jellyfisher(samples.example[samples.example$patient == "P2", ],
+            phylogeny.example[phylogeny.example$patient == "P2", ],
+            compositions.example[compositions.example$patient == "P2", ],
+            width = "100%",
+            height = 500)
+```
+
+## Session info
+
+```{r}
+sessionInfo()
 ```
