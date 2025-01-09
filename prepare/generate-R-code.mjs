@@ -1,3 +1,10 @@
+//
+// This NodeJS script generates the R function for the jellyfisher package based
+// on the JSON schema and the table descriptions in the README.md file.
+//
+// Usage: node generate-R-code.mjs
+//
+
 import * as fs from "fs";
 
 function processMarkdownLinks(text) {
