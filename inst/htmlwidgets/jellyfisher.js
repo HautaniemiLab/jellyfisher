@@ -17,7 +17,9 @@ HTMLWidgets.widget({
             compositions: HTMLWidgets.dataframeToD3(x.compositions),
             ranks: [], // TODO
           },
-          x.options
+          x.options,
+          null,
+          x.controls
         );
       },
 

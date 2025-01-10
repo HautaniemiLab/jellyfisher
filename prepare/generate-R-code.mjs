@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 //
 // This NodeJS script generates the R function for the jellyfisher package based
 // on the JSON schema and the table descriptions in the README.md file.
@@ -131,6 +133,7 @@ ${buildParamDoc("compositions.tsv")}
 ${roxygenOptions.join("\n")}
 #'   }
 #' @param ranks An optional parameter for additional ranks
+#' @param controls An optional parameter to set the initial state of the controls. Can be "open", "closed", or "hidden".
 #' @param width The width of the widget
 #' @param height The height of the widget
 #' @param elementId An optional element ID for the widget
@@ -148,7 +151,15 @@ ${roxygenOptions.join("\n")}
 #'
 #' @import htmlwidgets
 #' @export
-jellyfisher <- function(samples, phylogeny, compositions, options = list(), ranks = NULL, width = NULL, height = NULL, elementId = NULL) {
+jellyfisher <- function(samples,
+                        phylogeny,
+                        compositions,
+                        options = list(),
+                        ranks = NULL,
+                        controls = "closed",
+                        width = NULL,
+                        height = NULL,
+                        elementId = NULL) {
   # Define default options
   defaultOptions <- list(
 ${defaults.join(",\n")}
@@ -166,7 +177,8 @@ ${validations.join("\n")}
     phylogeny = phylogeny,
     compositions = compositions,
     ranks = ranks,
-    options = options
+    options = options,
+    controls = controls 
   )
 
   # Create widget
