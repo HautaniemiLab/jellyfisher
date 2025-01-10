@@ -39,7 +39,7 @@ subclonal _compositions_. The Jellyfisher package comes with a sample data set.
 - `parent` (string): identifies the parent sample for each entry. Samples without a specified parent are treated as children of an imaginary root sample.
 
 ```{r}
-samples.example
+jellyfisher_example_tables$samples
 ```
 
 ### Phylogeny
@@ -50,7 +50,7 @@ samples.example
 - `branchLength` (number): specifies the length of the branch leading to the subclone. The length may be based on, for example, the number of unique mutations in the subclone. The branch length is shown in the Jellyfish plot's legend as a bar chart. It is also used when generating a phylogeny-aware color scheme.
 
 ```{r}
-phylogeny.example
+jellyfisher_example_tables$phylogeny
 ```
 
 ### Subclonal compositions
@@ -64,17 +64,18 @@ represents a subclone in a sample.
 - `clonalPrevalence` (number): specifies the clonal prevalence of the subclone in the sample. The clonal prevalence is the proportion of the subclone in the sample. The clonal prevalences in a sample must sum to 1.
 
 ```{r}
-compositions.example
+jellyfisher_example_tables$compositions
 ```
 
 ## Plotting
 
 ### Basic plotting 
 
+The three tables are passed to the `jellyfisher` function as a named list. The
+function generates an interactive Jellyfish plot based on the input data.
+
 ```{r}
-jellyfisher(samples = samples.example,
-            phylogeny = phylogeny.example,
-            compositions = compositions.example,
+jellyfisher(jellyfisher_example_tables,
             width = "100%",
             height = 500)
 ```
@@ -82,9 +83,7 @@ jellyfisher(samples = samples.example,
 ### Plotting with custom options
 
 ```{r}
-jellyfisher(samples = samples.example,
-            phylogeny = phylogeny.example,
-            compositions = compositions.example,
+jellyfisher(jellyfisher_example_tables,
             options = list(
               sampleHeight = 70,
               sampleTakenGuide = "none",
@@ -98,14 +97,14 @@ jellyfisher(samples = samples.example,
 
 When plotting multiple patients, Jellyfisher shows buttons (Previous and Next)
 to navigate between patients. When the data contains only one patient, these
-buttons are hidden.
+buttons are hidden. The package also provides a `filter_tables` function to
+select a specific patient with ease.
 
 ```{r}
-jellyfisher(samples.example[samples.example$patient == "P2", ],
-            phylogeny.example[phylogeny.example$patient == "P2", ],
-            compositions.example[compositions.example$patient == "P2", ],
-            width = "100%",
-            height = 500)
+jellyfisher_example_tables |>
+  filter_tables(patient = "P2") |>
+  jellyfisher(width = "100%",
+              height = 500)
 ```
 
 ## Session info

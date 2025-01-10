@@ -122,17 +122,22 @@ function generateRFunction(schema, tableDescriptions) {
 #' The format of the data frames is described with examples in Jellyfish documentation:
 #' https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 #'
-#' @param samples A data frame with samples
+#' @param tables A named list of data frames. The list must contain the following elements:
+#'   \\describe{
+#'     \\item{\\code{samples}}{A data frame with sample data. The expected columns are:
 ${buildParamDoc("samples.tsv")}
-#' @param phylogeny A data frame with phylogeny
+#'     }
+#'     \\item{\\code{phylogeny}}{A data frame with phylogeny data. The expected columns are:
 ${buildParamDoc("phylogeny.tsv")}
-#' @param compositions A data frame with subclonal compositions
+#'     }
+#'     \\item{\\code{compositions}}{A data frame with subclonal compositions. The expected columns are:
 ${buildParamDoc("compositions.tsv")}
+#'     }
+#'   }
 #' @param options A named list of options to configure the plot. Available options:
 #'   \\describe{
 ${roxygenOptions.join("\n")}
 #'   }
-#' @param ranks An optional parameter for additional ranks
 #' @param controls An optional parameter to set the initial state of the controls. Can be "open", "closed", or "hidden".
 #' @param width The width of the widget
 #' @param height The height of the widget
@@ -140,9 +145,10 @@ ${roxygenOptions.join("\n")}
 #'
 #' @examples
 #' # Plot the bundled example data
-#' jellyfisher(samples = samples.example,
-#'             phylogeny = phylogeny.example,
-#'             compositions = compositions.example,
+#' jellyfisher(list(samples = samples.example,
+#'                  phylogeny = phylogeny.example,
+#'                  compositions = compositions.example,
+#'             ),
 #'             options = list(
 #'               sampleHeight = 70,
 #'               sampleTakenGuide = "none",
@@ -151,15 +157,15 @@ ${roxygenOptions.join("\n")}
 #'
 #' @import htmlwidgets
 #' @export
-jellyfisher <- function(samples,
-                        phylogeny,
-                        compositions,
+jellyfisher <- function(tables,
                         options = list(),
                         ranks = NULL,
                         controls = "closed",
                         width = NULL,
                         height = NULL,
                         elementId = NULL) {
+  validate_tables(tables)
+
   # Define default options
   defaultOptions <- list(
 ${defaults.join(",\n")}
@@ -173,10 +179,7 @@ ${validations.join("\n")}
 
   # Forward options using x
   x <- list(
-    samples = samples,
-    phylogeny = phylogeny,
-    compositions = compositions,
-    ranks = ranks,
+    tables = tables,
     options = options,
     controls = controls 
   )
@@ -196,36 +199,6 @@ ${validations.join("\n")}
       defaultHeight = "500px"
     )
   )
-}
-
-#' Shiny bindings for jellyfisher
-#'
-#' Output and render functions for using jellyfisher within Shiny
-#' applications and interactive Rmd documents.
-#'
-#' @param outputId output variable to read from
-#' @param width,height Must be a valid CSS unit (like \\code{'100\\%'},
-#'   \\code{'400px'}, \\code{'auto'}) or a number, which will be coerced to a
-#'   string and have \\code{'px'} appended.
-#' @param expr An expression that generates a jellyfisher
-#' @param env The environment in which to evaluate \\code{expr}.
-#' @param quoted Is \\code{expr} a quoted expression (with \\code{quote()})? This
-#'   is useful if you want to save an expression in a variable.
-#'
-#' @name jellyfisher-shiny
-#'
-#' @export
-jellyfisherOutput <- function(outputId, width = "100%", height = "400px") {
-  htmlwidgets::shinyWidgetOutput(outputId, "jellyfisher", width, height, package = "jellyfisher")
-}
-
-#' @rdname jellyfisher-shiny
-#' @export
-renderJellyfisher <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) {
-    expr <- substitute(expr)
-  } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, jellyfisherOutput, env, quoted = TRUE)
 }
 
 `;

@@ -11,6 +11,9 @@ extract_tables_from_clonevol(y, model = 1, explicit_parents = list())
 
 \item{model}{The model to extract from}
 }
+\value{
+A named list with three data frames: samples, phylogeny, and compositions
+}
 \description{
 Extracts data frames that can be used to create a Jellyfish plot.
 }

@@ -5,15 +5,14 @@
 #' @param y A ClonEvol object
 #' @param model The model to extract from
 #'
+#' @return A named list with three data frames: samples, phylogeny, and compositions
+#'
 #' @import dplyr
 #' @import stringr
 #'
 #' @export
 #'
 extract_tables_from_clonevol <- function(y, model = 1, explicit_parents = list()) {
-  library(dplyr)
-  library(stringr)
-
   if (!requireNamespace("clonevol", quietly = TRUE)) {
     stop("The clonevol package must be installed to use this functionality")
   }

@@ -38,17 +38,17 @@ documentation](https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#inp
 library(jellyfisher)
 
 # Plot the bundled example data
-jellyfisher(samples = samples.example,
-            phylogeny = phylogeny.example,
-            compositions = compositions.example)
+jellyfisher(jellyfisher_example_tables)
 ```
 
 ### Plotting ClonEvol Results
 
 Jellyfisher provides a straightforward way to visualize
 [ClonEvol](https://github.com/hdng/clonevol) results using the
-`jellyfisher_clonevol` function. The function takes the ClonEvol results as
-input and generates a Jellyfish plot.
+`extract_tables_from_clonevol` function. The function returns a list of data
+frames that you can pass to the `jellyfisher` function. N.B., ClonEvol reports
+clonal prevalences as confidence intervals. The function extracts the mean
+values and uses them as the prevalence values.
 
 #### Example
 
@@ -60,22 +60,9 @@ library(jellyfisher)
 y <- infer.clonal.models(...)
 
 # Plot the results
-jellyfisher_clonevol(y, model = 1, explicit_parents = list())
+extract_tables_from_clonevol(y, model = 1, explicit_parents = list()) |>
+  jellyfisher()
 ```
-
-#### Extracting Data Frames from ClonEvol Results
-
-If you need to process ClonEvol output further or plot it in different ways,
-Jellyfisher includes a helper function to extract the relevant data frames:
-
-```R
-extract_tables_from_clonevol(y, model = 1, explicit_parents = list())
-```
-
-The function returns a list of data frames that you can pass to the
-`jellyfisher` function. N.B., ClonEvol reports clonal prevalences as confidence
-intervals. The function extracts the mean values and uses them as the prevalence
-values.
 
 #### Setting Parent-Child Relationships of Samples
 

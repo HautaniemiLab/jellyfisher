@@ -12,9 +12,9 @@ HTMLWidgets.widget({
         jellyfish.setupGui(
           el,
           {
-            samples: HTMLWidgets.dataframeToD3(x.samples),
-            phylogeny: HTMLWidgets.dataframeToD3(x.phylogeny),
-            compositions: HTMLWidgets.dataframeToD3(x.compositions),
+            samples: HTMLWidgets.dataframeToD3(x.tables.samples),
+            phylogeny: HTMLWidgets.dataframeToD3(x.tables.phylogeny),
+            compositions: HTMLWidgets.dataframeToD3(x.tables.compositions),
             ranks: [], // TODO
           },
           x.options,
