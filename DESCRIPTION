@@ -15,10 +15,12 @@ RoxygenNote: 7.3.2
 LazyData: false
 URL: https://github.com/HautaniemiLab/jellyfisher, https://hautaniemilab.github.io/jellyfisher/
 BugReports: https://github.com/HautaniemiLab/jellyfisher/issues
-Suggests: 
+Imports:
+    htmlwidgets,
     dplyr,
-    knitr,
-    rmarkdown,
     stringr
+Suggests: 
+    knitr,
+    rmarkdown
 Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
