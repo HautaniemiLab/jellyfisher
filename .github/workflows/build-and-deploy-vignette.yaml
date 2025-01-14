@@ -13,6 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Cache apt dependencies
+        uses: actions/cache@v3
+        with:
+          path: /var/lib/apt/lists
+          key: ${{ runner.os }}-apt
+          restore-keys: |
+            ${{ runner.os }}-apt
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
@@ -26,8 +34,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages("devtools")
-          devtools::install_deps(dependencies = TRUE)
+          Rscript -e 'install.packages("devtools")'
+          Rscript -e 'devtools::install_deps(dependencies = TRUE)'
 
       - name: Install the jellyfisher package
         run: |
@@ -35,7 +43,7 @@ jobs:
 
       - name: Build vignette
         run: |
-          R -e 'rmarkdown::render("vignettes/introduction.Rmd", output_file = "docs/introduction.html")'
+          Rscript -e 'rmarkdown::render("vignettes/introduction.Rmd", output_file = "docs/introduction.html")'
           echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jellyfisher Vignettes</title></head><body><h1>Jellyfisher Vignettes</h1><ul><li><a href="docs/introduction.html">Introduction</a></li></ul></body></html>' > docs/index.html
 
   deploy:
