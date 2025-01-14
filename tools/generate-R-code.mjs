@@ -145,10 +145,7 @@ ${roxygenOptions.join("\n")}
 #'
 #' @examples
 #' # Plot the bundled example data
-#' jellyfisher(list(samples = samples.example,
-#'                  phylogeny = phylogeny.example,
-#'                  compositions = compositions.example,
-#'             ),
+#' jellyfisher(jellyfish_example_tables,
 #'             options = list(
 #'               sampleHeight = 70,
 #'               sampleTakenGuide = "none",
