@@ -7,6 +7,11 @@
 #'
 #' @return A list of tables filtered by patient
 #'
+#' @examples
+#' data(jellyfisher_example_tables)
+#' jellyfisher_example_tables |>
+#'   select_patients("EOC809")
+#'
 #' @export
 #'
 select_patients <- function(tables, patient) {
@@ -23,6 +28,10 @@ select_patients <- function(tables, patient) {
 #' Superficially validate that the tables are in the correct format.
 #'
 #' @param tables A list of tables (samples, phylogeny, compositions)
+#'
+#' @examples
+#' data(jellyfisher_example_tables)
+#' validate_tables(jellyfisher_example_tables)
 #'
 validate_tables <- function(tables) {
   stopifnot(

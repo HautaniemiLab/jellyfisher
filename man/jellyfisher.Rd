@@ -82,11 +82,13 @@ https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 }
 \examples{
 # Plot the bundled example data
+data(jellyfisher_example_tables)
 jellyfisher(jellyfish_example_tables,
-            options = list(
-              sampleHeight = 70,
-              sampleTakenGuide = "none",
-              showLegend = FALSE
-            ))
+  options = list(
+    sampleHeight = 70,
+    sampleTakenGuide = "none",
+    showLegend = FALSE
+  )
+)
 
 }

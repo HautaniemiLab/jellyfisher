@@ -4,16 +4,27 @@
 \alias{extract_tables_from_clonevol}
 \title{Extract samples, phylogeny, and subclonal compositions from ClonEvol results}
 \usage{
-extract_tables_from_clonevol(y, model = 1, explicit_parents = list())
+extract_tables_from_clonevol(y, model = 1)
 }
 \arguments{
 \item{y}{A ClonEvol object}
 
-\item{model}{The model to extract from}
+\item{model}{The model to extract. Defaults to 1}
 }
 \value{
 A named list with three data frames: samples, phylogeny, and compositions
 }
 \description{
 Extracts data frames that can be used to create a Jellyfish plot.
+}
+\examples{
+if (requireNamespace("clonevol", quietly = TRUE)) {
+  # Run ClonEvol. Check the ClonEvol documentation for details.
+  y <- infer.clonal.models(...)
+
+  # Plot the results
+  extract_tables_from_clonevol(y, model = 1) |>
+    jellyfisher()
+}
+
 }

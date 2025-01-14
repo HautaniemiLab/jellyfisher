@@ -12,3 +12,8 @@ validate_tables(tables)
 \description{
 Superficially validate that the tables are in the correct format.
 }
+\examples{
+data(jellyfisher_example_tables)
+validate_tables(jellyfisher_example_tables)
+
+}

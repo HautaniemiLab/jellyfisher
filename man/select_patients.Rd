@@ -17,3 +17,9 @@ A list of tables filtered by patient
 \description{
 Given a list of tables, filter them by patient.
 }
+\examples{
+data(jellyfisher_example_tables)
+jellyfisher_example_tables |>
+  select_patients("EOC809")
+
+}

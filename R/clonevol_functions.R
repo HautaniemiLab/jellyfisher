@@ -3,16 +3,26 @@
 #' Extracts data frames that can be used to create a Jellyfish plot.
 #'
 #' @param y A ClonEvol object
-#' @param model The model to extract from
+#' @param model The model to extract. Defaults to 1
 #'
 #' @return A named list with three data frames: samples, phylogeny, and compositions
 #'
 #' @import dplyr
 #' @import stringr
 #'
+#' @examples
+#' if (requireNamespace("clonevol", quietly = TRUE)) {
+#'   # Run ClonEvol. Check the ClonEvol documentation for details.
+#'   y <- infer.clonal.models(...)
+#'
+#'   # Plot the results
+#'   extract_tables_from_clonevol(y, model = 1) |>
+#'     jellyfisher()
+#' }
+#'
 #' @export
 #'
-extract_tables_from_clonevol <- function(y, model = 1, explicit_parents = list()) {
+extract_tables_from_clonevol <- function(y, model = 1) {
   if (!requireNamespace("clonevol", quietly = TRUE)) {
     stop("The clonevol package must be installed to use this functionality")
   }

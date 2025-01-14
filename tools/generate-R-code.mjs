@@ -145,6 +145,7 @@ ${roxygenOptions.join("\n")}
 #'
 #' @examples
 #' # Plot the bundled example data
+#' data(jellyfisher_example_tables)
 #' jellyfisher(jellyfish_example_tables,
 #'             options = list(
 #'               sampleHeight = 70,
