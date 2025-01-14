@@ -7,7 +7,7 @@
 filter_tables(tables, patient)
 }
 \arguments{
-\item{tables}{A list of tables}
+\item{tables}{A list of tables (samples, phylogeny, compositions)}
 
 \item{patient}{The patient to filter by}
 }

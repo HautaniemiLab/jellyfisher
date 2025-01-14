@@ -68,38 +68,9 @@ extract_tables_from_clonevol <- function(y, model = 1, explicit_parents = list()
   ) |>
     mutate(parent = NA)
 
-  for (i in seq_len(nrow(samples))) {
-    parent <- explicit_parents[[samples$sample[[i]]]]
-    if (!is.null(parent)) {
-      samples$parent[[i]] <- parent
-    } else {
-      samples$parent[[i]] <- NA
-    }
-  }
-
   return(list(
     samples = samples,
     phylogeny = phylogeny,
     compositions = subclonal_compositions
   ))
-}
-
-#' Create a Jellyfish plot from a ClonEvol object
-#'
-#' Takes a ClonEvol result object, extracts the necessary data, and creates
-#' a Jellyfish plot.
-#'
-#' @param y A ClonEvol object
-#' @param model The model to extract from
-#'
-#' @export
-#'
-jellyfisher_clonevol <- function(y, model = 1, explicit_parents = list()) {
-  x <- extract_tables_from_clonevol(y, model, explicit_parents)
-
-  jellyfisher(
-    samples = x$samples,
-    phylogeny = x$phylogeny,
-    compositions = x$compositions
-  )
 }

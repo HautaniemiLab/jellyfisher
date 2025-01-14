@@ -2,7 +2,7 @@
 #'
 #' Given a list of tables, filter them by patient.
 #'
-#' @param tables A list of tables
+#' @param tables A list of tables (samples, phylogeny, compositions)
 #' @param patient The patient to filter by
 #'
 #' @return A list of tables filtered by patient
@@ -29,6 +29,52 @@ validate_tables <- function(tables) {
     all(c("sample") %in% colnames(tables$samples)),
     all(c("subclone", "parent") %in% colnames(tables$phylogeny)),
     all(c("sample", "subclone", "clonalPrevalence") %in% colnames(tables$compositions))
+  )
+}
+
+#' Set parents for samples
+#'
+#' Given a list of jellyfish input tables and a named list of parents for each
+#' sample, set the parent for each sample.
+#'
+#' @param tables A list of tables (samples, phylogeny, compositions)
+#' @param parents A named list of parents for each sample
+#' @param unset_missing If TRUE, unset the parent for samples that are not in
+#'  the parent list
+#'
+#' @return A list of tables with parents set for each sample
+#'
+#' @examples
+#' jellyfisher_example_tables |>
+#'   filter_tables("EOC809") |>
+#'   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
+#'   jellyfisher()
+#'
+#' @export
+#'
+set_parents <- function(tables, parents, unset_missing = FALSE) {
+  samples <- tables$samples
+
+  # Check that all samples in the parent list are in the samples table
+  stopifnot(all(names(parents) %in% samples$sample))
+  stopifnot(all(unlist(parents) %in% samples$sample))
+
+  # Check that all samples in the samples table are unique
+  stopifnot(length(unique(samples$sample)) == nrow(samples))
+
+  for (i in seq_len(nrow(samples))) {
+    parent <- parents[[samples$sample[[i]]]]
+    if (!is.null(parent)) {
+      samples$parent[[i]] <- parent
+    } else if (unset_missing) {
+      samples$parent[[i]] <- NA
+    }
+  }
+
+  list(
+    samples = samples,
+    phylogeny = tables$phylogeny,
+    compositions = tables$compositions
   )
 }
 
