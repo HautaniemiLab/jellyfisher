@@ -16,7 +16,6 @@ LazyData: true
 URL: https://github.com/HautaniemiLab/jellyfisher, https://hautaniemilab.github.io/jellyfisher/
 BugReports: https://github.com/HautaniemiLab/jellyfisher/issues
 Suggests: 
-    clonevol,
     dplyr,
     knitr,
     rmarkdown,
