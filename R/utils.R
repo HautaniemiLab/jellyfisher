@@ -3,7 +3,7 @@
 #' Given a list of tables, filter them by patient.
 #'
 #' @param tables A list of tables (samples, phylogeny, compositions)
-#' @param patient The patient to filter by
+#' @param patient The patient or patients to filter by
 #'
 #' @return A list of tables filtered by patient
 #'
@@ -12,12 +12,18 @@
 filter_tables <- function(tables, patient) {
   validate_tables(tables)
   list(
-    samples = tables$samples[tables$samples$patient == patient, ],
-    phylogeny = tables$phylogeny[tables$phylogeny$patient == patient, ],
-    compositions = tables$compositions[tables$compositions$patient == patient, ]
+    samples = tables$samples[tables$samples$patient %in% patient, ],
+    phylogeny = tables$phylogeny[tables$phylogeny$patient %in% patient, ],
+    compositions = tables$compositions[tables$compositions$patient %in% patient, ]
   )
 }
 
+#' Validate Jellyfish tables
+#'
+#' Superficially validate that the tables are in the correct format.
+#'
+#' @param tables A list of tables (samples, phylogeny, compositions)
+#'
 validate_tables <- function(tables) {
   stopifnot(
     is.data.frame(tables$samples),
@@ -30,6 +36,9 @@ validate_tables <- function(tables) {
     all(c("subclone", "parent") %in% colnames(tables$phylogeny)),
     all(c("sample", "subclone", "clonalPrevalence") %in% colnames(tables$compositions))
   )
+
+  # Check that all samples in the samples table are unique
+  stopifnot(length(unique(tables$samples$sample)) == nrow(tables$samples))
 }
 
 #' Set parents for samples
@@ -53,14 +62,13 @@ validate_tables <- function(tables) {
 #' @export
 #'
 set_parents <- function(tables, parents, unset_missing = FALSE) {
+  validate_tables(tables)
+
   samples <- tables$samples
 
   # Check that all samples in the parent list are in the samples table
   stopifnot(all(names(parents) %in% samples$sample))
   stopifnot(all(unlist(parents) %in% samples$sample))
-
-  # Check that all samples in the samples table are unique
-  stopifnot(length(unique(samples$sample)) == nrow(samples))
 
   for (i in seq_len(nrow(samples))) {
     parent <- parents[[samples$sample[[i]]]]
