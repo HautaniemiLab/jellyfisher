@@ -21,11 +21,12 @@ library(jellyfisher)
 ```{r echo=F, message=F}
 # Subset the data to keep the compiled vignette a bit smaller
 jellyfisher_example_tables <- jellyfisher_example_tables |>
-  filter_tables(c("EOC69", "EOC677", "EOC495", "EOC809"))
+  select_patients(c("EOC69", "EOC677", "EOC495", "EOC809"))
 ```
 
-**Jellyfisher** is an R package for visualizing tumor evolution and subclonal
-compositions using Jellyfish plots. The package is based on the
+**Jellyfisher** is an R package (a [htmlwidget](https://www.htmlwidgets.org/))
+for visualizing tumor evolution and subclonal compositions using Jellyfish plots.
+The package is based on the
 [Jellyfish](https://github.com/HautaniemiLab/jellyfish) visualization tool,
 bringing its functionality to R users. Jellyfisher supports both
 [ClonEvol](https://github.com/hdng/clonevol) results and plain data frames,
@@ -34,7 +35,14 @@ making it compatible with various tools and workflows.
 ## Input data
 
 The input data should follow specific structures for _samples_, _phylogeny_, and
-subclonal _compositions_. The Jellyfisher package comes with a sample data set.
+subclonal _compositions_.
+
+The Jellyfisher package includes an example data set based on the following
+publication:
+Lahtinen, A., Lavikka, K., Virtanen, A., et al. "Evolutionary states and
+trajectories characterized by distinct pathways stratify patients with ovarian
+high-grade serous carcinoma." _Cancer Cell_ **41**, 1103–1117.e12 (2023). DOI:
+[10.1016/j.ccell.2023.04.017](https://doi.org/10.1016/j.ccell.2023.04.017).
 
 ### Samples
             
@@ -78,7 +86,9 @@ head(jellyfisher_example_tables$compositions, 25)
 ### Basic plotting 
 
 The three tables are passed to the `jellyfisher` function as a named list. The
-function generates an interactive Jellyfish plot based on the input data.
+function generates an interactive Jellyfish plot based on the input data. If the
+data set contains multiple patients, the Jellyfisher htmlwidget shows navigation
+buttons to switch between patients.
 
 ```{r}
 jellyfisher(jellyfisher_example_tables,
@@ -92,6 +102,7 @@ jellyfisher(jellyfisher_example_tables,
             options = list(
               sampleHeight = 70,
               sampleTakenGuide = "none",
+              tentacleWidth = 3,
               showLegend = FALSE
             ),
             width = "100%", height = 500)
@@ -101,12 +112,12 @@ jellyfisher(jellyfisher_example_tables,
 
 When plotting multiple patients, Jellyfisher shows buttons (Previous and Next)
 to navigate between patients. When the data contains only one patient, these
-buttons are hidden. The package also provides a `filter_tables` function to
-select a specific patient with ease.
+buttons are hidden. The package also provides a `select_patients` function to
+filter the data set with ease.
 
 ```{r}
 jellyfisher_example_tables |>
-  filter_tables(patient = "EOC677") |>
+  select_patients("EOC677") |>
   jellyfisher(width = "100%", height = 500)
 ```
 
@@ -118,12 +129,16 @@ The sample trees in the example data set were constructed as follows:
 sample from the same anatomical location.  If such a sample existed, it was
 assigned as the parent; otherwise, the inferred root was used as the parent."*
 
-However, the *r1Bow1* (bowel) sample in the following jellyfish plot is derived
+However, this mechanistic approach may not always produce credible sample trees.
+
+#### Changing parent
+
+The *r1Bow1* (bowel) sample in the following jellyfish plot is derived
 from an earlier bowel sample *p2Bow1_c*, which has no traces of the subclone 12.
 
 ```{r}
 jellyfisher_example_tables |>
-  filter_tables("EOC809") |>
+  select_patients("EOC809") |>
   jellyfisher(width = "100%", height = 600)
 ```
 
@@ -134,9 +149,45 @@ that it is the likely source of the metastasis in the *r1Bow1* sample.
 
 ```{r}
 jellyfisher_example_tables |>
-  filter_tables("EOC809") |>
+  select_patients("EOC809") |>
   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
   jellyfisher(width = "100%", height = 600)
+```
+
+#### Changing topology
+
+While ranks (the columns) can indicate the time points when the samples were
+acquired, they can also be used to simply show the sample's depth in the sample
+tree. For instance, the following plot shows all the samples on the same rank,
+indicating that they were diagnostic samples acquired at the same time.
+
+```{r}
+jellyfisher_example_tables |>
+  select_patients("EOC495") |>
+  jellyfisher(width = "100%", height = 600)
+```
+
+However, one can argue that the LN (lymph node) samples represent a later
+development in the disease, and thus, they should be placed on a later rank.
+We can remove the existing ranks, define new parent-child relationships, and
+let Jellyfisher assign the ranks based on the sample tree depth.
+
+```{r}
+tables <- jellyfisher_example_tables |>
+  select_patients("EOC495")
+
+# Remove existing ranks. The rank will be assigned automatically based
+# on samples depth in the sample tree.
+tables$samples$rank <- NA
+
+tables |>
+  set_parents(list("EOC495_pLNL1_DNA1" = "EOC495_pLNR_DNA1",
+                   "EOC495_pLNL2_DNA1" = "EOC495_pLNL1_DNA1")) |>
+  jellyfisher(width = "100%", height = 500)
+```
+
+```{r echo=F}
+rm(tables)
 ```
 
 ## Session info

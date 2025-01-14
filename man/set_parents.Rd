@@ -23,7 +23,7 @@ sample, set the parent for each sample.
 }
 \examples{
 jellyfisher_example_tables |>
-  filter_tables("EOC809") |>
+  select_patients("EOC809") |>
   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
   jellyfisher()
 

@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-filter_tables <- function(tables, patient) {
+select_patients <- function(tables, patient) {
   validate_tables(tables)
   list(
     samples = tables$samples[tables$samples$patient %in% patient, ],
@@ -55,7 +55,7 @@ validate_tables <- function(tables) {
 #'
 #' @examples
 #' jellyfisher_example_tables |>
-#'   filter_tables("EOC809") |>
+#'   select_patients("EOC809") |>
 #'   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
 #'   jellyfisher()
 #'
