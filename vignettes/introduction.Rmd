@@ -18,6 +18,12 @@ knitr::opts_chunk$set(
 library(jellyfisher)
 ```
 
+```{r echo=F, message=F}
+# Subset the data to keep the compiled vignette a bit smaller
+jellyfisher_example_tables <- jellyfisher_example_tables |>
+  filter_tables(c("EOC69", "EOC677", "EOC495", "EOC809"))
+```
+
 **Jellyfisher** is an R package for visualizing tumor evolution and subclonal
 compositions using Jellyfish plots. The package is based on the
 [Jellyfish](https://github.com/HautaniemiLab/jellyfish) visualization tool,
@@ -39,7 +45,7 @@ subclonal _compositions_. The Jellyfisher package comes with a sample data set.
 - `parent` (string): identifies the parent sample for each entry. Samples without a specified parent are treated as children of an imaginary root sample.
 
 ```{r}
-jellyfisher_example_tables$samples
+head(jellyfisher_example_tables$samples, 25)
 ```
 
 ### Phylogeny
@@ -50,7 +56,7 @@ jellyfisher_example_tables$samples
 - `branchLength` (number): specifies the length of the branch leading to the subclone. The length may be based on, for example, the number of unique mutations in the subclone. The branch length is shown in the Jellyfish plot's legend as a bar chart. It is also used when generating a phylogeny-aware color scheme.
 
 ```{r}
-jellyfisher_example_tables$phylogeny
+head(jellyfisher_example_tables$phylogeny, 25)
 ```
 
 ### Subclonal compositions
@@ -64,7 +70,7 @@ represents a subclone in a sample.
 - `clonalPrevalence` (number): specifies the clonal prevalence of the subclone in the sample. The clonal prevalence is the proportion of the subclone in the sample. The clonal prevalences in a sample must sum to 1.
 
 ```{r}
-jellyfisher_example_tables$compositions
+head(jellyfisher_example_tables$compositions, 25)
 ```
 
 ## Plotting
@@ -76,8 +82,7 @@ function generates an interactive Jellyfish plot based on the input data.
 
 ```{r}
 jellyfisher(jellyfisher_example_tables,
-            width = "100%",
-            height = 500)
+            width = "100%", height = 500)
 ```
 
 ### Plotting with custom options
@@ -89,8 +94,7 @@ jellyfisher(jellyfisher_example_tables,
               sampleTakenGuide = "none",
               showLegend = FALSE
             ),
-            width = "100%",
-            height = 500)
+            width = "100%", height = 500)
 ```
 
 ### Plotting a single patient
@@ -102,9 +106,37 @@ select a specific patient with ease.
 
 ```{r}
 jellyfisher_example_tables |>
-  filter_tables(patient = "P2") |>
-  jellyfisher(width = "100%",
-              height = 500)
+  filter_tables(patient = "EOC677") |>
+  jellyfisher(width = "100%", height = 500)
+```
+
+### Adjusting the sample tree structures
+
+The sample trees in the example data set were constructed as follows:
+
+*"For each sample, we checked whether an earlier time point included exactly one
+sample from the same anatomical location.  If such a sample existed, it was
+assigned as the parent; otherwise, the inferred root was used as the parent."*
+
+However, the *r1Bow1* (bowel) sample in the following jellyfish plot is derived
+from an earlier bowel sample *p2Bow1_c*, which has no traces of the subclone 12.
+
+```{r}
+jellyfisher_example_tables |>
+  filter_tables("EOC809") |>
+  jellyfisher(width = "100%", height = 600)
+```
+
+Using the `set_parents` function, we can adjust the parent of the *r1Bow1* sample
+to be *p2Per1_cO* (peritoneum), which is a possible source of the metastasis due
+to its proximity. The high prevalence of subclone 12 in this sample suggests
+that it is the likely source of the metastasis in the *r1Bow1* sample.
+
+```{r}
+jellyfisher_example_tables |>
+  filter_tables("EOC809") |>
+  set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
+  jellyfisher(width = "100%", height = 600)
 ```
 
 ## Session info
