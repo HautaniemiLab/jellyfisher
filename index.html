@@ -6,13 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Visualizing Tumor Evolution with Jellyfish Plots in R • jellyfisher</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Visualizing Tumor Evolution with Jellyfish Plots in R">
-<meta name="description" content="Jellyfisher creates Jellyfish plots using the JavaScript based Jellyfish library. Jellyfish plots integrate both phylogenetic and sample tree structures in a single visualization.">
-<meta property="og:description" content="Jellyfisher creates Jellyfish plots using the JavaScript based Jellyfish library. Jellyfish plots integrate both phylogenetic and sample tree structures in a single visualization.">
+<meta name="description" content="Jellyfisher creates interactive Jellyfish plots for tumor evolution visualization. These plots integrate a hierarchical sample structure and tumor phylogeny into a single visualization, allowing for the display of both spatial and temporal dimensions of the tumor evolution.">
+<meta property="og:description" content="Jellyfisher creates interactive Jellyfish plots for tumor evolution visualization. These plots integrate a hierarchical sample structure and tumor phylogeny into a single visualization, allowing for the display of both spatial and temporal dimensions of the tumor evolution.">
+<meta property="og:image" content="https://hautaniemilab.github.io/jellyfisher/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -52,9 +59,11 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="id_-jellyfisher-visualizing-tumor-evolution-with-jellyfish-plots-in-r">
-<img src="reference/figures/logo.webp" alt="Jellyfisher hexagon" align="right" height="138" style="margin-left: 0.5em"> Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R<a class="anchor" aria-label="anchor" href="#id_-jellyfisher-visualizing-tumor-evolution-with-jellyfish-plots-in-r"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="id_-jellyfisher-visualizing-tumor-evolution-with-jellyfish-plots-in-r">
+ Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R<a class="anchor" aria-label="anchor" href="#id_-jellyfisher-visualizing-tumor-evolution-with-jellyfish-plots-in-r"></a>
+</h1>
+</div>
 <p><strong>Jellyfisher</strong> is an R package for visualizing tumor evolution and subclonal compositions using Jellyfish plots. The package is based on the <a href="https://github.com/HautaniemiLab/jellyfish" class="external-link">Jellyfish</a> visualization tool, bringing its functionality to R users. Jellyfisher supports both <a href="https://github.com/hdng/clonevol" class="external-link">ClonEvol</a> results and plain data frames, making it compatible with various tools and workflows.</p>
 <div class="float">
 <img src="https://raw.githubusercontent.com/HautaniemiLab/jellyfish/refs/heads/main/docs/example.svg" alt="Jellyfisher Example"><div class="figcaption">Jellyfisher Example</div>
