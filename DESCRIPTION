@@ -22,5 +22,9 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown
-Depends: R (>= 4.1.0)
+Depends: R (>= 4.4.0)
 VignetteBuilder: knitr
+biocViews:
+    Visualization,
+    Phylogenetics,
+    Software
