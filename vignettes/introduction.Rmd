@@ -126,7 +126,7 @@ jellyfisher_example_tables |>
   jellyfisher(width = "100%", height = 500)
 ```
 
-### Adjusting the sample tree structures
+## Adjusting the sample tree structures
 
 The sample trees in the example data set were constructed as follows:
 
@@ -136,7 +136,7 @@ assigned as the parent; otherwise, the inferred root was used as the parent."*
 
 However, this mechanistic approach may not always produce credible sample trees.
 
-#### Changing parent
+### Changing parent
 
 The *r1Bow1* (bowel) sample in the following jellyfish plot is derived
 from an earlier bowel sample *p2Bow1_c*, which has no traces of the subclone 12.
@@ -159,7 +159,7 @@ jellyfisher_example_tables |>
   jellyfisher(width = "100%", height = 600)
 ```
 
-#### Changing topology
+### Changing topology
 
 While ranks (the columns) can indicate the time points when the samples were
 acquired, they can also be used to simply show the sample's depth in the sample
@@ -181,14 +181,29 @@ let Jellyfisher assign the ranks based on the sample tree depth.
 tables <- jellyfisher_example_tables |>
   select_patients("EOC495")
 
-# Remove existing ranks. The rank will be assigned automatically based
-# on samples depth in the sample tree.
+# Remove existing ranks. The ranks will be assigned automatically based
+# on samples' depths in the sample tree.
 tables$samples$rank <- NA
 
 tables |>
   set_parents(list("EOC495_pLNL1_DNA1" = "EOC495_pLNR_DNA1",
                    "EOC495_pLNL2_DNA1" = "EOC495_pLNL1_DNA1")) |>
   jellyfisher(width = "100%", height = 500)
+```
+
+If we think that the lymph node samples represent even later development,
+we can manually assign ranks to the samples. The `set_ranks` function provides
+an easy way to do this.
+
+```{r}
+tables |>
+  set_parents(list("EOC495_pLNL1_DNA1" = "EOC495_pLNR_DNA1",
+                   "EOC495_pLNL2_DNA1" = "EOC495_pLNL1_DNA1")) |>
+  set_ranks(list("EOC495_pLNR_DNA1" = 2,
+                 "EOC495_pLNL1_DNA1" = 3,
+                 "EOC495_pLNL2_DNA1" = 4),
+            default = 1) |>
+  jellyfisher(width = "100%", height = 400)
 ```
 
 ```{r echo=F}

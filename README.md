@@ -1,16 +1,16 @@
-# <img src="man/figures/logo.webp" alt="Jellyfisher hexagon" align="right" height="138" style="margin-left: 0.5em" /> Jellyfisher: Visualizing Tumor Evolution with Jellyfish Plots in R
+# <img src="man/figures/logo.webp" alt="Jellyfisher hexagon" align="right" height="138" style="margin-left: 0.5em" /> Jellyfisher
 
 **Jellyfisher** is an R package for visualizing tumor evolution and subclonal
-compositions using Jellyfish plots. The package is based on the
+compositions using Jellyfish plots, which display both spatial and temporal
+dimensions in a single unified figure.
+
+The package is based on the
 [Jellyfish](https://github.com/HautaniemiLab/jellyfish) visualization tool,
 bringing its functionality to R users. Jellyfisher supports both
 [ClonEvol](https://github.com/hdng/clonevol) results and plain data frames,
 making it compatible with various tools and workflows.
 
-![Jellyfisher Example](https://raw.githubusercontent.com/HautaniemiLab/jellyfish/refs/heads/main/docs/example.svg)
-
-The package is still under development and the API may change in the future.
-Stay tuned!
+![Jellyfisher Example Plot](https://raw.githubusercontent.com/HautaniemiLab/jellyfish/refs/heads/main/docs/example.svg)
 
 ## Installation
 
@@ -29,9 +29,9 @@ Jellyfisher is designed to work with data frames or ClonEvol results.
 ### Plotting Data Frames
 
 The input data should follow specific structures for _samples_, _phylogeny_, and
-subclonal _compositions_, which are described in the [Jellyfish
-documentation](https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data),
-vignette, and the `jellyfisher` function's documentation.
+subclonal _compositions_, which are described in the
+[`jellyfisher`](https://hautaniemilab.github.io/jellyfisher/reference/jellyfisher.html)
+function's documentation.
 
 #### Example
 

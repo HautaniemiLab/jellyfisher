@@ -95,6 +95,50 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
   )
 }
 
+#' Set ranks for samples
+#'
+#' Given a list of jellyfish input tables and a named list of ranks for each
+#' sample, set the rank for each sample.
+#'
+#' @param tables A list of tables (samples, phylogeny, compositions)
+#' @param ranks A named list of ranks for each sample
+#' @param default The default rank to use when a sample is not in the rank list
+#'   (default: 1)
+#'
+#' @return A list of tables with ranks set for each sample
+#'
+#' @examples
+#' jellyfisher_example_tables |>
+#'   select_patients("EOC809") |>
+#'   set_ranks(list("EOC809_r1Bow1_DNA1" = 1, "EOC809_p2Per1_cO_DNA2" = 2)) |>
+#'   jellyfisher()
+#'
+#' @export
+#'
+set_ranks <- function(tables, ranks, default = 1) {
+  validate_tables(tables)
+
+  samples <- tables$samples
+
+  # Check that all samples in the rank list are in the samples table
+  stopifnot(all(names(ranks) %in% samples$sample))
+
+  for (i in seq_len(nrow(samples))) {
+    rank <- ranks[[samples$sample[[i]]]]
+    if (!is.null(rank)) {
+      samples$rank[[i]] <- rank
+    } else {
+      samples$rank[[i]] <- default
+    }
+  }
+
+  list(
+    samples = samples,
+    phylogeny = tables$phylogeny,
+    compositions = tables$compositions
+  )
+}
+
 #' Shiny bindings for jellyfisher
 #'
 #' Output and render functions for using jellyfisher within Shiny
