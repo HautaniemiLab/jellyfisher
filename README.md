@@ -39,6 +39,7 @@ function's documentation.
 library(jellyfisher)
 
 # Plot the bundled example data
+data("jellyfisher_example_tables")
 jellyfisher(jellyfisher_example_tables)
 ```
 

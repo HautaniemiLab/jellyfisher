@@ -110,7 +110,9 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
 #' @examples
 #' jellyfisher_example_tables |>
 #'   select_patients("EOC809") |>
-#'   set_ranks(list("EOC809_r1Bow1_DNA1" = 1, "EOC809_p2Per1_cO_DNA2" = 2)) |>
+#'   set_ranks(list("EOC809_r1Bow1_DNA1" = 2, "EOC809_p2Per1_cO_DNA2" = 2),
+#'     default = 1
+#'   ) |>
 #'   jellyfisher()
 #'
 #' @export

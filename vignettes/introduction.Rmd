@@ -191,7 +191,7 @@ tables |>
   jellyfisher(width = "100%", height = 500)
 ```
 
-If we think that the lymph node samples represent even later development,
+If we think that the lymph node samples represent an even later development,
 we can manually assign ranks to the samples. The `set_ranks` function provides
 an easy way to do this.
 
