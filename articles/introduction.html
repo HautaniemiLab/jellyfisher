@@ -280,9 +280,10 @@ ease.</p>
 <div id="htmlwidget-36aa3d2a04d42bbc2145" style="width:100%;height:500px;" class="jellyfisher html-widget"></div>
 <script type="application/json" data-for="htmlwidget-36aa3d2a04d42bbc2145">{"x":{"tables":{"samples":{"sample":["EOC677_pAsc_DNA1","EOC677_pPer1_DNA","EOC677_r2Asc_DNA","EOC677_rAsc_DNA4"],"displayName":["pAsc","pPer1","r2Asc","rAsc"],"rank":[1,1,11,9],"parent":["","","EOC677_rAsc_DNA4","EOC677_pAsc_DNA1"],"patient":["EOC677","EOC677","EOC677","EOC677"]},"phylogeny":{"subclone":[1,2,4,5,6,9,10,11],"parent":[-1,1,5,10,9,10,1,9],"color":["#cccccc","#a6cee3","#cab2d6","#ff99ff","#fdbf6f","#cf8d30","#41ae76","#ff7f00"],"branchLength":[4961,239,437,1802,979,223,314,117],"patient":["EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677"]},"compositions":{"sample":["EOC677_pAsc_DNA1","EOC677_pAsc_DNA1","EOC677_pAsc_DNA1","EOC677_pPer1_DNA","EOC677_pPer1_DNA","EOC677_pPer1_DNA","EOC677_r2Asc_DNA","EOC677_r2Asc_DNA","EOC677_rAsc_DNA4","EOC677_rAsc_DNA4","EOC677_rAsc_DNA4","EOC677_rAsc_DNA4","EOC677_rAsc_DNA4","EOC677_rAsc_DNA4","EOC677_rAsc_DNA4"],"subclone":[2,9,11,1,9,11,4,5,1,2,5,6,9,10,11],"clonalPrevalence":[0.318,0.244,0.435,0.1695,0.3165,0.5145,0.95,0.034,0.054,0.033,0.2935,0.2325,0.2945,0.07199999999999999,0.021],"patient":["EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677","EOC677"]}},"options":{"bellTipShape":0.1,"bellTipSpread":0.5,"bellStrokeWidth":1,"bellPlateauPos":0.75,"sampleHeight":110,"sampleWidth":90,"inferredSampleHeight":120,"gapHeight":60,"sampleSpacing":60,"columnSpacing":90,"tentacleWidth":2,"tentacleSpacing":5,"inOutCPDistance":0.3,"bundleCPDistance":0.6,"sampleFontSize":12,"showLegend":true,"phylogenyColorScheme":true,"phylogenyHueOffset":0,"sampleTakenGuide":"text"},"controls":"closed"},"evals":[],"jsHooks":[]}</script>
 </div>
-<div class="section level3">
-<h3 id="adjusting-the-sample-tree-structures">Adjusting the sample tree structures<a class="anchor" aria-label="anchor" href="#adjusting-the-sample-tree-structures"></a>
-</h3>
+</div>
+<div class="section level2">
+<h2 id="adjusting-the-sample-tree-structures">Adjusting the sample tree structures<a class="anchor" aria-label="anchor" href="#adjusting-the-sample-tree-structures"></a>
+</h2>
 <p>The sample trees in the example data set were constructed as
 follows:</p>
 <p><em>“For each sample, we checked whether an earlier time point
@@ -291,9 +292,9 @@ sample existed, it was assigned as the parent; otherwise, the inferred
 root was used as the parent.”</em></p>
 <p>However, this mechanistic approach may not always produce credible
 sample trees.</p>
-<div class="section level4">
-<h4 id="changing-parent">Changing parent<a class="anchor" aria-label="anchor" href="#changing-parent"></a>
-</h4>
+<div class="section level3">
+<h3 id="changing-parent">Changing parent<a class="anchor" aria-label="anchor" href="#changing-parent"></a>
+</h3>
 <p>The <em>r1Bow1</em> (bowel) sample in the following jellyfish plot is
 derived from an earlier bowel sample <em>p2Bow1_c</em>, which has no
 traces of the subclone 12.</p>
@@ -315,9 +316,9 @@ likely source of the metastasis in the <em>r1Bow1</em> sample.</p>
 <div id="htmlwidget-1fb4450895fe099f74a1" style="width:100%;height:600px;" class="jellyfisher html-widget"></div>
 <script type="application/json" data-for="htmlwidget-1fb4450895fe099f74a1">{"x":{"tables":{"samples":{"sample":["EOC809_p2Bow1_c_DNA2","EOC809_p2Ome1_c_DNA1","EOC809_p2OvaL1_c_DNA6","EOC809_p2Per1_cO_DNA2","EOC809_r1Bow1_DNA1"],"displayName":["p2Bow1_c","p2Ome1_c","p2OvaL1_c","p2Per1_cO","r1Bow1"],"rank":[3,3,3,3,10],"parent":["","","","","EOC809_p2Per1_cO_DNA2"],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809"]},"phylogeny":{"subclone":[1,2,4,10,11,12,14,15],"parent":[-1,12,10,15,10,1,12,1],"color":["#cccccc","#a6cee3","#cab2d6","#41ae76","#ff7f00","#3de4c5","#9933ff","#3690c0"],"branchLength":[5787,1646,1020,567,1102,1544,2834,4452],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809"]},"compositions":{"sample":["EOC809_p2Bow1_c_DNA2","EOC809_p2Bow1_c_DNA2","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2OvaL1_c_DNA6","EOC809_p2OvaL1_c_DNA6","EOC809_p2Per1_cO_DNA2","EOC809_p2Per1_cO_DNA2","EOC809_p2Per1_cO_DNA2","EOC809_r1Bow1_DNA1","EOC809_r1Bow1_DNA1"],"subclone":[4,15,1,4,10,12,15,11,15,1,2,12,12,14],"clonalPrevalence":[0.6304999999999999,0.37,0.0205,0.0545,0.3365,0.0305,0.5580000000000001,0.67,0.322,0.0345,0.58,0.3855,0.098,0.9],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809"]}},"options":{"bellTipShape":0.1,"bellTipSpread":0.5,"bellStrokeWidth":1,"bellPlateauPos":0.75,"sampleHeight":110,"sampleWidth":90,"inferredSampleHeight":120,"gapHeight":60,"sampleSpacing":60,"columnSpacing":90,"tentacleWidth":2,"tentacleSpacing":5,"inOutCPDistance":0.3,"bundleCPDistance":0.6,"sampleFontSize":12,"showLegend":true,"phylogenyColorScheme":true,"phylogenyHueOffset":0,"sampleTakenGuide":"text"},"controls":"closed"},"evals":[],"jsHooks":[]}</script>
 </div>
-<div class="section level4">
-<h4 id="changing-topology">Changing topology<a class="anchor" aria-label="anchor" href="#changing-topology"></a>
-</h4>
+<div class="section level3">
+<h3 id="changing-topology">Changing topology<a class="anchor" aria-label="anchor" href="#changing-topology"></a>
+</h3>
 <p>While ranks (the columns) can indicate the time points when the
 samples were acquired, they can also be used to simply show the sample’s
 depth in the sample tree. For instance, the following plot shows all the
@@ -337,8 +338,8 @@ tree depth.</p>
 <code class="sourceCode R"><span><span class="va">tables</span> <span class="op">&lt;-</span> <span class="va">jellyfisher_example_tables</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/select_patients.html">select_patients</a></span><span class="op">(</span><span class="st">"EOC495"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Remove existing ranks. The rank will be assigned automatically based</span></span>
-<span><span class="co"># on samples depth in the sample tree.</span></span>
+<span><span class="co"># Remove existing ranks. The ranks will be assigned automatically based</span></span>
+<span><span class="co"># on samples' depths in the sample tree.</span></span>
 <span><span class="va">tables</span><span class="op">$</span><span class="va">samples</span><span class="op">$</span><span class="va">rank</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span></span>
 <span><span class="va">tables</span> <span class="op">|&gt;</span></span>
@@ -346,14 +347,26 @@ tree depth.</p>
 <span>                   <span class="st">"EOC495_pLNL2_DNA1"</span> <span class="op">=</span> <span class="st">"EOC495_pLNL1_DNA1"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/jellyfisher.html">jellyfisher</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></code></pre></div>
 <div id="htmlwidget-4018eef1a407a0df6b52" style="width:100%;height:500px;" class="jellyfisher html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4018eef1a407a0df6b52">{"x":{"tables":{"samples":{"sample":["EOC495_pLNL1_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNR_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL7_DNA1","EOC495_pPerL_DNA1"],"displayName":["pLNL1","pLNL2","pLNR","pOvaL6","pOvaL7","pPerL"],"rank":[null,null,null,null,null,null],"parent":["EOC495_pLNR_DNA1","EOC495_pLNL1_DNA1","","","",""],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]},"phylogeny":{"subclone":[1,2,3,4,5,6,7,8,9],"parent":[-1,5,6,1,7,5,1,7,4],"color":["#cccccc","#a6cee3","#b2df8a","#cab2d6","#ff99ff","#fdbf6f","#fb9a99","#bbbb77","#cf8d30"],"branchLength":[1426,184,246,2874,864,154,179,631,415],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]},"compositions":{"sample":["EOC495_pLNL1_DNA1","EOC495_pLNL1_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL7_DNA1","EOC495_pOvaL7_DNA1","EOC495_pPerL_DNA1","EOC495_pPerL_DNA1"],"subclone":[4,9,4,9,1,4,5,9,3,5,6,2,5,1,8],"clonalPrevalence":[0.5575,0.4405,0.4635,0.5345,0.1595,0.506,0.035,0.295,0.532,0.0665,0.3995,0.544,0.439,0.1155,0.885],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]}},"options":{"bellTipShape":0.1,"bellTipSpread":0.5,"bellStrokeWidth":1,"bellPlateauPos":0.75,"sampleHeight":110,"sampleWidth":90,"inferredSampleHeight":120,"gapHeight":60,"sampleSpacing":60,"columnSpacing":90,"tentacleWidth":2,"tentacleSpacing":5,"inOutCPDistance":0.3,"bundleCPDistance":0.6,"sampleFontSize":12,"showLegend":true,"phylogenyColorScheme":true,"phylogenyHueOffset":0,"sampleTakenGuide":"text"},"controls":"closed"},"evals":[],"jsHooks":[]}</script>
-</div>
+<script type="application/json" data-for="htmlwidget-4018eef1a407a0df6b52">{"x":{"tables":{"samples":{"sample":["EOC495_pLNL1_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNR_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL7_DNA1","EOC495_pPerL_DNA1"],"displayName":["pLNL1","pLNL2","pLNR","pOvaL6","pOvaL7","pPerL"],"rank":[null,null,null,null,null,null],"parent":["EOC495_pLNR_DNA1","EOC495_pLNL1_DNA1","","","",""],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]},"phylogeny":{"subclone":[1,2,3,4,5,6,7,8,9],"parent":[-1,5,6,1,7,5,1,7,4],"color":["#cccccc","#a6cee3","#b2df8a","#cab2d6","#ff99ff","#fdbf6f","#fb9a99","#bbbb77","#cf8d30"],"branchLength":[1426,184,246,2874,864,154,179,631,415],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]},"compositions":{"sample":["EOC495_pLNL1_DNA1","EOC495_pLNL1_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL7_DNA1","EOC495_pOvaL7_DNA1","EOC495_pPerL_DNA1","EOC495_pPerL_DNA1"],"subclone":[4,9,4,9,1,4,5,9,3,5,6,2,5,1,8],"clonalPrevalence":[0.5575,0.4405,0.4635,0.5345,0.1595,0.506,0.035,0.295,0.532,0.0665,0.3995,0.544,0.439,0.1155,0.885],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]}},"options":{"bellTipShape":0.1,"bellTipSpread":0.5,"bellStrokeWidth":1,"bellPlateauPos":0.75,"sampleHeight":110,"sampleWidth":90,"inferredSampleHeight":120,"gapHeight":60,"sampleSpacing":60,"columnSpacing":90,"tentacleWidth":2,"tentacleSpacing":5,"inOutCPDistance":0.3,"bundleCPDistance":0.6,"sampleFontSize":12,"showLegend":true,"phylogenyColorScheme":true,"phylogenyHueOffset":0,"sampleTakenGuide":"text"},"controls":"closed"},"evals":[],"jsHooks":[]}</script><p>If we think that the lymph node samples represent even later
+development, we can manually assign ranks to the samples. The
+<code>set_ranks</code> function provides an easy way to do this.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tables</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/set_parents.html">set_parents</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"EOC495_pLNL1_DNA1"</span> <span class="op">=</span> <span class="st">"EOC495_pLNR_DNA1"</span>,</span>
+<span>                   <span class="st">"EOC495_pLNL2_DNA1"</span> <span class="op">=</span> <span class="st">"EOC495_pLNL1_DNA1"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/set_ranks.html">set_ranks</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"EOC495_pLNR_DNA1"</span> <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                 <span class="st">"EOC495_pLNL1_DNA1"</span> <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>                 <span class="st">"EOC495_pLNL2_DNA1"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
+<span>            default <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/jellyfisher.html">jellyfisher</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span></code></pre></div>
+<div id="htmlwidget-5b1b2f4ad92281566982" style="width:100%;height:400px;" class="jellyfisher html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5b1b2f4ad92281566982">{"x":{"tables":{"samples":{"sample":["EOC495_pLNL1_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNR_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL7_DNA1","EOC495_pPerL_DNA1"],"displayName":["pLNL1","pLNL2","pLNR","pOvaL6","pOvaL7","pPerL"],"rank":[3,4,2,1,1,1],"parent":["EOC495_pLNR_DNA1","EOC495_pLNL1_DNA1","","","",""],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]},"phylogeny":{"subclone":[1,2,3,4,5,6,7,8,9],"parent":[-1,5,6,1,7,5,1,7,4],"color":["#cccccc","#a6cee3","#b2df8a","#cab2d6","#ff99ff","#fdbf6f","#fb9a99","#bbbb77","#cf8d30"],"branchLength":[1426,184,246,2874,864,154,179,631,415],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]},"compositions":{"sample":["EOC495_pLNL1_DNA1","EOC495_pLNL1_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNL2_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pLNR_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL6_DNA1","EOC495_pOvaL7_DNA1","EOC495_pOvaL7_DNA1","EOC495_pPerL_DNA1","EOC495_pPerL_DNA1"],"subclone":[4,9,4,9,1,4,5,9,3,5,6,2,5,1,8],"clonalPrevalence":[0.5575,0.4405,0.4635,0.5345,0.1595,0.506,0.035,0.295,0.532,0.0665,0.3995,0.544,0.439,0.1155,0.885],"patient":["EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495","EOC495"]}},"options":{"bellTipShape":0.1,"bellTipSpread":0.5,"bellStrokeWidth":1,"bellPlateauPos":0.75,"sampleHeight":110,"sampleWidth":90,"inferredSampleHeight":120,"gapHeight":60,"sampleSpacing":60,"columnSpacing":90,"tentacleWidth":2,"tentacleSpacing":5,"inOutCPDistance":0.3,"bundleCPDistance":0.6,"sampleFontSize":12,"showLegend":true,"phylogenyColorScheme":true,"phylogenyHueOffset":0,"sampleTakenGuide":"text"},"controls":"closed"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.4.2 (2024-10-31)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
