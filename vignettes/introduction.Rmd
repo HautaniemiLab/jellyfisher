@@ -126,7 +126,7 @@ jellyfisher_example_tables |>
   jellyfisher(width = "100%", height = 500)
 ```
 
-## Adjusting the sample tree structures
+## Adjusting the sample tree structure
 
 The sample trees in the example data set were constructed as follows:
 
@@ -208,6 +208,57 @@ tables |>
 
 ```{r echo=F}
 rm(tables)
+```
+
+## Handling non-aberrant cells
+
+Typically in tumor evolution studies, the focus is on the subclonal compositions
+of the tumor cells. Thus, the root node in the phylogenetic tree represents the
+founding clone. However, the data may also contain non-aberrant cells, i.e., the
+tumor purity is less than 100%. For these cases, the `normalsInPhylogenyRoot`
+option instructs Jellyfisher to treat the root node as non-aberrant cells. The
+option has two consequences: (1) No tentacles are drawn between the root
+subclones, and (2) the root subclone is colored as white when the
+phylogeny-aware color scheme is used.
+
+```{r}
+# Subclone N at the root represents the non-aberrant cells.
+# The letter N has no special meaning in Jellyfisher.
+non_aberrant <- list(
+  samples = data.frame(sample = c("A", "B")),
+  compositions = data.frame(
+    sample = c("A", "A", "A", "B", "B", "B"),
+    subclone = c("N", "1", "2", "N", "1", "2"),
+    clonalPrevalence = c(0.2, 0.4, 0.4, 0.3, 0.3, 0.4)
+  ),
+  phylogeny = data.frame(
+    subclone = c("N", "1", "2"),
+    parent = c(NA, "N", "1")
+  )
+)
+```
+
+```{r}
+non_aberrant |>
+  jellyfisher(options = list(
+    normalsAtPhylogenyRoot = TRUE
+  ),
+  width = "100%", height = 350)
+```
+
+In the above plot, the root clone, which represents the non-aberrant cells, is
+hidden from the inferred root sample. However, sometimes a patient may have
+multiple independent clones, and in these cases the root clone is shown:
+
+```{r}
+# Change the parent of subclone 2 to N
+non_aberrant$phylogeny$parent[non_aberrant$phylogeny$subclone == "2"] <- "N"
+
+non_aberrant |>
+  jellyfisher(options = list(
+    normalsAtPhylogenyRoot = TRUE
+  ),
+  width = "100%", height = 350)
 ```
 
 ## Session info

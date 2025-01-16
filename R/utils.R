@@ -45,9 +45,6 @@ validate_tables <- function(tables) {
     all(c("subclone", "parent") %in% colnames(tables$phylogeny)),
     all(c("sample", "subclone", "clonalPrevalence") %in% colnames(tables$compositions))
   )
-
-  # Check that all samples in the samples table are unique
-  stopifnot(length(unique(tables$samples$sample)) == nrow(tables$samples))
 }
 
 #' Set parents for samples
@@ -72,6 +69,8 @@ validate_tables <- function(tables) {
 #'
 set_parents <- function(tables, parents, unset_missing = FALSE) {
   validate_tables(tables)
+  # Check that all samples in the samples table are unique
+  stopifnot(length(unique(tables$samples$sample)) == nrow(tables$samples))
 
   samples <- tables$samples
 
@@ -119,6 +118,8 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
 #'
 set_ranks <- function(tables, ranks, default = 1) {
   validate_tables(tables)
+  # Check that all samples in the samples table are unique
+  stopifnot(length(unique(tables$samples$sample)) == nrow(tables$samples))
 
   samples <- tables$samples
 
