@@ -95,7 +95,7 @@ samples were acquired.
 - `title` (string): specifies the title for the rank.
 
 ```{r}
-head(jellyfisher_example_tables$compositions, 6)
+head(jellyfisher_example_tables$ranks, 6)
 ```
 
 ## Plotting
