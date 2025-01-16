@@ -31,7 +31,14 @@ A named list of data frames containing the following tables:
 \item{subclone}{specifies the subclone ID. (string)}
 \item{clonalPrevalence}{specifies the clonal prevalence of the subclone in the sample. The clonal prevalence is the proportion of the subclone in the sample. The clonal prevalences in a sample must sum to 1. (number)}
 }
-}}
+}
+\item{\code{ranks}}{An optional data frame with ranks. Columns are:
+\describe{
+\item{rank}{specifies the rank number. The zeroth rank is reserved for the inferred root of the sample tree. However, you are free to define a title for it. (integer)}
+\item{title}{specifies the title for the rank. (string)}
+}
+}
+}
 }
 }
 \source{

@@ -28,8 +28,8 @@ making it compatible with various tools and workflows.
 
 ## Input data
 
-The input data should follow specific structures for _samples_, _phylogeny_, and
-subclonal _compositions_.
+The input data should follow specific structures for _samples_, _phylogeny_, 
+subclonal _compositions_, and optional _ranks_.
 
 The Jellyfisher package includes an example data set based on the following
 publication:
@@ -84,6 +84,18 @@ represents a subclone in a sample.
 
 ```{r}
 head(jellyfisher_example_tables$compositions, 25)
+```
+
+### Ranks
+
+The ranks in the example data set are used to indicate the time points when the
+samples were acquired. 
+
+- `rank` (integer): specifies the rank number. The zeroth rank is reserved for the inferred root of the sample tree. However, you are free to define a title for it.
+- `title` (string): specifies the title for the rank.
+
+```{r}
+head(jellyfisher_example_tables$compositions, 6)
 ```
 
 ## Plotting
@@ -184,6 +196,9 @@ tables <- jellyfisher_example_tables |>
 # Remove existing ranks. The ranks will be assigned automatically based
 # on samples' depths in the sample tree.
 tables$samples$rank <- NA
+
+# Rank titles should be removed as well because they are no longer valid.
+tables$ranks <- NULL
 
 tables |>
   set_parents(list("EOC495_pLNL1_DNA1" = "EOC495_pLNR_DNA1",

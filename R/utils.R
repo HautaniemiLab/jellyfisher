@@ -19,7 +19,8 @@ select_patients <- function(tables, patient) {
   list(
     samples = tables$samples[tables$samples$patient %in% patient, ],
     phylogeny = tables$phylogeny[tables$phylogeny$patient %in% patient, ],
-    compositions = tables$compositions[tables$compositions$patient %in% patient, ]
+    compositions = tables$compositions[tables$compositions$patient %in% patient, ],
+    ranks = tables$ranks
   )
 }
 
@@ -39,6 +40,10 @@ validate_tables <- function(tables) {
     is.data.frame(tables$phylogeny),
     is.data.frame(tables$compositions)
   )
+
+  if (!is.null(tables$ranks)) {
+    stopifnot(is.data.frame(tables$ranks))
+  }
 
   stopifnot(
     all(c("sample") %in% colnames(tables$samples)),
@@ -90,7 +95,8 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
   list(
     samples = samples,
     phylogeny = tables$phylogeny,
-    compositions = tables$compositions
+    compositions = tables$compositions,
+    ranks = tables$ranks
   )
 }
 
@@ -138,7 +144,8 @@ set_ranks <- function(tables, ranks, default = 1) {
   list(
     samples = samples,
     phylogeny = tables$phylogeny,
-    compositions = tables$compositions
+    compositions = tables$compositions,
+    ranks = tables$ranks
   )
 }
 

@@ -40,6 +40,12 @@ jellyfisher(
 \item{clonalPrevalence}{specifies the clonal prevalence of the subclone in the sample. The clonal prevalence is the proportion of the subclone in the sample. The clonal prevalences in a sample must sum to 1. (number)}
 }
 }
+\item{\code{ranks}}{An optional data frame with ranks. The expected columns are:
+\describe{
+\item{rank}{specifies the rank number. The zeroth rank is reserved for the inferred root of the sample tree. However, you are free to define a title for it. (integer)}
+\item{title}{specifies the title for the rank. (string)}
+}
+}
 }}
 
 \item{options}{A named list of options to configure the plot. Available options:
@@ -63,6 +69,8 @@ jellyfisher(
 \item{phylogenyColorScheme}{Whether to use a color scheme based on phylogeny Defaults to \code{TRUE}.}
 \item{phylogenyHueOffset}{Offset for the hue of the phylogeny color scheme. If the automatically generated hues are not to your liking, you can adjust the hue offset to get a different color scheme. Defaults to \code{0}.}
 \item{sampleTakenGuide}{Type of the "sample taken" guide. \code{"none"} for no guides, \code{"line"} for a faint dashed line in all samples, \code{"text"} same as line, but with a text label in one of the samples. Defaults to \code{"text"}.}
+\item{showRankTitles}{Whether to show rank titles above the samples (if provided). Defaults to \code{TRUE}.}
+\item{normalsAtPhylogenyRoot}{Whether the root of the phylogenetic tree contains normal cells. If true, no tentacles will be drawn for the root clone and its color will be white if phylogenyColorScheme is used. Defaults to \code{FALSE}.}
 }}
 
 \item{controls}{An optional parameter to set the initial state of the controls. Can be "open", "closed", or "hidden".}
@@ -84,11 +92,10 @@ https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 # Plot the bundled example data
 data(jellyfisher_example_tables)
 jellyfisher(jellyfish_example_tables,
-  options = list(
-    sampleHeight = 70,
-    sampleTakenGuide = "none",
-    showLegend = FALSE
-  )
-)
+            options = list(
+              sampleHeight = 70,
+              sampleTakenGuide = "none",
+              showLegend = FALSE
+            ))
 
 }

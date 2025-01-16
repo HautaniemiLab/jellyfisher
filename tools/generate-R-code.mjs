@@ -133,6 +133,9 @@ ${buildParamDoc("phylogeny.tsv")}
 #'     \\item{\\code{compositions}}{A data frame with subclonal compositions. The expected columns are:
 ${buildParamDoc("compositions.tsv")}
 #'     }
+#'     \\item{\\code{ranks}}{An optional data frame with ranks. The expected columns are:
+${buildParamDoc("ranks.tsv")}
+#'     }
 #'   }
 #' @param options A named list of options to configure the plot. Available options:
 #'   \\describe{
