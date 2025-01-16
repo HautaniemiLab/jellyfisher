@@ -15,7 +15,9 @@ HTMLWidgets.widget({
             samples: HTMLWidgets.dataframeToD3(x.tables.samples),
             phylogeny: HTMLWidgets.dataframeToD3(x.tables.phylogeny),
             compositions: HTMLWidgets.dataframeToD3(x.tables.compositions),
-            ranks: [], // TODO
+            ranks: x.tables.ranks
+              ? HTMLWidgets.dataframeToD3(x.tables.ranks)
+              : null,
           },
           x.options,
           null,

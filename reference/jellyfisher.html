@@ -102,6 +102,16 @@
 
 </dl></dd>
 
+<dt><code>ranks</code></dt>
+<dd><p>An optional data frame with ranks. The expected columns are:</p><dl><dt>rank</dt>
+<dd><p>specifies the rank number. The zeroth rank is reserved for the inferred root of the sample tree. However, you are free to define a title for it. (integer)</p></dd>
+
+<dt>title</dt>
+<dd><p>specifies the title for the rank. (string)</p></dd>
+
+
+</dl></dd>
+
 
 </dl></dd>
 
@@ -164,6 +174,12 @@
 <dt>sampleTakenGuide</dt>
 <dd><p>Type of the "sample taken" guide. <code>"none"</code> for no guides, <code>"line"</code> for a faint dashed line in all samples, <code>"text"</code> same as line, but with a text label in one of the samples. Defaults to <code>"text"</code>.</p></dd>
 
+<dt>showRankTitles</dt>
+<dd><p>Whether to show rank titles above the samples (if provided). Defaults to <code>TRUE</code>.</p></dd>
+
+<dt>normalsAtPhylogenyRoot</dt>
+<dd><p>Whether the root of the phylogenetic tree contains normal cells. If true, no tentacles will be drawn for the root clone and its color will be white if phylogenyColorScheme is used. Defaults to <code>FALSE</code>.</p></dd>
+
 
 </dl></dd>
 
@@ -195,12 +211,11 @@ https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Plot the bundled example data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">jellyfisher_example_tables</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">jellyfisher</span><span class="op">(</span><span class="va">jellyfish_example_tables</span>,</span></span>
-<span class="r-in"><span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    sampleHeight <span class="op">=</span> <span class="fl">70</span>,</span></span>
-<span class="r-in"><span>    sampleTakenGuide <span class="op">=</span> <span class="st">"none"</span>,</span></span>
-<span class="r-in"><span>    showLegend <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span>            options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>              sampleHeight <span class="op">=</span> <span class="fl">70</span>,</span></span>
+<span class="r-in"><span>              sampleTakenGuide <span class="op">=</span> <span class="st">"none"</span>,</span></span>
+<span class="r-in"><span>              showLegend <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>            <span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'jellyfish_example_tables' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
