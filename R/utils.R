@@ -2,7 +2,7 @@
 #'
 #' Given a list of tables, filter them by patient.
 #'
-#' @param tables A list of tables (samples, phylogeny, compositions)
+#' @param tables A list of tables (samples, phylogeny, compositions, ranks)
 #' @param patient The patient or patients to filter by
 #'
 #' @return A list of tables filtered by patient
@@ -28,11 +28,7 @@ select_patients <- function(tables, patient) {
 #'
 #' Superficially validate that the tables are in the correct format.
 #'
-#' @param tables A list of tables (samples, phylogeny, compositions)
-#'
-#' @examples
-#' data(jellyfisher_example_tables)
-#' validate_tables(jellyfisher_example_tables)
+#' @param tables A list of tables (samples, phylogeny, compositions, ranks)
 #'
 validate_tables <- function(tables) {
   stopifnot(
@@ -57,7 +53,7 @@ validate_tables <- function(tables) {
 #' Given a list of jellyfish input tables and a named list of parents for each
 #' sample, set the parent for each sample.
 #'
-#' @param tables A list of tables (samples, phylogeny, compositions)
+#' @param tables A list of tables (samples, phylogeny, compositions, ranks)
 #' @param parents A named list of parents for each sample
 #' @param unset_missing If TRUE, unset the parent for samples that are not in
 #'  the parent list
@@ -65,6 +61,7 @@ validate_tables <- function(tables) {
 #' @return A list of tables with parents set for each sample
 #'
 #' @examples
+#' data(jellyfisher_example_tables)
 #' jellyfisher_example_tables |>
 #'   select_patients("EOC809") |>
 #'   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
@@ -105,7 +102,7 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
 #' Given a list of jellyfish input tables and a named list of ranks for each
 #' sample, set the rank for each sample.
 #'
-#' @param tables A list of tables (samples, phylogeny, compositions)
+#' @param tables A list of tables (samples, phylogeny, compositions, ranks)
 #' @param ranks A named list of ranks for each sample
 #' @param default The default rank to use when a sample is not in the rank list
 #'   (default: 1)
@@ -113,6 +110,7 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
 #' @return A list of tables with ranks set for each sample
 #'
 #' @examples
+#' data(jellyfisher_example_tables)
 #' jellyfisher_example_tables |>
 #'   select_patients("EOC809") |>
 #'   set_ranks(list("EOC809_r1Bow1_DNA1" = 2, "EOC809_p2Per1_cO_DNA2" = 2),

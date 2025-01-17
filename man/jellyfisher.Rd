@@ -7,7 +7,6 @@
 jellyfisher(
   tables,
   options = list(),
-  ranks = NULL,
   controls = "closed",
   width = NULL,
   height = NULL,
@@ -81,6 +80,9 @@ jellyfisher(
 
 \item{elementId}{An optional element ID for the widget}
 }
+\value{
+A Jellyfish plot HTML widget
+}
 \description{
 Creates a Jellyfish plot from samples, a phylogeny, and subclonal compositions.
 }
@@ -91,7 +93,7 @@ https://github.com/HautaniemiLab/jellyfish?tab=readme-ov-file#input-data
 \examples{
 # Plot the bundled example data
 data(jellyfisher_example_tables)
-jellyfisher(jellyfish_example_tables,
+jellyfisher(jellyfisher_example_tables,
             options = list(
               sampleHeight = 70,
               sampleTakenGuide = "none",

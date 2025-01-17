@@ -11,13 +11,13 @@
 #' @import stringr
 #'
 #' @examples
-#' if (requireNamespace("clonevol", quietly = TRUE)) {
-#'   # Run ClonEvol. Check the ClonEvol documentation for details.
-#'   y <- infer.clonal.models(...)
+#' \dontrun{
+#' # Run ClonEvol. Check the ClonEvol documentation for details.
+#' y <- infer.clonal.models(...)
 #'
-#'   # Plot the results
-#'   extract_tables_from_clonevol(y, model = 1) |>
-#'     jellyfisher()
+#' # Plot the results
+#' extract_tables_from_clonevol(y, model = 1) |>
+#'   jellyfisher()
 #' }
 #'
 #' @export
@@ -42,7 +42,7 @@ extract_tables_from_clonevol <- function(y, model = 1) {
     samples <- str_split(fracs, ",")[[1]]
     matched <- cbind(
       cluster,
-      matrix(str_match(samples, "^[°*]?([A-Za-z0-9_]+).* : (-?[0-9.]+)-([0-9.]+)")[, (2:4)], ncol = 3)
+      matrix(str_match(samples, "^[\u00B0*]?([A-Za-z0-9_]+).* : (-?[0-9.]+)-([0-9.]+)")[, (2:4)], ncol = 3)
     )
 
     all <- rbind(all, matched)

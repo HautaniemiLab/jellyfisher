@@ -7,13 +7,8 @@
 validate_tables(tables)
 }
 \arguments{
-\item{tables}{A list of tables (samples, phylogeny, compositions)}
+\item{tables}{A list of tables (samples, phylogeny, compositions, ranks)}
 }
 \description{
 Superficially validate that the tables are in the correct format.
-}
-\examples{
-data(jellyfisher_example_tables)
-validate_tables(jellyfisher_example_tables)
-
 }

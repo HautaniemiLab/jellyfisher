@@ -18,13 +18,13 @@ A named list with three data frames: samples, phylogeny, and compositions
 Extracts data frames that can be used to create a Jellyfish plot.
 }
 \examples{
-if (requireNamespace("clonevol", quietly = TRUE)) {
-  # Run ClonEvol. Check the ClonEvol documentation for details.
-  y <- infer.clonal.models(...)
+\dontrun{
+# Run ClonEvol. Check the ClonEvol documentation for details.
+y <- infer.clonal.models(...)
 
-  # Plot the results
-  extract_tables_from_clonevol(y, model = 1) |>
-    jellyfisher()
+# Plot the results
+extract_tables_from_clonevol(y, model = 1) |>
+  jellyfisher()
 }
 
 }

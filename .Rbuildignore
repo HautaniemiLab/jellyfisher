@@ -1,5 +1,6 @@
 ^jellyfisher\.Rproj$
 ^\.Rproj\.user$
+^.vscode$
 ^tools$
 ^doc$
 ^Meta$
@@ -7,3 +8,4 @@
 ^docs$
 ^pkgdown$
 ^\.github$
+^LICENSE\.md$

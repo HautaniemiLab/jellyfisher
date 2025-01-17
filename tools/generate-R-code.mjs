@@ -146,10 +146,12 @@ ${roxygenOptions.join("\n")}
 #' @param height The height of the widget
 #' @param elementId An optional element ID for the widget
 #'
+#' @return A Jellyfish plot HTML widget
+#'
 #' @examples
 #' # Plot the bundled example data
 #' data(jellyfisher_example_tables)
-#' jellyfisher(jellyfish_example_tables,
+#' jellyfisher(jellyfisher_example_tables,
 #'             options = list(
 #'               sampleHeight = 70,
 #'               sampleTakenGuide = "none",
@@ -160,7 +162,6 @@ ${roxygenOptions.join("\n")}
 #' @export
 jellyfisher <- function(tables,
                         options = list(),
-                        ranks = NULL,
                         controls = "closed",
                         width = NULL,
                         height = NULL,

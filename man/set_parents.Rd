@@ -7,7 +7,7 @@
 set_parents(tables, parents, unset_missing = FALSE)
 }
 \arguments{
-\item{tables}{A list of tables (samples, phylogeny, compositions)}
+\item{tables}{A list of tables (samples, phylogeny, compositions, ranks)}
 
 \item{parents}{A named list of parents for each sample}
 
@@ -22,6 +22,7 @@ Given a list of jellyfish input tables and a named list of parents for each
 sample, set the parent for each sample.
 }
 \examples{
+data(jellyfisher_example_tables)
 jellyfisher_example_tables |>
   select_patients("EOC809") |>
   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
