@@ -109,7 +109,7 @@ buttons to switch between patients.
 
 ```{r}
 jellyfisher(jellyfisher_example_tables,
-            width = "100%", height = 500)
+            width = "100%", height = 450)
 ```
 
 ### Plotting with custom options
@@ -122,7 +122,7 @@ jellyfisher(jellyfisher_example_tables,
               tentacleWidth = 3,
               showLegend = FALSE
             ),
-            width = "100%", height = 500)
+            width = "100%", height = 400)
 ```
 
 ### Plotting a single patient
@@ -135,7 +135,7 @@ filter the data set with ease.
 ```{r}
 jellyfisher_example_tables |>
   select_patients("EOC677") |>
-  jellyfisher(width = "100%", height = 500)
+  jellyfisher(width = "100%", height = 400)
 ```
 
 ## Adjusting the sample tree structure
@@ -181,7 +181,7 @@ indicating that they were diagnostic samples acquired at the same time.
 ```{r}
 jellyfisher_example_tables |>
   select_patients("EOC495") |>
-  jellyfisher(width = "100%", height = 600)
+  jellyfisher(width = "100%", height = 650)
 ```
 
 However, one can argue that the LN (lymph node) samples represent a later
