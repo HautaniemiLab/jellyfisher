@@ -60,6 +60,7 @@ library(jellyfisher)
 
 # Run ClonEvol. Check the ClonEvol documentation for details.
 y <- infer.clonal.models(...)
+y <- convert.consensus.tree.clone.to.branch(y)
 
 # Plot the results
 extract_tables_from_clonevol(y, model = 1)) |>

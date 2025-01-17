@@ -5,7 +5,8 @@
 #' @param y A ClonEvol object
 #' @param model The model to extract. Defaults to 1
 #'
-#' @return A named list with three data frames: samples, phylogeny, and compositions
+#' @return A named list with three data frames: samples, phylogeny,
+#'   and compositions
 #'
 #' @import dplyr
 #' @import stringr
@@ -14,6 +15,7 @@
 #' \dontrun{
 #' # Run ClonEvol. Check the ClonEvol documentation for details.
 #' y <- infer.clonal.models(...)
+#' y <- convert.consensus.tree.clone.to.branch(y)
 #'
 #' # Plot the results
 #' extract_tables_from_clonevol(y, model = 1) |>
@@ -23,13 +25,19 @@
 #' @export
 #'
 extract_tables_from_clonevol <- function(y, model = 1) {
-  if (!requireNamespace("clonevol", quietly = TRUE)) {
-    stop("The clonevol package must be installed to use this functionality")
+  # Silence lintr
+  lab <- sample.with.cell.frac.ci <- lower <- upper <- frac <- blengths <-
+    subclone <- color <- parent <- NA
+
+  if (is.null(y$matched$merged.trees)) {
+    stop("Not a valid ClonEvol object")
   }
 
-  y <- clonevol::convert.consensus.tree.clone.to.branch(y)
-
   tree <- y$matched$merged.trees[[model]]
+
+  if (is.null(tree$blengths)) {
+    stop("run \"y <- clonevol::convert.consensus.tree.clone.to.branch(y)\" before calling this function")
+  }
 
   # Split the cluster table into separate sample-specific proportions
   all <- matrix(ncol = 4)
@@ -42,7 +50,10 @@ extract_tables_from_clonevol <- function(y, model = 1) {
     samples <- str_split(fracs, ",")[[1]]
     matched <- cbind(
       cluster,
-      matrix(str_match(samples, "^[\u00B0*]?([A-Za-z0-9_]+).* : (-?[0-9.]+)-([0-9.]+)")[, (2:4)], ncol = 3)
+      matrix(str_match(
+        samples,
+        "^[\u00B0*]?([A-Za-z0-9_]+).* : (-?[0-9.]+)-([0-9.]+)"
+      )[, (2:4)], ncol = 3)
     )
 
     all <- rbind(all, matched)

@@ -12,7 +12,8 @@ extract_tables_from_clonevol(y, model = 1)
 \item{model}{The model to extract. Defaults to 1}
 }
 \value{
-A named list with three data frames: samples, phylogeny, and compositions
+A named list with three data frames: samples, phylogeny,
+and compositions
 }
 \description{
 Extracts data frames that can be used to create a Jellyfish plot.
@@ -21,6 +22,7 @@ Extracts data frames that can be used to create a Jellyfish plot.
 \dontrun{
 # Run ClonEvol. Check the ClonEvol documentation for details.
 y <- infer.clonal.models(...)
+y <- convert.consensus.tree.clone.to.branch(y)
 
 # Plot the results
 extract_tables_from_clonevol(y, model = 1) |>
