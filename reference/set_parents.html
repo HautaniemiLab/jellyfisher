@@ -52,11 +52,12 @@ sample, set the parent for each sample.</p>
 
 
 <dl><dt id="arg-tables">tables<a class="anchor" aria-label="anchor" href="#arg-tables"></a></dt>
-<dd><p>A list of tables (samples, phylogeny, compositions)</p></dd>
+<dd><p>A list of tables (samples, phylogeny, compositions, ranks)</p></dd>
 
 
 <dt id="arg-parents">parents<a class="anchor" aria-label="anchor" href="#arg-parents"></a></dt>
-<dd><p>A named list of parents for each sample</p></dd>
+<dd><p>A named list of parents for each sample. Keys are the samples
+and values are their new parents</p></dd>
 
 
 <dt id="arg-unset-missing">unset_missing<a class="anchor" aria-label="anchor" href="#arg-unset-missing"></a></dt>
@@ -68,15 +69,41 @@ the parent list</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A list of tables with parents set for each sample</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>By default, all samples that have no explicit parent are children of the
+<em>inferred root</em> sample. You can customize the parent-child relationships by
+modifying the <code>parent</code> column in the <code>samples</code> data frame before plotting.</p>
+<p>You can also modify the relationships using the <code>set_parents</code> function.</p>
+<p>For example, if you have three samples, A, B, and C, they will have the
+following relationships by default:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>    Root</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   <span class="sc">/</span> <span class="er">|</span> \</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  A  B  C</span></code></pre><p></p></div>
+<p>With the explicit parents, you can customize the relationships:</p>
+<p></p><div class="sourceCode R"><pre><code>tables |&gt;
+  set_parents(list(
+    # The parent of C is B
+    C = "B"
+  ) |&gt;
+  jellyfisher()
+</code></pre><p></p></div>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>    Root</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   <span class="sc">/</span>  \</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  A    B</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>        \</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>         C</span></code></pre><p></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">jellyfisher_example_tables</span> <span class="op">|&gt;</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">jellyfisher_example_tables</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">jellyfisher_example_tables</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_patients.html">select_patients</a></span><span class="op">(</span><span class="st">"EOC809"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">set_parents</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"EOC809_r1Bow1_DNA1"</span> <span class="op">=</span> <span class="st">"EOC809_p2Per1_cO_DNA2"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="jellyfisher.html">jellyfisher</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:700px;height:432.632880098888px;" class="jellyfisher html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"tables":{"samples":{"sample":["EOC809_p2Bow1_c_DNA2","EOC809_p2Ome1_c_DNA1","EOC809_p2OvaL1_c_DNA6","EOC809_p2Per1_cO_DNA2","EOC809_r1Bow1_DNA1"],"displayName":["p2Bow1_c","p2Ome1_c","p2OvaL1_c","p2Per1_cO","r1Bow1"],"rank":[3,3,3,3,10],"parent":["","","","","EOC809_p2Per1_cO_DNA2"],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809"]},"phylogeny":{"subclone":[1,2,4,10,11,12,14,15],"parent":[-1,12,10,15,10,1,12,1],"color":["#cccccc","#a6cee3","#cab2d6","#41ae76","#ff7f00","#3de4c5","#9933ff","#3690c0"],"branchLength":[5787,1646,1020,567,1102,1544,2834,4452],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809"]},"compositions":{"sample":["EOC809_p2Bow1_c_DNA2","EOC809_p2Bow1_c_DNA2","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2OvaL1_c_DNA6","EOC809_p2OvaL1_c_DNA6","EOC809_p2Per1_cO_DNA2","EOC809_p2Per1_cO_DNA2","EOC809_p2Per1_cO_DNA2","EOC809_r1Bow1_DNA1","EOC809_r1Bow1_DNA1"],"subclone":[4,15,1,4,10,12,15,11,15,1,2,12,12,14],"clonalPrevalence":[0.6304999999999999,0.37,0.0205,0.0545,0.3365,0.0305,0.5580000000000001,0.67,0.322,0.0345,0.58,0.3855,0.098,0.9],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809"]},"ranks":{"rank":[1,2,3,4,5,6,7,8,9,10,11,12,13],"title":["Diagnosis","Diagnosis","Diagnosis 2","Diagnosis 3","Interval","Interval","Interval 2","Interval 3","Relapse","Relapse","Relapse 2","Relapse 3","Relapse 4"]}},"options":{"bellTipShape":0.1,"bellTipSpread":0.5,"bellStrokeWidth":1,"bellPlateauPos":0.75,"sampleHeight":110,"sampleWidth":90,"inferredSampleHeight":120,"gapHeight":60,"sampleSpacing":60,"columnSpacing":90,"tentacleWidth":2,"tentacleSpacing":5,"inOutCPDistance":0.3,"bundleCPDistance":0.6,"sampleFontSize":12,"showLegend":true,"phylogenyColorScheme":true,"phylogenyHueOffset":0,"sampleTakenGuide":"text","showRankTitles":true,"normalsAtPhylogenyRoot":false},"controls":"closed"},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<div id="htmlwidget-e5c8c404fe174e4c81bd" style="width:700px;height:432.632880098888px;" class="jellyfisher html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"tables":{"samples":{"sample":["EOC809_p2Bow1_c_DNA2","EOC809_p2Ome1_c_DNA1","EOC809_p2OvaL1_c_DNA6","EOC809_p2Per1_cO_DNA2","EOC809_r1Bow1_DNA1"],"displayName":["p2Bow1_c","p2Ome1_c","p2OvaL1_c","p2Per1_cO","r1Bow1"],"rank":[3,3,3,3,10],"parent":["","","","","EOC809_p2Per1_cO_DNA2"],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809"]},"phylogeny":{"subclone":[1,2,4,10,11,12,14,15],"parent":[-1,12,10,15,10,1,12,1],"color":["#cccccc","#a6cee3","#cab2d6","#41ae76","#ff7f00","#3de4c5","#9933ff","#3690c0"],"branchLength":[5787,1646,1020,567,1102,1544,2834,4452],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809"]},"compositions":{"sample":["EOC809_p2Bow1_c_DNA2","EOC809_p2Bow1_c_DNA2","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2Ome1_c_DNA1","EOC809_p2OvaL1_c_DNA6","EOC809_p2OvaL1_c_DNA6","EOC809_p2Per1_cO_DNA2","EOC809_p2Per1_cO_DNA2","EOC809_p2Per1_cO_DNA2","EOC809_r1Bow1_DNA1","EOC809_r1Bow1_DNA1"],"subclone":[4,15,1,4,10,12,15,11,15,1,2,12,12,14],"clonalPrevalence":[0.6304999999999999,0.37,0.0205,0.0545,0.3365,0.0305,0.5580000000000001,0.67,0.322,0.0345,0.58,0.3855,0.098,0.9],"patient":["EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809","EOC809"]},"ranks":{"rank":[1,2,3,4,5,6,7,8,9,10,11,12,13],"title":["Diagnosis","Diagnosis","Diagnosis 2","Diagnosis 3","Interval","Interval","Interval 2","Interval 3","Relapse","Relapse","Relapse 2","Relapse 3","Relapse 4"]}},"options":{"bellTipShape":0.1,"bellTipSpread":0.5,"bellStrokeWidth":1,"bellPlateauPos":0.75,"sampleHeight":110,"sampleWidth":90,"inferredSampleHeight":120,"gapHeight":60,"sampleSpacing":60,"columnSpacing":90,"tentacleWidth":2,"tentacleSpacing":5,"inOutCPDistance":0.3,"bundleCPDistance":0.6,"sampleFontSize":12,"showLegend":true,"phylogenyColorScheme":true,"phylogenyHueOffset":0,"sampleTakenGuide":"text","showRankTitles":true,"normalsAtPhylogenyRoot":false},"controls":"closed"},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

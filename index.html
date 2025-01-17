@@ -110,10 +110,11 @@
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co"># Run ClonEvol. Check the ClonEvol documentation for details.</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">infer.clonal.models</span>(...)</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Plot the results</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">extract_tables_from_clonevol</span>(y, <span class="at">model =</span> <span class="dv">1</span>)<span class="er">)</span> <span class="sc">|&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="fu">jellyfisher</span>()</span></code></pre></div>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">convert.consensus.tree.clone.to.branch</span>(y)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># Plot the results</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">extract_tables_from_clonevol</span>(y, <span class="at">model =</span> <span class="dv">1</span>)<span class="er">)</span> <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="fu">jellyfisher</span>()</span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -164,7 +165,8 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 
