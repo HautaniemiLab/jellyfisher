@@ -21,6 +21,38 @@ A list of tables with parents set for each sample
 Given a list of jellyfish input tables and a named list of parents for each
 sample, set the parent for each sample.
 }
+\details{
+By default, all samples that have no explicit parent are children of the
+\emph{inferred root} sample. You can customize the parent-child relationships by
+modifying the \code{parent} column in the \code{samples} data frame before plotting.
+
+You can also modify the relationships using the \code{set_parents} function.
+
+For example, if you have three samples, A, B, and C, they will have the
+following relationships by default:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{    Root
+   / | \\
+  A  B  C
+}\if{html}{\out{</div>}}
+
+With the explicit parents, you can customize the relationships:
+
+\if{html}{\out{<div class="sourceCode R">}}\preformatted{tables |>
+  set_parents(list(
+    # The parent of C is B
+    C = "B"
+  ) |>
+  jellyfisher()
+}\if{html}{\out{</div>}}
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{    Root
+   /  \\
+  A    B
+        \\
+         C
+}\if{html}{\out{</div>}}
+}
 \examples{
 data(jellyfisher_example_tables)
 jellyfisher_example_tables |>

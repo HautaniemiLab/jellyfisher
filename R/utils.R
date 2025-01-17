@@ -53,8 +53,43 @@ validate_tables <- function(tables) {
 #' Given a list of jellyfish input tables and a named list of parents for each
 #' sample, set the parent for each sample.
 #'
+#' By default, all samples that have no explicit parent are children of the
+#' _inferred root_ sample. You can customize the parent-child relationships by
+#' modifying the `parent` column in the `samples` data frame before plotting.
+#'
+#' You can also modify the relationships using the `set_parents` function.
+#'
+#' For example, if you have three samples, A, B, and C, they will have the
+#' following relationships by default:
+#'
+#' ```
+#'     Root
+#'    / | \
+#'   A  B  C
+#' ```
+#'
+#' With the explicit parents, you can customize the relationships:
+#'
+#' ```R
+#' tables |>
+#'   set_parents(list(
+#'     # The parent of C is B
+#'     C = "B"
+#'   ) |>
+#'   jellyfisher()
+#' ```
+#'
+#' ```
+#'     Root
+#'    /  \
+#'   A    B
+#'         \
+#'          C
+#' ```
+#'
 #' @param tables A list of tables (samples, phylogeny, compositions, ranks)
-#' @param parents A named list of parents for each sample
+#' @param parents A named list of parents for each sample. Keys are the samples
+#'  and values are their new parents
 #' @param unset_missing If TRUE, unset the parent for samples that are not in
 #'  the parent list
 #'
