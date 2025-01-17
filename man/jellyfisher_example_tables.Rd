@@ -44,9 +44,6 @@ A named list of data frames containing the following tables:
 \source{
 \url{https://github.com/HautaniemiLab/jellyfish/tree/main/data}
 }
-\usage{
-jellyfisher_example_tables
-}
 \description{
 Example data based on the following publication:
 Lahtinen A, Lavikka K, Virtanen A, et al.
