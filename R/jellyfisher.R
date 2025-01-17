@@ -83,6 +83,7 @@
 #'             ))
 #'
 #' @import htmlwidgets
+#' @importFrom utils modifyList
 #' @export
 jellyfisher <- function(tables,
                         options = list(),

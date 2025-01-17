@@ -9,7 +9,8 @@ set_parents(tables, parents, unset_missing = FALSE)
 \arguments{
 \item{tables}{A list of tables (samples, phylogeny, compositions, ranks)}
 
-\item{parents}{A named list of parents for each sample}
+\item{parents}{A named list of parents for each sample. Keys are the samples
+and values are their new parents}
 
 \item{unset_missing}{If TRUE, unset the parent for samples that are not in
 the parent list}
