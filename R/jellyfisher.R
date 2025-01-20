@@ -61,7 +61,7 @@
 #'   \item{showLegend}{Whether to show the legend Defaults to \code{TRUE}.}
 #'   \item{phylogenyColorScheme}{Whether to use a color scheme based on phylogeny Defaults to \code{TRUE}.}
 #'   \item{phylogenyHueOffset}{Offset for the hue of the phylogeny color scheme. If the automatically generated hues are not to your liking, you can adjust the hue offset to get a different color scheme. Defaults to \code{0}.}
-#'   \item{sampleTakenGuide}{Type of the "sample taken" guide. `"none"` for no guides, `"line"` for a faint dashed line in all samples, `"text"` same as line, but with a text label in one of the samples. Defaults to \code{"text"}.}
+#'   \item{sampleTakenGuide}{Type of the "sample taken" guide. `"none"` for no guides, `"line"` for a faint dashed line in all samples, `"text"` same as line, but with a text label in one of the samples. `"text-all"` same as text, but with a text label in all samples. Defaults to \code{"text"}.}
 #'   \item{showRankTitles}{Whether to show rank titles above the samples (if provided). Defaults to \code{TRUE}.}
 #'   \item{normalsAtPhylogenyRoot}{Whether the root of the phylogenetic tree contains normal cells. If true, no tentacles will be drawn for the root clone and its color will be white if phylogenyColorScheme is used. Defaults to \code{FALSE}.}
 #'   }
@@ -200,7 +200,7 @@ jellyfisher <- function(tables,
     if (options$phylogenyHueOffset > 360) stop("phylogenyHueOffset must be no greater than 360")
   }
   if (!is.null(options$sampleTakenGuide)) {
-    if (!options$sampleTakenGuide %in% c("none", "line", "text")) stop("sampleTakenGuide must be one of: none, line, text")
+    if (!options$sampleTakenGuide %in% c("none", "line", "text", "text-all")) stop("sampleTakenGuide must be one of: none, line, text, text-all")
   }
   if (!is.null(options$showRankTitles)) {
     if (!is.logical(options$showRankTitles)) stop("showRankTitles must be a boolean (TRUE or FALSE)")
