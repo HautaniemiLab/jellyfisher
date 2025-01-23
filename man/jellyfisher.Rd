@@ -49,9 +49,15 @@ jellyfisher(
 
 \item{options}{A named list of options to configure the plot. Available options:
 \describe{
+\item{crossingWeight}{Weight for tentacle bundles between two pairs of samples crossing each other. Defaults to \code{10}.}
+\item{pathLengthWeight}{Weight for the total length of the paths (tentacle bundles) connecting samples. Defaults to \code{2}.}
+\item{orderMismatchWeight}{Weight for the mismatch in the order of samples. The order is based on the "phylogenetic center of mass" computed from the subclonal compositions. Defaults to \code{2}.}
+\item{bundleMismatchWeight}{Weight for the mismatch in the placement of bundles. The "optimal" placement is based on the subclonal compositions, but such placement may produce excessively long tentacle bundles. Defaults to \code{3}.}
+\item{divergenceWeight}{Weight for the sum of divergences between adjacent samples. Defaults to \code{4}.}
 \item{bellTipShape}{The shape of the bell tip. 0 is a sharp tip, 1 is a blunt tip. Defaults to \code{0.1}.}
 \item{bellTipSpread}{How much to spread nested bell tips. 0 is no spread, 1 is full spread. Defaults to \code{0.5}.}
 \item{bellStrokeWidth}{The width of strokes in the bell. Defaults to \code{1}.}
+\item{bellStrokeDarkening}{How much the stroke color of the bells is darkened. Defaults to \code{0.6}.}
 \item{bellPlateauPos}{Where the bell has fully appeared and the plateau starts. Defaults to \code{0.75}.}
 \item{sampleHeight}{Height of real sample nodes Defaults to \code{110}.}
 \item{sampleWidth}{Width of sample nodes Defaults to \code{90}.}
@@ -67,7 +73,7 @@ jellyfisher(
 \item{showLegend}{Whether to show the legend Defaults to \code{TRUE}.}
 \item{phylogenyColorScheme}{Whether to use a color scheme based on phylogeny Defaults to \code{TRUE}.}
 \item{phylogenyHueOffset}{Offset for the hue of the phylogeny color scheme. If the automatically generated hues are not to your liking, you can adjust the hue offset to get a different color scheme. Defaults to \code{0}.}
-\item{sampleTakenGuide}{Type of the "sample taken" guide. \code{"none"} for no guides, \code{"line"} for a faint dashed line in all samples, \code{"text"} same as line, but with a text label in one of the samples. Defaults to \code{"text"}.}
+\item{sampleTakenGuide}{Type of the "sample taken" guide. \code{"none"} for no guides, \code{"line"} for a faint dashed line in all samples, \code{"text"} same as line, but with a text label in one of the samples. \code{"text-all"} same as text, but with a text label in all samples. Defaults to \code{"text"}.}
 \item{showRankTitles}{Whether to show rank titles above the samples (if provided). Defaults to \code{TRUE}.}
 \item{normalsAtPhylogenyRoot}{Whether the root of the phylogenetic tree contains normal cells. If true, no tentacles will be drawn for the root clone and its color will be white if phylogenyColorScheme is used. Defaults to \code{FALSE}.}
 }}

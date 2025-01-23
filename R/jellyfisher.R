@@ -43,9 +43,15 @@
 #'   }
 #' @param options A named list of options to configure the plot. Available options:
 #'   \describe{
+#'   \item{crossingWeight}{Weight for tentacle bundles between two pairs of samples crossing each other. Defaults to \code{10}.}
+#'   \item{pathLengthWeight}{Weight for the total length of the paths (tentacle bundles) connecting samples. Defaults to \code{2}.}
+#'   \item{orderMismatchWeight}{Weight for the mismatch in the order of samples. The order is based on the "phylogenetic center of mass" computed from the subclonal compositions. Defaults to \code{2}.}
+#'   \item{bundleMismatchWeight}{Weight for the mismatch in the placement of bundles. The "optimal" placement is based on the subclonal compositions, but such placement may produce excessively long tentacle bundles. Defaults to \code{3}.}
+#'   \item{divergenceWeight}{Weight for the sum of divergences between adjacent samples. Defaults to \code{4}.}
 #'   \item{bellTipShape}{The shape of the bell tip. 0 is a sharp tip, 1 is a blunt tip. Defaults to \code{0.1}.}
 #'   \item{bellTipSpread}{How much to spread nested bell tips. 0 is no spread, 1 is full spread. Defaults to \code{0.5}.}
 #'   \item{bellStrokeWidth}{The width of strokes in the bell. Defaults to \code{1}.}
+#'   \item{bellStrokeDarkening}{How much the stroke color of the bells is darkened. Defaults to \code{0.6}.}
 #'   \item{bellPlateauPos}{Where the bell has fully appeared and the plateau starts. Defaults to \code{0.75}.}
 #'   \item{sampleHeight}{Height of real sample nodes Defaults to \code{110}.}
 #'   \item{sampleWidth}{Width of sample nodes Defaults to \code{90}.}
@@ -95,9 +101,15 @@ jellyfisher <- function(tables,
 
   # Define default options
   defaultOptions <- list(
+    crossingWeight = 10,
+    pathLengthWeight = 2,
+    orderMismatchWeight = 2,
+    bundleMismatchWeight = 3,
+    divergenceWeight = 4,
     bellTipShape = 0.1,
     bellTipSpread = 0.5,
     bellStrokeWidth = 1,
+    bellStrokeDarkening = 0.6,
     bellPlateauPos = 0.75,
     sampleHeight = 110,
     sampleWidth = 90,
@@ -122,6 +134,26 @@ jellyfisher <- function(tables,
   options <- modifyList(defaultOptions, options)
 
   # Validate options
+  if (!is.null(options$crossingWeight)) {
+    if (!is.numeric(options$crossingWeight)) stop("crossingWeight must be numeric")
+    if (options$crossingWeight < 0) stop("crossingWeight must be at least 0")
+  }
+  if (!is.null(options$pathLengthWeight)) {
+    if (!is.numeric(options$pathLengthWeight)) stop("pathLengthWeight must be numeric")
+    if (options$pathLengthWeight < 0) stop("pathLengthWeight must be at least 0")
+  }
+  if (!is.null(options$orderMismatchWeight)) {
+    if (!is.numeric(options$orderMismatchWeight)) stop("orderMismatchWeight must be numeric")
+    if (options$orderMismatchWeight < 0) stop("orderMismatchWeight must be at least 0")
+  }
+  if (!is.null(options$bundleMismatchWeight)) {
+    if (!is.numeric(options$bundleMismatchWeight)) stop("bundleMismatchWeight must be numeric")
+    if (options$bundleMismatchWeight < 0) stop("bundleMismatchWeight must be at least 0")
+  }
+  if (!is.null(options$divergenceWeight)) {
+    if (!is.numeric(options$divergenceWeight)) stop("divergenceWeight must be numeric")
+    if (options$divergenceWeight < 0) stop("divergenceWeight must be at least 0")
+  }
   if (!is.null(options$bellTipShape)) {
     if (!is.numeric(options$bellTipShape)) stop("bellTipShape must be numeric")
     if (options$bellTipShape < 0) stop("bellTipShape must be at least 0")
@@ -136,6 +168,11 @@ jellyfisher <- function(tables,
     if (!is.numeric(options$bellStrokeWidth)) stop("bellStrokeWidth must be numeric")
     if (options$bellStrokeWidth < 0) stop("bellStrokeWidth must be at least 0")
     if (options$bellStrokeWidth > 10) stop("bellStrokeWidth must be no greater than 10")
+  }
+  if (!is.null(options$bellStrokeDarkening)) {
+    if (!is.numeric(options$bellStrokeDarkening)) stop("bellStrokeDarkening must be numeric")
+    if (options$bellStrokeDarkening < 0) stop("bellStrokeDarkening must be at least 0")
+    if (options$bellStrokeDarkening > 2) stop("bellStrokeDarkening must be no greater than 2")
   }
   if (!is.null(options$bellPlateauPos)) {
     if (!is.numeric(options$bellPlateauPos)) stop("bellPlateauPos must be numeric")

@@ -20,7 +20,6 @@ HTMLWidgets.widget({
               : null,
           },
           x.options,
-          null,
           x.controls
         );
       },
