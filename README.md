@@ -63,7 +63,7 @@ y <- infer.clonal.models(...)
 y <- convert.consensus.tree.clone.to.branch(y)
 
 # Plot the results
-extract_tables_from_clonevol(y, model = 1)) |>
+extract_tables_from_clonevol(y, model = 1) |>
   jellyfisher()
 ```
 
@@ -73,7 +73,8 @@ By default, all samples that have no explicit parent are children of the
 _inferred root_ sample. You can customize the parent-child relationships by
 modifying the `parent` column in the `samples` data frame before plotting.
 
-You can also modify the relationships using the `set_parents` function.
+You can also modify the relationships with ease using the `set_parents`
+function.
 
 For example, if you have three samples, A, B, and C, they will have the
 following relationships by default:
@@ -90,7 +91,7 @@ With the explicit parents, you can customize the relationships:
 tables |>
   set_parents(list(
     # The parent of C is B
-    C = "B"
+    "C" = "B"
   ) |>
   jellyfisher()
 ```
@@ -119,13 +120,13 @@ after building the Jellyfish dependency.
 
 ## About
 
-Copyright (c) 2025 Kari Lavikka. MIT license, see [LICENSE](LICENSE) for details.
+Copyright (c) 2025 Kari Lavikka. MIT license, see [LICENSE.md](LICENSE.md) for details.
 
 Jellyfisher is developed in [The Systems Biology of Drug Resistance in
 Cancer](https://www.helsinki.fi/en/researchgroups/systems-biology-of-drug-resistance-in-cancer)
 group at the [University of Helsinki](https://www.helsinki.fi/en).
 
 This project has received funding from the European Union's Horizon 2020
-research and innovation programme under grant agreement No. 965193
+research and innovation programme under grant agreements No. 965193
 ([DECIDER](https://www.deciderproject.eu/)) and No. 847912
 ([RESCUER](https://www.rescuer.uio.no/)).
