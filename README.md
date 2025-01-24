@@ -1,5 +1,11 @@
 # <img src="man/figures/logo.webp" alt="Jellyfisher hexagon" align="right" height="138" style="margin-left: 0.5em" /> Jellyfisher
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml)
+
+<!-- badges: end -->
+
 **Jellyfisher** is an R package for visualizing tumor evolution and subclonal
 compositions using Jellyfish plots, which display both spatial and temporal
 dimensions in a single unified figure.
