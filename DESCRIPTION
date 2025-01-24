@@ -1,14 +1,12 @@
 Package: jellyfisher
-Title: Visualizing Tumor Evolution with Jellyfish Plots in R
+Title: Visualize Spatio-Temporal Tumor Evolution with Jellyfish Plots
 Version: 1.0.1
 Authors@R: 
     person("Kari", "Lavikka", , "kari.lavikka@helsinki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4163-4945"))
 Description:
-    Jellyfisher creates interactive Jellyfish plots for tumor evolution
-    visualization. These plots integrate a hierarchical sample structure
-    and tumor phylogeny into a single visualization, allowing for the
-    display of both spatial and temporal dimensions of the tumor evolution. 
+    Create interactive Jellyfish plots for tumor evolution, integrating
+    hierarchical sample structures and phylogenies to visualize both spatial and temporal dimensions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -23,7 +21,7 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown
-Depends: R (>= 4.4.0)
+Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
 biocViews:
     Visualization,
