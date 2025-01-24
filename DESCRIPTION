@@ -1,6 +1,6 @@
 Package: jellyfisher
 Title: Visualizing Tumor Evolution with Jellyfish Plots in R
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person("Kari", "Lavikka", , "kari.lavikka@helsinki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4163-4945"))
