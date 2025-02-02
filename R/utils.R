@@ -8,7 +8,6 @@
 #' @return A list of tables filtered by patient
 #'
 #' @examples
-#' data(jellyfisher_example_tables)
 #' jellyfisher_example_tables |>
 #'   select_patients("EOC809")
 #'
@@ -96,7 +95,6 @@ validate_tables <- function(tables) {
 #' @return A list of tables with parents set for each sample
 #'
 #' @examples
-#' data(jellyfisher_example_tables)
 #' jellyfisher_example_tables |>
 #'   select_patients("EOC809") |>
 #'   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
@@ -145,7 +143,6 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
 #' @return A list of tables with ranks set for each sample
 #'
 #' @examples
-#' data(jellyfisher_example_tables)
 #' jellyfisher_example_tables |>
 #'   select_patients("EOC809") |>
 #'   set_ranks(list("EOC809_r1Bow1_DNA1" = 2, "EOC809_p2Per1_cO_DNA2" = 2),

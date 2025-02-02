@@ -55,7 +55,6 @@ With the explicit parents, you can customize the relationships:
 }\if{html}{\out{</div>}}
 }
 \examples{
-data(jellyfisher_example_tables)
 jellyfisher_example_tables |>
   select_patients("EOC809") |>
   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>

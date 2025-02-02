@@ -22,7 +22,6 @@ Given a list of jellyfish input tables and a named list of ranks for each
 sample, set the rank for each sample.
 }
 \examples{
-data(jellyfisher_example_tables)
 jellyfisher_example_tables |>
   select_patients("EOC809") |>
   set_ranks(list("EOC809_r1Bow1_DNA1" = 2, "EOC809_p2Per1_cO_DNA2" = 2),

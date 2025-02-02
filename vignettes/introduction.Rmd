@@ -31,16 +31,12 @@ making it compatible with various tools and workflows.
 The input data should follow specific structures for _samples_, _phylogeny_, 
 subclonal _compositions_, and optional _ranks_.
 
-The Jellyfisher package includes an example data set based on the following
-publication:
+The `jellyfisher` package includes an example data set
+(`jellyfisher_example_tables`) based on the following publication:  
 Lahtinen, A., Lavikka, K., Virtanen, A., et al. "Evolutionary states and
 trajectories characterized by distinct pathways stratify patients with ovarian
 high-grade serous carcinoma." _Cancer Cell_ **41**, 1103–1117.e12 (2023). DOI:
 [10.1016/j.ccell.2023.04.017](https://doi.org/10.1016/j.ccell.2023.04.017).
-
-```{r}
-data(jellyfisher_example_tables)
-```
 
 ```{r echo=F, message=F}
 # Subset the data to keep the compiled vignette a bit smaller
