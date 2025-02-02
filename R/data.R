@@ -5,7 +5,7 @@
 #' Evolutionary states and trajectories characterized by distinct pathways
 #' stratify patients with ovarian high grade serous carcinoma.
 #' \emph{Cancer Cell}. 2023;41(6):1103-1117.e12.
-#' doi:\href{https://doi.org/10.1016/j.ccell.2023.04.017}{10.1016/j.ccell.2023.04.017}
+#' \doi{10.1016/j.ccell.2023.04.017}
 #'
 #' @name jellyfisher_example_tables
 #' @docType data
