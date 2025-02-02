@@ -5,9 +5,9 @@ Authors@R:
     person("Kari", "Lavikka", , "kari.lavikka@helsinki.fi", role = c("cph", "aut", "cre"),
            comment = c(ORCID = "0000-0002-4163-4945"))
 Description:
-    Create interactive 'Jellyfish' plots for tumor evolution, integrating
-    hierarchical sample structures and phylogenies to visualize both spatial
-    and temporal dimensions.
+    Create interactive 'Jellyfish' plots to visualize spatio-temporal tumor
+    evolution by integrating sample and phylogenetic trees into an unified
+    plot.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
