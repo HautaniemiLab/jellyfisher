@@ -21,10 +21,10 @@ making it compatible with various tools and workflows.
 ## Installation
 
 ```R
-# Install Devtools
-install.packages("devtools")
+# Install from CRAN
+install.packages("jellyfisher")
 
-# Install Jellyfisher
+# Or alternatively, install the latest development version from GitHub
 devtools::install_github("HautaniemiLab/jellyfisher", build_vignettes = TRUE)
 ```
 
