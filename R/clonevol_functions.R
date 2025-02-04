@@ -1,6 +1,13 @@
-#' Extract samples, phylogeny, and subclonal compositions from ClonEvol results
+#' Extract Data for Jellyfisher from ClonEvol Results
 #'
-#' Extracts data frames that can be used to create a Jellyfish plot.
+#' ClonEvol infers clonal evolution from multi-sample cancer sequencing data
+#' and generates phylogenetic models of tumor evolution.
+#' This function extracts data frames from a ClonEvol object that can be
+#' used to create a Jellyfish plot.
+#'
+#' For more details about ClonEvol, including the installation instructions,
+#' visit its GitHub \href{https://github.com/hdng/clonevol}{repository} or read
+#' the publication by Dang et al. (2017, \doi{doi:10.1093/annonc/mdx517}).
 #'
 #' @param y A ClonEvol object
 #' @param model The model to extract. Defaults to 1
@@ -13,11 +20,29 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Run ClonEvol. Check the ClonEvol documentation for details.
-#' y <- infer.clonal.models(...)
+#' library(clonevol)
+#'
+#' # Run ClonEvol with its example data
+#' # (refer to ClonEvol documentation for details)
+#' data(aml1)
+#' y <- infer.clonal.models(
+#'   variants = aml1$variants,
+#'   cluster.col.name = "cluster",
+#'   vaf.col.names = aml1$params$vaf.col.names,
+#'   subclonal.test = "bootstrap",
+#'   subclonal.test.model = "non-parametric",
+#'   num.boots = 1000,
+#'   founding.cluster = 1,
+#'   cluster.center = "mean",
+#'   ignore.clusters = NULL,
+#'   min.cluster.vaf = 0.01,
+#'   sum.p = 0.05,
+#'   alpha = 0.05
+#' )
+#' # Make branch lengths available
 #' y <- convert.consensus.tree.clone.to.branch(y)
 #'
-#' # Plot the results
+#' # Extract data and plot the results
 #' extract_tables_from_clonevol(y, model = 1) |>
 #'   jellyfisher()
 #' }
