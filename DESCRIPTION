@@ -1,13 +1,16 @@
 Package: jellyfisher
-Title: Visualize Spatio-Temporal Tumor Evolution with 'Jellyfish' Plots
+Title: Visualize Spatiotemporal Tumor Evolution with Jellyfish Plots
 Version: 1.0.2
 Authors@R: 
     person("Kari", "Lavikka", , "kari.lavikka@helsinki.fi", role = c("cph", "aut", "cre"),
            comment = c(ORCID = "0000-0002-4163-4945"))
 Description:
-    Create interactive 'Jellyfish' plots to visualize spatio-temporal tumor
-    evolution by integrating sample and phylogenetic trees into an unified
-    plot.
+    Generates interactive Jellyfish plots to visualize spatiotemporal tumor
+    evolution by integrating sample and phylogenetic trees into a unified plot.
+    This approach provides an intuitive way to analyze tumor heterogeneity and
+    evolution over time and across anatomical locations. The Jellyfish plot
+    visualization design was first introduced by Lahtinen, Lavikka, et al.
+    (2023, <doi:10.1016/j.ccell.2023.04.017>).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
