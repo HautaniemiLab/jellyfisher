@@ -24,6 +24,15 @@ string and have \code{'px'} appended.}
 \item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
 is useful if you want to save an expression in a variable.}
 }
+\value{
+\describe{
+\item{\code{jellyfisherOutput()}}{
+A \code{shiny.tag} object that can be included in a Shiny UI definition.}
+\item{\code{renderJellyfisher()}}{
+A \code{shiny.render.function} that returns an \code{htmlwidget} object for use in
+a Shiny server function.}
+}
+}
 \description{
 Output and render functions for using jellyfisher within Shiny
 applications and interactive Rmd documents.

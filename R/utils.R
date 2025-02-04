@@ -193,6 +193,14 @@ set_ranks <- function(tables, ranks, default = 1) {
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
+#' @return \describe{
+#'   \item{\code{jellyfisherOutput()}}{
+#'     A `shiny.tag` object that can be included in a Shiny UI definition.}
+#'   \item{\code{renderJellyfisher()}}{
+#'     A `shiny.render.function` that returns an `htmlwidget` object for use in
+#'     a Shiny server function.}
+#' }
+#'
 #' @name jellyfisher-shiny
 #'
 #' @export
