@@ -1,3 +1,8 @@
+# jellyfisher 1.0.4
+
+- Updated documentation of `extract_tables_from_clonevol`
+- Updated DESCRIPTION file, added 'clonevol' to the Suggests field
+
 # jellyfisher 1.0.3
 
 - Updated documentation of `extract_tables_from_clonevol`
