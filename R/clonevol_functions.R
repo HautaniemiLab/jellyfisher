@@ -5,6 +5,10 @@
 #' This function extracts data frames from a ClonEvol object that can be
 #' used to create a Jellyfish plot.
 #'
+#' Note: ClonEvol reports clonal prevalences as confidence intervals.
+#' This function extracts the mean values and uses them as the prevalence
+#' values.
+#'
 #' For more details about ClonEvol, including the installation instructions,
 #' visit its GitHub \href{https://github.com/hdng/clonevol}{repository} or read
 #' the publication by Dang et al. (2017, \doi{doi:10.1093/annonc/mdx517}).
@@ -19,32 +23,34 @@
 #' @import stringr
 #'
 #' @examples
-#' \dontrun{
-#' library(clonevol)
+#' if (requireNamespace("clonevol", quietly = TRUE)) {
+#'   # Run ClonEvol with its example data
+#'   # (refer to ClonEvol documentation for details)
+#'   data <- clonevol::aml1
+#'   y <- clonevol::infer.clonal.models(
+#'     variants = data$variants,
+#'     cluster.col.name = "cluster",
+#'     vaf.col.names = data$params$vaf.col.names,
+#'     subclonal.test = "bootstrap",
+#'     subclonal.test.model = "non-parametric",
+#'     num.boots = 1000,
+#'     founding.cluster = 1,
+#'     cluster.center = "mean",
+#'     ignore.clusters = NULL,
+#'     min.cluster.vaf = 0.01,
+#'     sum.p = 0.05,
+#'     alpha = 0.05
+#'   )
+#'   # Make branch lengths available
+#'   y <- clonevol::convert.consensus.tree.clone.to.branch(y)
 #'
-#' # Run ClonEvol with its example data
-#' # (refer to ClonEvol documentation for details)
-#' data(aml1)
-#' y <- infer.clonal.models(
-#'   variants = aml1$variants,
-#'   cluster.col.name = "cluster",
-#'   vaf.col.names = aml1$params$vaf.col.names,
-#'   subclonal.test = "bootstrap",
-#'   subclonal.test.model = "non-parametric",
-#'   num.boots = 1000,
-#'   founding.cluster = 1,
-#'   cluster.center = "mean",
-#'   ignore.clusters = NULL,
-#'   min.cluster.vaf = 0.01,
-#'   sum.p = 0.05,
-#'   alpha = 0.05
-#' )
-#' # Make branch lengths available
-#' y <- convert.consensus.tree.clone.to.branch(y)
-#'
-#' # Extract data and plot the results
-#' extract_tables_from_clonevol(y, model = 1) |>
-#'   jellyfisher()
+#'   # Extract data and plot the results
+#'   extract_tables_from_clonevol(y, model = 1) |>
+#'     jellyfisher()
+#' } else {
+#'   message(
+#'     "Please install the clonevol package from GitHub: devtools::install_github('hdng/clonevol')"
+#'   )
 #' }
 #'
 #' @export

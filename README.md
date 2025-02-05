@@ -52,10 +52,8 @@ jellyfisher(jellyfisher_example_tables)
 
 Jellyfisher provides a straightforward way to visualize
 [ClonEvol](https://github.com/hdng/clonevol) results using the
-`extract_tables_from_clonevol` function. The function returns a list of data
-frames that you can pass to the `jellyfisher` function. N.B., ClonEvol reports
-clonal prevalences as confidence intervals. The function extracts the mean
-values and uses them as the prevalence values.
+[`extract_tables_from_clonevol`](https://hautaniemilab.github.io/jellyfisher/reference/extract_tables_from_clonevol.html)
+function. See the reference page for details.
 
 #### Example
 
@@ -78,7 +76,8 @@ By default, all samples that have no explicit parent are children of the
 _inferred root_ sample. You can customize the parent-child relationships by
 modifying the `parent` column in the `samples` data frame before plotting.
 
-You can also modify the relationships with ease using the `set_parents`
+You can also modify the relationships with ease using the
+[`set_parents`](https://hautaniemilab.github.io/jellyfisher/reference/set_parents.html)
 function.
 
 For example, if you have three samples, A, B, and C, they will have the

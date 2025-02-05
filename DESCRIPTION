@@ -11,6 +11,11 @@ Description:
     evolution over time and across anatomical locations. The Jellyfish plot
     visualization design was first introduced by Lahtinen, Lavikka, et al.
     (2023, <doi:10.1016/j.ccell.2023.04.017>).
+    This package also supports visualizing ClonEvol results, a tool developed
+    by Dang, et al. (2017, <doi:10.1093/annonc/mdx517>), for analyzing clonal
+    evolution from multi-sample sequencing data. The 'clonevol' package is not
+    available on CRAN but can be installed from its GitHub
+    repository (<https://github.com/hdng/clonevol>).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -24,7 +29,8 @@ Imports:
     stringr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    clonevol
 Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
 biocViews:
