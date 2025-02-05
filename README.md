@@ -3,6 +3,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/jellyfisher)](https://CRAN.R-project.org/package=jellyfisher)
 
 <!-- badges: end -->
 
@@ -20,11 +21,15 @@ making it compatible with various tools and workflows.
 
 ## Installation
 
-```R
-# Install from CRAN
-install.packages("jellyfisher")
+### Install from CRAN
 
-# Or alternatively, install the latest development version from GitHub
+```R
+install.packages("jellyfisher")
+```
+
+### Or alternatively, install the latest development version from GitHub
+
+```R
 devtools::install_github("HautaniemiLab/jellyfisher", build_vignettes = TRUE)
 ```
 
