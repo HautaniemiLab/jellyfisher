@@ -3,7 +3,6 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml)
-[![CRAN status](https://www.r-pkg.org/badges/version/jellyfisher)](https://CRAN.R-project.org/package=jellyfisher)
 
 <!-- badges: end -->
 
