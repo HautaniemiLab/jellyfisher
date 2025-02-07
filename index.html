@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Visualize Spatio-Temporal Tumor Evolution with Jellyfish Plots • jellyfisher</title>
+<title>Visualize Spatiotemporal Tumor Evolution with Jellyfish Plots • jellyfisher</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -16,9 +16,9 @@
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Visualize Spatio-Temporal Tumor Evolution with Jellyfish Plots">
-<meta name="description" content="Create interactive Jellyfish plots to visualize spatio-temporal tumor evolution by integrating sample and phylogenetic trees into an unified plot.">
-<meta property="og:description" content="Create interactive Jellyfish plots to visualize spatio-temporal tumor evolution by integrating sample and phylogenetic trees into an unified plot.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Visualize Spatiotemporal Tumor Evolution with Jellyfish Plots">
+<meta name="description" content="Generates interactive Jellyfish plots to visualize spatiotemporal tumor evolution by integrating sample and phylogenetic trees into a unified plot. This approach provides an intuitive way to analyze tumor heterogeneity and evolution over time and across anatomical locations. The Jellyfish plot visualization design was first introduced by Lahtinen, Lavikka, et al. (2023, &lt;doi:10.1016/j.ccell.2023.04.017&gt;). This package also supports visualizing ClonEvol results, a tool developed by Dang, et al. (2017, &lt;doi:10.1093/annonc/mdx517&gt;), for analyzing clonal evolution from multi-sample sequencing data. The clonevol package is not available on CRAN but can be installed from its GitHub repository (&lt;https://github.com/hdng/clonevol&gt;).">
+<meta property="og:description" content="Generates interactive Jellyfish plots to visualize spatiotemporal tumor evolution by integrating sample and phylogenetic trees into a unified plot. This approach provides an intuitive way to analyze tumor heterogeneity and evolution over time and across anatomical locations. The Jellyfish plot visualization design was first introduced by Lahtinen, Lavikka, et al. (2023, &lt;doi:10.1016/j.ccell.2023.04.017&gt;). This package also supports visualizing ClonEvol results, a tool developed by Dang, et al. (2017, &lt;doi:10.1093/annonc/mdx517&gt;), for analyzing clonal evolution from multi-sample sequencing data. The clonevol package is not available on CRAN but can be installed from its GitHub repository (&lt;https://github.com/hdng/clonevol&gt;).">
 <meta property="og:image" content="https://hautaniemilab.github.io/jellyfisher/logo.png">
 </head>
 <body>
@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">jellyfisher</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,13 +38,8 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="articles/jellyfisher.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/introduction.html">Introduction to Jellyfisher</a></li>
-  </ul>
-</li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -76,12 +71,18 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<div class="section level3">
+<h3 id="install-from-cran">Install from CRAN<a class="anchor" aria-label="anchor" href="#install-from-cran"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install Devtools</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Install Jellyfisher</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"HautaniemiLab/jellyfisher"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"jellyfisher"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="or-alternatively-install-the-latest-development-version-from-github">Or alternatively, install the latest development version from GitHub<a class="anchor" aria-label="anchor" href="#or-alternatively-install-the-latest-development-version-from-github"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"HautaniemiLab/jellyfisher"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -94,7 +95,7 @@
 <div class="section level4">
 <h4 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h4>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HautaniemiLab/jellyfisher" class="external-link">jellyfisher</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot the bundled example data</span></span>
@@ -104,11 +105,11 @@
 <div class="section level3">
 <h3 id="plotting-clonevol-results">Plotting ClonEvol Results<a class="anchor" aria-label="anchor" href="#plotting-clonevol-results"></a>
 </h3>
-<p>Jellyfisher provides a straightforward way to visualize <a href="https://github.com/hdng/clonevol" class="external-link">ClonEvol</a> results using the <code>extract_tables_from_clonevol</code> function. The function returns a list of data frames that you can pass to the <code>jellyfisher</code> function. N.B., ClonEvol reports clonal prevalences as confidence intervals. The function extracts the mean values and uses them as the prevalence values.</p>
+<p>Jellyfisher provides a straightforward way to visualize <a href="https://github.com/hdng/clonevol" class="external-link">ClonEvol</a> results using the <a href="https://hautaniemilab.github.io/jellyfisher/reference/extract_tables_from_clonevol.html"><code>extract_tables_from_clonevol</code></a> function. See the reference page for details.</p>
 <div class="section level4">
 <h4 id="example-1">Example<a class="anchor" aria-label="anchor" href="#example-1"></a>
 </h4>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">clonevol</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/HautaniemiLab/jellyfisher" class="external-link">jellyfisher</a></span><span class="op">)</span></span>
 <span></span>
@@ -125,18 +126,18 @@
 <h3 id="setting-parent-child-relationships-of-samples">Setting Parent-Child Relationships of Samples<a class="anchor" aria-label="anchor" href="#setting-parent-child-relationships-of-samples"></a>
 </h3>
 <p>By default, all samples that have no explicit parent are children of the <em>inferred root</em> sample. You can customize the parent-child relationships by modifying the <code>parent</code> column in the <code>samples</code> data frame before plotting.</p>
-<p>You can also modify the relationships with ease using the <code>set_parents</code> function.</p>
+<p>You can also modify the relationships with ease using the <a href="https://hautaniemilab.github.io/jellyfisher/reference/set_parents.html"><code>set_parents</code></a> function.</p>
 <p>For example, if you have three samples, A, B, and C, they will have the following relationships by default:</p>
 <pre><code>    Root
    / | \
   A  B  C</code></pre>
 <p>With the explicit parents, you can customize the relationships:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>tables <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">set_parents</span>(<span class="fu">list</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="co"># The parent of C is B</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="st">"C"</span> <span class="ot">=</span> <span class="st">"B"</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="fu">jellyfisher</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>tables <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">set_parents</span>(<span class="fu">list</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    <span class="co"># The parent of C is B</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    <span class="st">"C"</span> <span class="ot">=</span> <span class="st">"B"</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="fu">jellyfisher</span>()</span></code></pre></div>
 <pre><code>    Root
    /  \
   A    B
@@ -147,13 +148,13 @@
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
 </h2>
-<p><em>Jellyfisher</em> is a thin wrapper for the <a href="https://github.com/HautaniemiLab/jellyfish" class="external-link">Jellyfish</a> visualization tool. Jellyfish is included as a git submodule in the <a href="tools/jellyfish"><code>tools/jellyfish/</code></a> directory.</p>
-<p>To build the Jellyfish JavaScript dependency, run the <a href="tools/update-and-build.sh"><code>update-and-build.sh</code></a> script in the <a href="tools/"><code>tools/</code></a> directory. Most of the R code is autogenerated from the Jellyfish JavaScript code using the <a href="tools/generate-R-code.mjs"><code>generate-R-code.mjs</code></a> script, which should be run after building the Jellyfish dependency.</p>
+<p><em>Jellyfisher</em> is a thin wrapper for the <a href="https://github.com/HautaniemiLab/jellyfish" class="external-link">Jellyfish</a> visualization tool. Jellyfish is included as a git submodule in the <a href="https://github.com/HautaniemiLab/jellyfisher/tree/main/tools/" class="external-link"><code>tools/</code></a> directory.</p>
+<p>To build the Jellyfish JavaScript dependency, run the <a href="https://github.com/HautaniemiLab/jellyfisher/blob/main/tools/update-and-build.sh" class="external-link"><code>update-and-build.sh</code></a> script in the <a href="https://github.com/HautaniemiLab/jellyfisher/tree/main/tools/" class="external-link"><code>tools/</code></a> directory. Most of the R code is autogenerated from the Jellyfish JavaScript code using the <a href="https://github.com/HautaniemiLab/jellyfisher/blob/main/tools/generate-R-code.mjs" class="external-link"><code>generate-R-code.mjs</code></a> script, which should be run after building the Jellyfish dependency.</p>
 </div>
 <div class="section level2">
 <h2 id="about">About<a class="anchor" aria-label="anchor" href="#about"></a>
 </h2>
-<p>Copyright (c) 2025 Kari Lavikka. MIT license, see <a href="LICENSE.html">LICENSE.md</a> for details.</p>
+<p>Copyright (c) 2025 Kari Lavikka. MIT license, see <a href="https://github.com/HautaniemiLab/jellyfisher/blob/main/LICENSE.md" class="external-link">LICENSE.md</a> for details.</p>
 <p>Jellyfisher is developed in <a href="https://www.helsinki.fi/en/researchgroups/systems-biology-of-drug-resistance-in-cancer" class="external-link">The Systems Biology of Drug Resistance in Cancer</a> group at the <a href="https://www.helsinki.fi/en" class="external-link">University of Helsinki</a>.</p>
 <p>This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreements No. 965193 (<a href="https://www.deciderproject.eu/" class="external-link">DECIDER</a>) and No. 847912 (<a href="https://www.rescuer.uio.no/" class="external-link">RESCUER</a>).</p>
 </div>
@@ -161,6 +162,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=jellyfisher" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/HautaniemiLab/jellyfisher/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/HautaniemiLab/jellyfisher/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -193,6 +195,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/HautaniemiLab/jellyfisher/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://CRAN.R-project.org/package=jellyfisher" class="external-link"><img src="https://www.r-pkg.org/badges/version/jellyfisher" alt="CRAN status"></a></li>
 </ul>
 </div>
 
