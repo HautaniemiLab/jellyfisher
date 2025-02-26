@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   jellyfisher: jellyfisher.html
-last_built: 2025-02-07T06:26Z
+last_built: 2025-02-26T13:02Z
 urls:
   reference: https://hautaniemilab.github.io/jellyfisher/reference
   article: https://hautaniemilab.github.io/jellyfisher/articles
