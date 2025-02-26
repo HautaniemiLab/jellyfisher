@@ -129,6 +129,15 @@ code using the
 [`generate-R-code.mjs`](https://github.com/HautaniemiLab/jellyfisher/blob/main/tools/generate-R-code.mjs)
 script, which should be run after building the Jellyfish dependency.
 
+## Citation
+
+If you use Jellyfisher in your research, please cite the following paper:
+
+Kari Lavikka, Altti Ilari Maarala, Jaana Oikkonen, Sampsa Hautaniemi, Jellyfish:
+integrative visualization of spatio-temporal tumor evolution and clonal
+dynamics, _Bioinformatics_, 2025;, btaf091,
+https://doi.org/10.1093/bioinformatics/btaf091
+
 ## About
 
 Copyright (c) 2025 Kari Lavikka. MIT license, see

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Lavikka"
+    given-names: "Kari"
+    orcid: "https://orcid.org/0000-0002-4163-4945"
+title: "Jellyfisher"
+url: "https://github.com/HautaniemiLab/jellyfisher"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Lavikka"
+      given-names: "Kari"
+      orcid: "https://orcid.org/0000-0002-4163-4945"
+    - family-names: "Maarala"
+      given-names: "Altti Ilari"
+      orcid: "https://orcid.org/0000-0001-8851-4265"
+    - family-names: "Oikkonen"
+      given-names: "Jaana"
+      orcid: "https://orcid.org/0000-0002-1063-2736"
+    - family-names: "Hautaniemi"
+      given-names: "Sampsa"
+      orcid: "https://orcid.org/0000-0002-7749-2694"
+  doi: "10.1093/bioinformatics/btaf091"
+  journal: "Bioinformatics"
+  title: "Jellyfish: integrative visualization of spatio-temporal tumor evolution and clonal dynamics"
+  year: 2025
