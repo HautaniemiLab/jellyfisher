@@ -52,7 +52,7 @@
 #'   \item{bellTipSpread}{How much to spread nested bell tips. 0 is no spread, 1 is full spread. Defaults to \code{0.5}.}
 #'   \item{bellStrokeWidth}{The width of strokes in the bell. Defaults to \code{1}.}
 #'   \item{bellStrokeDarkening}{How much the stroke color of the bells is darkened. Defaults to \code{0.6}.}
-#'   \item{bellPlateauPos}{Where the bell has fully appeared and the plateau starts. Defaults to \code{0.75}.}
+#'   \item{bellPlateauPos}{Where the bell has fully appeared and the plateau starts. Defaults to \code{0.7}.}
 #'   \item{sampleHeight}{Height of real sample nodes Defaults to \code{110}.}
 #'   \item{sampleWidth}{Width of sample nodes Defaults to \code{90}.}
 #'   \item{inferredSampleHeight}{Height of inferred sample nodes Defaults to \code{120}.}
@@ -67,6 +67,10 @@
 #'   \item{showLegend}{Whether to show the legend Defaults to \code{TRUE}.}
 #'   \item{phylogenyColorScheme}{Whether to use a color scheme based on phylogeny Defaults to \code{TRUE}.}
 #'   \item{phylogenyHueOffset}{Offset for the hue of the phylogeny color scheme. If the automatically generated hues are not to your liking, you can adjust the hue offset to get a different color scheme. Defaults to \code{0}.}
+#'   \item{phylogenyLightnessStart}{Lightness at the root of the phylogeny Defaults to \code{0.94}.}
+#'   \item{phylogenyLightnessEnd}{Lightness at the most divergent leaf of the phylogeny Defaults to \code{0.68}.}
+#'   \item{phylogenyChromaStart}{Chroma at the root of the phylogeny Defaults to \code{0.025}.}
+#'   \item{phylogenyChromaEnd}{Chroma at the most divergent leaf of the phylogeny Defaults to \code{0.21}.}
 #'   \item{sampleTakenGuide}{Type of the "sample taken" guide. `"none"` for no guides, `"line"` for a faint dashed line in all samples, `"text"` same as line, but with a text label in one of the samples. `"text-all"` same as text, but with a text label in all samples. Defaults to \code{"text"}.}
 #'   \item{showRankTitles}{Whether to show rank titles above the samples (if provided). Defaults to \code{TRUE}.}
 #'   \item{normalsAtPhylogenyRoot}{Whether the root of the phylogenetic tree contains normal cells. If true, no tentacles will be drawn for the root clone and its color will be white if phylogenyColorScheme is used. Defaults to \code{FALSE}.}
@@ -109,7 +113,7 @@ jellyfisher <- function(tables,
     bellTipSpread = 0.5,
     bellStrokeWidth = 1,
     bellStrokeDarkening = 0.6,
-    bellPlateauPos = 0.75,
+    bellPlateauPos = 0.7,
     sampleHeight = 110,
     sampleWidth = 90,
     inferredSampleHeight = 120,
@@ -124,6 +128,10 @@ jellyfisher <- function(tables,
     showLegend = TRUE,
     phylogenyColorScheme = TRUE,
     phylogenyHueOffset = 0,
+    phylogenyLightnessStart = 0.94,
+    phylogenyLightnessEnd = 0.68,
+    phylogenyChromaStart = 0.025,
+    phylogenyChromaEnd = 0.21,
     sampleTakenGuide = "text",
     showRankTitles = TRUE,
     normalsAtPhylogenyRoot = FALSE
@@ -234,6 +242,26 @@ jellyfisher <- function(tables,
     if (!is.numeric(options$phylogenyHueOffset)) stop("phylogenyHueOffset must be numeric")
     if (options$phylogenyHueOffset < 0) stop("phylogenyHueOffset must be at least 0")
     if (options$phylogenyHueOffset > 360) stop("phylogenyHueOffset must be no greater than 360")
+  }
+  if (!is.null(options$phylogenyLightnessStart)) {
+    if (!is.numeric(options$phylogenyLightnessStart)) stop("phylogenyLightnessStart must be numeric")
+    if (options$phylogenyLightnessStart < 0) stop("phylogenyLightnessStart must be at least 0")
+    if (options$phylogenyLightnessStart > 1) stop("phylogenyLightnessStart must be no greater than 1")
+  }
+  if (!is.null(options$phylogenyLightnessEnd)) {
+    if (!is.numeric(options$phylogenyLightnessEnd)) stop("phylogenyLightnessEnd must be numeric")
+    if (options$phylogenyLightnessEnd < 0) stop("phylogenyLightnessEnd must be at least 0")
+    if (options$phylogenyLightnessEnd > 1) stop("phylogenyLightnessEnd must be no greater than 1")
+  }
+  if (!is.null(options$phylogenyChromaStart)) {
+    if (!is.numeric(options$phylogenyChromaStart)) stop("phylogenyChromaStart must be numeric")
+    if (options$phylogenyChromaStart < 0) stop("phylogenyChromaStart must be at least 0")
+    if (options$phylogenyChromaStart > 1) stop("phylogenyChromaStart must be no greater than 1")
+  }
+  if (!is.null(options$phylogenyChromaEnd)) {
+    if (!is.numeric(options$phylogenyChromaEnd)) stop("phylogenyChromaEnd must be numeric")
+    if (options$phylogenyChromaEnd < 0) stop("phylogenyChromaEnd must be at least 0")
+    if (options$phylogenyChromaEnd > 1) stop("phylogenyChromaEnd must be no greater than 1")
   }
   if (!is.null(options$sampleTakenGuide)) {
     if (!options$sampleTakenGuide %in% c("none", "line", "text", "text-all")) stop("sampleTakenGuide must be one of: none, line, text, text-all")

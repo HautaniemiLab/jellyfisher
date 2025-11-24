@@ -29,7 +29,7 @@ echo "Building Jellyfish..."
 
 cd "$SUBMODULE_DIR" || exit
 
-npm install
+npm ci
 npm run build:lib
 npm run build:schema
 
