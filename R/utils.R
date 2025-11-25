@@ -56,7 +56,10 @@ validate_tables <- function(tables) {
       # nothing to check
     } else {
       # Otherwise the column must be numeric and contain no NAs (no mixtures).
-      stopifnot(is.numeric(rank_col), !any(is.na(rank_col)))
+        # If there are any non-NA values, ensure the column is numeric.
+        if (!all(is.na(rank_col))) {
+          stopifnot(is.numeric(rank_col))
+        }
     }
   }
 }
@@ -299,7 +302,7 @@ add_inferred_sample <- function(tables, name, rank = NULL,
     stringsAsFactors = FALSE
   )
   if ("rank" %in% colnames(tables$samples)) {
-    new_sample$rank <- if (is.null(rank)) NA_character_ else rank
+    new_sample$rank <- if (is.null(rank)) NA_real_ else rank
   }
 
   new_samples <- rbind(tables$samples, new_sample)

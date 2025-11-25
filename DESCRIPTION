@@ -30,7 +30,8 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    clonevol
+    clonevol,
+    testthat (>= 3.0.0)
 Depends: R (>= 4.1.0)
 VignetteBuilder: knitr
 biocViews:
@@ -38,3 +39,4 @@ biocViews:
     Phylogenetics,
     Software,
     Spatial
+Config/testthat/edition: 3
