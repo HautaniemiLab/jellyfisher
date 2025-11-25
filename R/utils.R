@@ -45,6 +45,20 @@ validate_tables <- function(tables) {
     all(c("subclone", "parent") %in% colnames(tables$phylogeny)),
     all(c("sample", "subclone", "clonalPrevalence") %in% colnames(tables$compositions))
   )
+
+  # If a rank column exists in the samples table, ensure it's either all NA
+  # (allowed) or entirely numeric with no NAs; mixtures or non-numeric columns are rejected.
+  if ("rank" %in% colnames(tables$samples)) {
+    rank_col <- tables$samples$rank
+
+    # If all values are NA, that's allowed.
+    if (all(is.na(rank_col))) {
+      # nothing to check
+    } else {
+      # Otherwise the column must be numeric and contain no NAs (no mixtures).
+      stopifnot(is.numeric(rank_col), !any(is.na(rank_col)))
+    }
+  }
 }
 
 #' Set parents for samples
@@ -124,6 +138,180 @@ set_parents <- function(tables, parents, unset_missing = FALSE) {
 
   list(
     samples = samples,
+    phylogeny = tables$phylogeny,
+    compositions = tables$compositions,
+    ranks = tables$ranks
+  )
+}
+
+#' Insert an a hypothetical inferred sample into the sample tree and set it
+#' as the parent of specified samples.
+#' 
+#' @param tables A list of tables (samples, phylogeny, compositions, ranks)
+#' @param name The name of the inferred sample to add
+#' @param rank The rank of the inferred sample
+#' @param samples A character vector of samples to set the inferred sample as their parent
+#' @param parent_sample The parent sample of the inferred sample. If NULL, the inferred root is used.
+#' @param display_name The display name of the inferred sample (default: "Inferred")
+#' 
+#' @return A list of tables with a newly added inferred sample and updated parent relationships
+#' 
+#' @examples
+#' jellyfisher_example_tables |>
+#'   select_patients("EOC153") |>
+#'   add_inferred_sample("EOC153_Inf",
+#'                       2,
+#'                       c("EOC153_iPer1_DNA4",
+#'                         "EOC153_iOme1_DNA4",
+#'                         "EOC153_iOvaR1_DNA1")) |>
+#'   jellyfisher()
+#' 
+#' @export
+#' 
+add_inferred_sample <- function(tables, name, rank = NULL,
+                                samples = character(),
+                                parent_sample = NULL,
+                                display_name = "Inferred") {
+  validate_tables(tables)
+
+  # Basic argument checks
+  stopifnot(is.character(name), length(name) == 1, nzchar(name))
+  if (!is.character(display_name) || length(display_name) != 1) {
+    stop("display_name must be a single string")
+  }
+
+  if (name %in% tables$samples$sample) {
+    stop(sprintf("inferred sample name '%s' already exists in tables$samples", name))
+  }
+
+  # Validate parent_sample if provided
+  if (!is.null(parent_sample)) {
+    stopifnot(is.character(parent_sample), length(parent_sample) == 1)
+    if (!(parent_sample %in% tables$samples$sample)) {
+      stop(sprintf("parent_sample '%s' not found in tables$samples", parent_sample))
+    }
+  }
+
+  # Validate target samples to reparent
+  if (length(samples) > 0) {
+    if (!is.character(samples)) samples <- as.character(samples)
+    missing_samples <- setdiff(samples, tables$samples$sample)
+    if (length(missing_samples) > 0) {
+      stop(sprintf("the following samples to reparent were not found: %s", paste(missing_samples, collapse = ", ")))
+    }
+    if (name %in% samples) stop("inferred sample 'name' cannot be one of the target samples to reparent")
+  }
+
+  # Rank is optional. If rank is provided or the samples table contains a 'rank'
+  # column, it must be present in both places (argument and table).
+  has_rank_col <- "rank" %in% colnames(tables$samples)
+  rank_provided <- !is.null(rank)
+  if (xor(has_rank_col, rank_provided)) {
+    stop("'rank' must be provided both as a function argument and present as a column in tables$samples, or omitted from both")
+  }
+  if (rank_provided) stopifnot(is.numeric(rank), length(rank) == 1)
+
+  # If a rank column exists, ensure that the relevant rows have non-missing,
+  # numeric values. We check the target samples to be reparented and the
+  # parent_sample (if provided). This guarantees ranks are usable for ordering
+  # checks below.
+  if (has_rank_col) {
+    # Check target samples' ranks
+    if (length(samples) > 0) {
+      target_ranks <- tables$samples$rank[tables$samples$sample %in% samples]
+      if (any(is.na(target_ranks))) {
+        stop("one or more target samples have missing rank values")
+      }
+    }
+
+    # Check parent sample's rank
+    if (!is.null(parent_sample)) {
+      parent_rank <- tables$samples$rank[tables$samples$sample == parent_sample]
+      if (length(parent_rank) == 0 || is.na(parent_rank)) {
+        stop("parent_sample has missing rank value")
+      }
+    }
+  }
+
+  # If rank is used, validate ordering constraints using ranks from the table
+  if (rank_provided) {
+    # If reparenting samples, ensure inferred rank is strictly less than their ranks
+    if (length(samples) > 0) {
+      target_ranks <- tables$samples$rank[tables$samples$sample %in% samples]
+      if (any(is.na(target_ranks))) {
+        stop("one or more target samples have missing rank values")
+      }
+      if (!(rank < min(target_ranks))) {
+        stop("inferred sample rank must be less than the ranks of all reparented samples")
+      }
+    }
+
+    # If a parent_sample is provided, ensure inferred rank is strictly greater than parent's rank.
+    # If no parent is provided, ensure inferred rank is greater than zero.
+    if (!is.null(parent_sample)) {
+      parent_rank <- tables$samples$rank[tables$samples$sample == parent_sample]
+      if (length(parent_rank) == 0 || is.na(parent_rank)) {
+        stop("parent_sample has missing rank value")
+      }
+      if (!(rank > parent_rank)) {
+        stop("inferred sample rank must be greater than the rank of parent_sample")
+      }
+    } else {
+      if (!(rank > 0)) {
+        stop("inferred sample rank must be greater than zero when no parent_sample is provided")
+      }
+    }
+  }
+
+  # Determine patient for the inferred sample with a small, clear sequence
+  patient_field <- NA_character_
+  if ("patient" %in% colnames(tables$samples)) {
+    # Prefer parent_sample's patient
+    if (!is.null(parent_sample)) {
+      p <- unique(stats::na.omit(as.character(tables$samples$patient[tables$samples$sample == parent_sample])))
+      if (length(p) == 0) {
+        patient_field <- NA_character_
+      } else if (length(p) > 1) {
+        stop("multiple patient values found for parent_sample")
+      } else {
+        patient_field <- p[[1]]
+      }
+    } else if (length(samples) > 0) {
+      vals <- unique(stats::na.omit(as.character(tables$samples$patient[tables$samples$sample %in% samples])))
+      if (length(vals) == 0) {
+        patient_field <- NA_character_
+      } else if (length(vals) > 1) {
+        stop("target samples belong to multiple patients; inferred sample must belong to a single patient")
+      } else {
+        patient_field <- vals[[1]]
+      }
+    }
+  }
+
+  # Construct new sample row. Include `rank` only if rank is used in this dataset.
+  new_sample <- data.frame(
+    sample = name,
+    displayName = display_name,
+    parent = if (is.null(parent_sample)) NA_character_ else parent_sample,
+    patient = patient_field,
+    stringsAsFactors = FALSE
+  )
+  if (rank_provided) {
+    new_sample$rank <- rank
+    # Reorder to keep a predictable column order (sample, rank, displayName, parent, patient)
+    new_sample <- new_sample[c("sample", "rank", "displayName", "parent", "patient")]
+  }
+
+  new_samples <- rbind(tables$samples, new_sample)
+
+  if (length(samples) > 0) {
+    for (s in samples) {
+      new_samples$parent[new_samples$sample == s] <- name
+    }
+  }
+
+  list(
+    samples = new_samples,
     phylogeny = tables$phylogeny,
     compositions = tables$compositions,
     ranks = tables$ranks

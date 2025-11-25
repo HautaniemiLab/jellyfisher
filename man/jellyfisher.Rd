@@ -58,7 +58,7 @@ jellyfisher(
 \item{bellTipSpread}{How much to spread nested bell tips. 0 is no spread, 1 is full spread. Defaults to \code{0.5}.}
 \item{bellStrokeWidth}{The width of strokes in the bell. Defaults to \code{1}.}
 \item{bellStrokeDarkening}{How much the stroke color of the bells is darkened. Defaults to \code{0.6}.}
-\item{bellPlateauPos}{Where the bell has fully appeared and the plateau starts. Defaults to \code{0.75}.}
+\item{bellPlateauPos}{Where the bell has fully appeared and the plateau starts. Defaults to \code{0.7}.}
 \item{sampleHeight}{Height of real sample nodes Defaults to \code{110}.}
 \item{sampleWidth}{Width of sample nodes Defaults to \code{90}.}
 \item{inferredSampleHeight}{Height of inferred sample nodes Defaults to \code{120}.}
@@ -73,6 +73,10 @@ jellyfisher(
 \item{showLegend}{Whether to show the legend Defaults to \code{TRUE}.}
 \item{phylogenyColorScheme}{Whether to use a color scheme based on phylogeny Defaults to \code{TRUE}.}
 \item{phylogenyHueOffset}{Offset for the hue of the phylogeny color scheme. If the automatically generated hues are not to your liking, you can adjust the hue offset to get a different color scheme. Defaults to \code{0}.}
+\item{phylogenyLightnessStart}{Lightness at the root of the phylogeny Defaults to \code{0.94}.}
+\item{phylogenyLightnessEnd}{Lightness at the most divergent leaf of the phylogeny Defaults to \code{0.68}.}
+\item{phylogenyChromaStart}{Chroma at the root of the phylogeny Defaults to \code{0.025}.}
+\item{phylogenyChromaEnd}{Chroma at the most divergent leaf of the phylogeny Defaults to \code{0.21}.}
 \item{sampleTakenGuide}{Type of the "sample taken" guide. \code{"none"} for no guides, \code{"line"} for a faint dashed line in all samples, \code{"text"} same as line, but with a text label in one of the samples. \code{"text-all"} same as text, but with a text label in all samples. Defaults to \code{"text"}.}
 \item{showRankTitles}{Whether to show rank titles above the samples (if provided). Defaults to \code{TRUE}.}
 \item{normalsAtPhylogenyRoot}{Whether the root of the phylogenetic tree contains normal cells. If true, no tentacles will be drawn for the root clone and its color will be white if phylogenyColorScheme is used. Defaults to \code{FALSE}.}

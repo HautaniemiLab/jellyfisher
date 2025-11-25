@@ -41,7 +41,7 @@ high-grade serous carcinoma." _Cancer Cell_ **41**, 1103–1117.e12 (2023). DOI:
 ```{r echo=F, message=F}
 # Subset the data to keep the compiled vignette a bit smaller
 jellyfisher_example_tables <- jellyfisher_example_tables |>
-  select_patients(c("EOC69", "EOC677", "EOC495", "EOC809"))
+  select_patients(c("EOC69", "EOC153", "EOC495", "EOC677", "EOC809"))
 ```
 
 
@@ -220,6 +220,54 @@ tables |>
 ```{r echo=F}
 rm(tables)
 ```
+
+### Adding hypothetical samples for more plausible evolutionary scenarios
+
+This feature is mainly useful when multiple time points are present, since
+subclones that appear across several branches of the sample tree may otherwise
+have their LCA placed at the inferred root. While technically correct, this 
+suggests that the subclone emerged before all real samples, which may sometimes
+be biologically implausible.
+
+To address this, you can insert a hypothetical **inferred sample** into the
+sample tree and use it as a new parent for a subset of samples. This creates a
+more plausible location for the LCA and often yields a clearer evolutionary
+scenario. The same mechanism can also be used more generally to organize the
+sample tree so that diverging clades are displayed in a more structured way.
+
+In the following example, the samples in the Diagnosis and Interval time points
+of patient EOC153 contain distinct clades. The original subclones were
+apparently eradicated during treatment, and new subclones emerged at the
+interval debulking surgery.  Without a manually inserted inferred sample, the
+interval subclones’ LCA is placed at the inferred root, suggesting an unlikely 
+evolutionary scenario. By adding a hypothetical intermediate sample, we can
+anchor the emergence of these subclones at a more realistic position in the
+sample tree.
+
+```{r}
+jellyfisher_example_tables |>
+  select_patients("EOC153") |>
+  add_inferred_sample(
+    name = "EOC153_Inf",
+    rank = 3,
+    samples = c(
+      "EOC153_iPer1_DNA4",
+      "EOC153_iOme1_DNA4",
+      "EOC153_iOvaR1_DNA1"
+    )
+  ) |>
+  jellyfisher(width = "100%", height = 600)
+```
+
+The `add_inferred_sample()` function performs three actions:
+
+1. Creates a new inferred sample with the given name and rank.
+2. Sets it as the parent of the specified samples.
+3. Updates the sample tree so that subclone LCAs can be placed at this new node.
+
+The resulting plot shows the subclones emerging at the newly introduced sample,
+between the diagnosis and relapse time points, producing a more realistic and
+interpretable evolutionary scenario.
 
 ## Handling non-aberrant cells
 
