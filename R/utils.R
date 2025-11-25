@@ -203,8 +203,10 @@ add_inferred_sample <- function(tables, name, rank = NULL,
   }
 
   # Rank is optional. If rank is provided or the samples table contains a 'rank'
-  # column, it must be present in both places (argument and table).
-  has_rank_col <- "rank" %in% colnames(tables$samples)
+  # column with at least one non-NA value, it must be present in both places
+  # (argument and table). A rank column that's entirely NA is treated as absent.
+  has_rank_col <- "rank" %in% colnames(tables$samples) &&
+                  !all(is.na(tables$samples$rank))
   rank_provided <- !is.null(rank)
   if (xor(has_rank_col, rank_provided)) {
     stop("'rank' must be provided both as a function argument and present as a column in tables$samples, or omitted from both")
