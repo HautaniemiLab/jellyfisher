@@ -1,3 +1,8 @@
+# jellyfisher 1.1.0
+
+- Updated Jellyfish to 1.1.0
+- Added `add_inferred_sample` function to insert inferred samples into the sample tree
+
 # jellyfisher 1.0.4
 
 - Updated documentation of `extract_tables_from_clonevol`
