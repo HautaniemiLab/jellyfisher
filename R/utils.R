@@ -298,10 +298,8 @@ add_inferred_sample <- function(tables, name, rank = NULL,
     patient = patient_field,
     stringsAsFactors = FALSE
   )
-  if (rank_provided) {
-    new_sample$rank <- rank
-    # Reorder to keep a predictable column order (sample, rank, displayName, parent, patient)
-    new_sample <- new_sample[c("sample", "rank", "displayName", "parent", "patient")]
+  if ("rank" %in% colnames(tables$samples)) {
+    new_sample$rank <- if (is.null(rank)) NA_character_ else rank
   }
 
   new_samples <- rbind(tables$samples, new_sample)
