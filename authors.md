@@ -8,16 +8,19 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/HautaniemiLab/jellyfisher/blob/v1.1.1/DESCRIPTION)
+[`inst/CITATION`](https://github.com/HautaniemiLab/jellyfisher/blob/main/inst/CITATION)
 
-Lavikka K (2025). *jellyfisher: Visualize Spatiotemporal Tumor Evolution
-with Jellyfish Plots*. R package version 1.1.1,
+Lavikka K, Maarala A, Oikkonen J, Hautaniemi S (2025). “Jellyfish:
+integrative visualization of spatio-temporal tumor evolution and clonal
+dynamics.” *Bioinformatics*.
+[doi:10.1093/bioinformatics/btaf091](https://doi.org/10.1093/bioinformatics/btaf091),
 <https://github.com/HautaniemiLab/jellyfisher>.
 
-    @Manual{,
-      title = {jellyfisher: Visualize Spatiotemporal Tumor Evolution with Jellyfish Plots},
-      author = {Kari Lavikka},
+    @Article{,
+      title = {Jellyfish: integrative visualization of spatio-temporal tumor evolution and clonal dynamics},
+      author = {Kari Lavikka and Altti Ilari Maarala and Jaana Oikkonen and Sampsa Hautaniemi},
       year = {2025},
-      note = {R package version 1.1.1},
+      journal = {Bioinformatics},
+      doi = {10.1093/bioinformatics/btaf091},
       url = {https://github.com/HautaniemiLab/jellyfisher},
     }
