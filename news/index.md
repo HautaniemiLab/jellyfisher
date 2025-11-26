@@ -1,5 +1,12 @@
 # Changelog
 
+## jellyfisher 1.1.1
+
+CRAN release: 2025-11-26
+
+- Fixed issue with adding inferred samples when ‘rank’ column is present
+  but entirely NA
+
 ## jellyfisher 1.1.0
 
 - Updated Jellyfish to 1.1.0

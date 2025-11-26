@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/HautaniemiLab/jellyfisher/blob/main/DESCRIPTION)
 
 Lavikka K (2025). *jellyfisher: Visualize Spatiotemporal Tumor Evolution
-with Jellyfish Plots*. R package version 1.1.0,
+with Jellyfish Plots*. R package version 1.1.1,
 <https://github.com/HautaniemiLab/jellyfisher>.
 
     @Manual{,
       title = {jellyfisher: Visualize Spatiotemporal Tumor Evolution with Jellyfish Plots},
       author = {Kari Lavikka},
       year = {2025},
-      note = {R package version 1.1.0},
+      note = {R package version 1.1.1},
       url = {https://github.com/HautaniemiLab/jellyfisher},
     }
