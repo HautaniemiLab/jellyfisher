@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/HautaniemiLab/jellyfisher/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/HautaniemiLab/jellyfisher/blob/v1.1.1/DESCRIPTION)
 
 Lavikka K (2025). *jellyfisher: Visualize Spatiotemporal Tumor Evolution
 with Jellyfish Plots*. R package version 1.1.1,
