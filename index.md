@@ -20,12 +20,14 @@ Jellyfisher Example Plot
 ### Install from CRAN
 
 ``` r
+
 install.packages("jellyfisher")
 ```
 
 ### Or alternatively, install the latest development version from GitHub
 
 ``` r
+
 devtools::install_github("HautaniemiLab/jellyfisher", build_vignettes = TRUE)
 ```
 
@@ -43,6 +45,7 @@ function’s documentation.
 #### Example
 
 ``` r
+
 library(jellyfisher)
 
 # Plot the bundled example data
@@ -59,6 +62,7 @@ function. See the reference page for details.
 #### Example
 
 ``` r
+
 library(clonevol)
 library(jellyfisher)
 

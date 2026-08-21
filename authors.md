@@ -13,7 +13,7 @@ Source:
 Lavikka K, Maarala A, Oikkonen J, Hautaniemi S (2025). “Jellyfish:
 integrative visualization of spatio-temporal tumor evolution and clonal
 dynamics.” *Bioinformatics*.
-[doi:10.1093/bioinformatics/btaf091](https://doi.org/10.1093/bioinformatics/btaf091),
+[doi:10.1093/bioinformatics/btaf091](https://doi.org/10.1093/bioinformatics/btaf091).
 <https://github.com/HautaniemiLab/jellyfisher>.
 
     @Article{,

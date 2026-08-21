@@ -1,6 +1,7 @@
 # Introduction to Jellyfisher
 
 ``` r
+
 library(jellyfisher)
 ```
 
@@ -44,6 +45,7 @@ ovarian high-grade serous carcinoma.” *Cancer Cell* **41**,
   imaginary root sample.
 
 ``` r
+
 head(jellyfisher_example_tables$samples, 25)
 #>                    sample displayName rank               parent patient
 #> 35       EOC69_pOme1_DNA1       pOme1    1                        EOC69
@@ -86,6 +88,7 @@ head(jellyfisher_example_tables$samples, 25)
   generating a phylogeny-aware color scheme.
 
 ``` r
+
 head(jellyfisher_example_tables$phylogeny, 25)
 #>     subclone parent   color branchLength patient
 #> 44         1     -1 #cccccc         2742   EOC69
@@ -129,6 +132,7 @@ row represents a subclone in a sample.
   1.
 
 ``` r
+
 head(jellyfisher_example_tables$compositions, 25)
 #>                 sample subclone clonalPrevalence patient
 #> 98    EOC69_pOme1_DNA1        5           0.2250   EOC69
@@ -169,6 +173,7 @@ when the samples were acquired.
 - `title` (string): specifies the title for the rank.
 
 ``` r
+
 head(jellyfisher_example_tables$ranks, 6)
 #>   rank       title
 #> 1    1   Diagnosis
@@ -189,6 +194,7 @@ input data. If the data set contains multiple patients, the Jellyfisher
 htmlwidget shows navigation buttons to switch between patients.
 
 ``` r
+
 jellyfisher(jellyfisher_example_tables,
             width = "100%", height = 450)
 ```
@@ -196,6 +202,7 @@ jellyfisher(jellyfisher_example_tables,
 ### Plotting with custom options
 
 ``` r
+
 jellyfisher(jellyfisher_example_tables,
             options = list(
               sampleHeight = 70,
@@ -214,6 +221,7 @@ patient, these buttons are hidden. The package also provides a
 `select_patients` function to filter the data set with ease.
 
 ``` r
+
 jellyfisher_example_tables |>
   select_patients("EOC677") |>
   jellyfisher(width = "100%", height = 400)
@@ -238,6 +246,7 @@ from an earlier bowel sample *p2Bow1_c*, which has no traces of the
 subclone 12.
 
 ``` r
+
 jellyfisher_example_tables |>
   select_patients("EOC809") |>
   jellyfisher(width = "100%", height = 600)
@@ -250,6 +259,7 @@ subclone 12 in this sample suggests that it is the likely source of the
 metastasis in the *r1Bow1* sample.
 
 ``` r
+
 jellyfisher_example_tables |>
   select_patients("EOC809") |>
   set_parents(list("EOC809_r1Bow1_DNA1" = "EOC809_p2Per1_cO_DNA2")) |>
@@ -265,6 +275,7 @@ samples on the same rank, indicating that they were diagnostic samples
 acquired at the same time.
 
 ``` r
+
 jellyfisher_example_tables |>
   select_patients("EOC495") |>
   jellyfisher(width = "100%", height = 650)
@@ -277,6 +288,7 @@ relationships, and let Jellyfisher assign the ranks based on the sample
 tree depth.
 
 ``` r
+
 tables <- jellyfisher_example_tables |>
   select_patients("EOC495")
 
@@ -298,6 +310,7 @@ development, we can manually assign ranks to the samples. The
 `set_ranks` function provides an easy way to do this.
 
 ``` r
+
 tables |>
   set_parents(list("EOC495_pLNL1_DNA1" = "EOC495_pLNR_DNA1",
                    "EOC495_pLNL2_DNA1" = "EOC495_pLNL1_DNA1")) |>
@@ -333,6 +346,7 @@ intermediate sample, we can anchor the emergence of these subclones at a
 more realistic position in the sample tree.
 
 ``` r
+
 jellyfisher_example_tables |>
   select_patients("EOC153") |>
   add_inferred_sample(
@@ -373,6 +387,7 @@ consequences: (1) No tentacles are drawn between the root subclones, and
 scheme is used.
 
 ``` r
+
 # Subclone N at the root represents the non-aberrant cells.
 # The letter N has no special meaning in Jellyfisher.
 non_aberrant <- list(
@@ -390,6 +405,7 @@ non_aberrant <- list(
 ```
 
 ``` r
+
 non_aberrant |>
   jellyfisher(options = list(
     normalsAtPhylogenyRoot = TRUE
@@ -403,6 +419,7 @@ patient may have multiple independent clones, and in these cases the
 root clone is shown:
 
 ``` r
+
 # Change the parent of subclone 2 to N
 non_aberrant$phylogeny$parent[non_aberrant$phylogeny$subclone == "2"] <- "N"
 
@@ -416,10 +433,11 @@ non_aberrant |>
 ## Session info
 
 ``` r
+
 sessionInfo()
-#> R version 4.5.2 (2025-10-31)
+#> R version 4.6.1 (2026-06-24)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.3 LTS
+#> Running under: Ubuntu 24.04.4 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -438,17 +456,17 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] jellyfisher_1.1.1
+#> [1] jellyfisher_1.1.2
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] vctrs_0.6.5       cli_3.6.5         knitr_1.50        rlang_1.1.6      
-#>  [5] xfun_0.54         stringi_1.8.7     generics_0.1.4    textshaping_1.0.4
-#>  [9] jsonlite_2.0.0    glue_1.8.0        htmltools_0.5.8.1 ragg_1.5.0       
-#> [13] sass_0.4.10       rmarkdown_2.30    tibble_3.3.0      evaluate_1.0.5   
-#> [17] jquerylib_0.1.4   fastmap_1.2.0     yaml_2.3.10       lifecycle_1.0.4  
-#> [21] stringr_1.6.0     compiler_4.5.2    dplyr_1.1.4       fs_1.6.6         
-#> [25] pkgconfig_2.0.3   htmlwidgets_1.6.4 systemfonts_1.3.1 digest_0.6.39    
-#> [29] R6_2.6.1          tidyselect_1.2.1  pillar_1.11.1     magrittr_2.0.4   
-#> [33] bslib_0.9.0       tools_4.5.2       pkgdown_2.2.0     cachem_1.1.0     
-#> [37] desc_1.4.3
+#>  [1] vctrs_0.7.3       cli_3.6.6         knitr_1.51        rlang_1.3.0      
+#>  [5] xfun_0.60         stringi_1.8.9     otel_0.2.0        generics_0.1.4   
+#>  [9] textshaping_1.0.5 jsonlite_2.0.0    glue_1.8.1        htmltools_0.5.9  
+#> [13] ragg_1.5.2        sass_0.4.10       rmarkdown_2.31    tibble_3.3.1     
+#> [17] evaluate_1.0.5    jquerylib_0.1.4   fastmap_1.2.0     yaml_2.3.12      
+#> [21] lifecycle_1.0.5   stringr_1.6.0     compiler_4.6.1    dplyr_1.2.1      
+#> [25] fs_2.1.0          pkgconfig_2.0.3   htmlwidgets_1.6.4 systemfonts_1.3.2
+#> [29] digest_0.6.39     R6_2.6.1          tidyselect_1.2.1  pillar_1.11.1    
+#> [33] magrittr_2.0.5    bslib_0.12.0      tools_4.6.1       pkgdown_2.2.1    
+#> [37] cachem_1.1.0      desc_1.4.3
 ```

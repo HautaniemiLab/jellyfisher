@@ -1,5 +1,9 @@
 # Changelog
 
+## jellyfisher 1.1.2
+
+- Updated the CRAN maintainer email address.
+
 ## jellyfisher 1.1.1
 
 CRAN release: 2025-11-26
