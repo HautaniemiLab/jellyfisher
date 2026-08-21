@@ -1,3 +1,7 @@
+# jellyfisher 1.1.2
+
+- Updated the CRAN maintainer email address.
+
 # jellyfisher 1.1.1
 
 - Fixed issue with adding inferred samples when 'rank' column is present but entirely NA

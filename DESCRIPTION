@@ -1,8 +1,8 @@
 Package: jellyfisher
 Title: Visualize Spatiotemporal Tumor Evolution with Jellyfish Plots
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: 
-    person("Kari", "Lavikka", , "kari.lavikka@helsinki.fi", role = c("cph", "aut", "cre"),
+    person("Kari", "Lavikka", , "kari@karilavikka.fi", role = c("cph", "aut", "cre"),
            comment = c(ORCID = "0000-0002-4163-4945"))
 Description:
     Generates interactive Jellyfish plots to visualize spatiotemporal tumor
